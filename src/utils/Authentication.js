@@ -15,6 +15,7 @@ export default function Authentication(token) {
   if(validate(data)){
     localStorage.setItem('jwtToken', 'Autorized, ' + token)
     localStorage.setItem('current_user', data.email)
+    localStorage.setItem('role', data.role)
     SetAuthorizationToken(token)
     return true;
   }else {
@@ -23,7 +24,7 @@ export default function Authentication(token) {
 }
 
 function validate(data) {
-  if(data.secret == SecretConstant.PASSWORD_AUT_TOKEN && data.date <= Date.now && data.email != '' ){
+  if(data.secret == SecretConstant.PASSWORD_AUT_TOKEN && data.date <= Date.now && data.email != '' && data.role != ''){
     return true
   }else {
     return false

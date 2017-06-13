@@ -23,13 +23,12 @@ let MasterPageStore = Reflux.createStore({
       method: 'GET',
       success: function(response, textStatus, xhr){ 
         if(xhr.status == 200){
-          this.trigger(response[0])
+          this.trigger(response)
         }else {
           this.state = {
 	         message: Constant.AUTHENTICATION_REQUIRED,
 	         type: Constant.TYPE_FLASH_MESSAGE_ERROR
 	        }
-          alert('pepa')
           browserHistory.push('/login');
           this.trigger(this.state)
         }
@@ -39,7 +38,6 @@ let MasterPageStore = Reflux.createStore({
           message: Constant.AUTHENTICATION_REQUIRED,
           type: Constant.TYPE_FLASH_MESSAGE_ERROR
         }
-        alert('popo')
         browserHistory.push('/initial_password');
         this.trigger(this.state)
       }

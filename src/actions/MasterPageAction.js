@@ -1,7 +1,8 @@
 import Reflux from 'reflux'
 
 let MasterPageAction = Reflux.createActions([
-  'FetchInformation'
+  'FetchInformation',
+  'FetchMenu'
 ])
 
 export default MasterPageAction

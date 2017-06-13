@@ -22,17 +22,23 @@ export default class MasterPage extends React.Component {
   }
 
   render() {
-    return (
-      <div class='nav-md'>
-	      <div class='container body'>
-	        <div class='main_container'>
-	      	  <Menu />
-	          <TopMenu data={this.state.information} />
-	          <Content />
-	          <Footer />
-	        </div>
-	      </div>
-	    </div>
-    );
+    if(this.state.information){ 
+      return (
+        <div class='nav-md'>
+  	      <div class='container body'>
+  	        <div class='main_container'>
+  	      	  <Menu data={this.state.information}/>
+  	          <TopMenu data={this.state.information} />
+  	          <Content />
+  	          <Footer />
+  	        </div>
+  	      </div>
+  	    </div>
+      )
+    }else{
+      return(
+        <div>LOADING .......</div>
+      )
+    }
   }
 }

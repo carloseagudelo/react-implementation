@@ -7,7 +7,6 @@ export default class TopMenu extends React.Component {
   }
 
   render() {
-  	if(this.props.data)
       return (
         <div class="top_nav">
 	      <div class="nav_menu">
@@ -18,7 +17,7 @@ export default class TopMenu extends React.Component {
 	          <ul class="nav navbar-nav navbar-right">
 	            <li class="">
 	              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	                <img src={this.props.data.photo} alt=""/>{this.props.data.name} <span class=" fa fa-angle-down"></span>
+	                <img src={this.props.data[0].photo} alt=""/>{this.props.data[0].personal_name} <span class=" fa fa-angle-down"></span>
 	              </a>
 	              <ul class="dropdown-menu dropdown-usermenu pull-right">
 	              <li><a href="#">PERFIL</a></li>
@@ -32,10 +31,5 @@ export default class TopMenu extends React.Component {
 	      </div>
 	    </div>
       )
-  	else{
-  	  return(
-  	    <div>LOADING .....</div>
-  	  )
-  	}
   }
 }
