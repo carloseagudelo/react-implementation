@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Content extends React.Component {
+export default class FileUpload extends React.Component {
 
   constructor(){
   	super()
@@ -9,7 +9,7 @@ export default class Content extends React.Component {
   render() {
     return (
       <div class="right_col" role="main" >
-      	{ this.props.children }
+        <h1>CARGUE DE DOCUMENTOS</h1>
       </div>
     );
   }

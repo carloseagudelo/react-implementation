@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router'
 
 export default class SubItem extends React.Component {
 
@@ -9,7 +10,7 @@ export default class SubItem extends React.Component {
   render() {
     let sub_items = this.props.dataItem.map((subItem) => {
       return(
-        <li><a>{subItem.name}</a></li>
+        <li><Link to={subItem.url}>{subItem.name}</Link></li>
       )
     })
     return (

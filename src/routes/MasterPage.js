@@ -10,8 +10,6 @@ import TopMenu from '../components/master_page/TopMenu';
 import Content from '../components/master_page/Content';
 import Footer from '../components/master_page/Footer';
 
-
-
 @ReactMixin.decorate(Reflux.connect(MasterPageStore, 'information'))
 export default class MasterPage extends React.Component {
 
@@ -26,8 +24,7 @@ export default class MasterPage extends React.Component {
   componentDidMount(){    
     setTimeout(function () {      
       require('../static/js/custom.js')
-    }, 100);
-    
+    }, 1000);    
   }
 
   render() {
