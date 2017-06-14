@@ -11,12 +11,9 @@ export default class Item extends React.Component {
   render() {
     let items = this.props.data.map((item) => {
       if(item.level == 'Menu'){
-        let arrayItem = filterArray(this.props.data, item.id)
         return(        
           <li><a><i class={item.icon}></i>{item.name}<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <SubItem menu={item.id} dataItem={arrayItem} />
-            </ul>
+            <SubItem menu={item.id} dataItem={filterArray(this.props.data, item.id)} />            
           </li>
         )
       }

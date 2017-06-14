@@ -13,7 +13,9 @@ export default class SubItem extends React.Component {
       )
     })
     return (
-      <spam>{sub_items}</spam>
+      <ul class="nav child_menu">
+        {sub_items}
+      </ul>
     )
   }
 }
