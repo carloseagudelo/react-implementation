@@ -9,11 +9,11 @@ export default class SubItem extends React.Component {
   render() {
     let sub_items = this.props.dataItem.map((subItem) => {
       return(
-        <li>{subItem.name}</li>
+        <li><a>{subItem.name}</a></li>
       )
     })
     return (
-      <div>{sub_items}</div>
+      <spam>{sub_items}</spam>
     )
   }
 }

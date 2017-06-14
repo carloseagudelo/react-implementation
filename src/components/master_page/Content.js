@@ -1,5 +1,9 @@
 import React from 'react';
 
+const padding = {
+  'min-height': '760px'
+}
+
 export default class Content extends React.Component {
 
   constructor(){
@@ -8,7 +12,7 @@ export default class Content extends React.Component {
 
   render() {
     return (
-      <div class="right_col" role="main">
+      <div class="right_col" role="main" >
       	<h1>CARGA DE DOCUMENTOS</h1>
       		<div>
       		  <p>Documento 1 </p><input type="file" id="myFile"/>
