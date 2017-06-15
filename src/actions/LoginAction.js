@@ -4,7 +4,7 @@ let LoginAction = Reflux.createActions([
   'Login',
   'ResetPassword',
   'InitialPassword',
-  'FetchLogin'
+  'Logout'
 ])
 
 export default LoginAction

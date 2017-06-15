@@ -35,7 +35,7 @@ export default class MasterPage extends React.Component {
   	        <div class='main_container'>
   	      	  <Menu data={this.state.information}/>
   	          <TopMenu data={this.state.information} />
-  	          <Content />
+  	          <Content data={this.props.children} />
   	          <Footer />
   	        </div>
   	      </div>

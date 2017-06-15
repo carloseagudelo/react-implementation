@@ -6,7 +6,8 @@ import LoginAction from '../actions/LoginAction.js'
 
 import SecretConstant from '../utils/SecretsConstant'
 import Authentication from '../utils/Authentication'
-import Constant from '../utils/Constants.js'
+import Constant from '../utils/Constants'
+import Logout from '../utils/Logout'
 
 let LoginStore = Reflux.createStore({
   listenables: [LoginAction],
@@ -118,7 +119,6 @@ let LoginStore = Reflux.createStore({
             type: Constant.TYPE_FLASH_MESSAGE_ERROR
           }
           browserHistory.push('/initial_password');
-          console.log(this.state)
           this.trigger(this.state)
         }
       },  
@@ -129,6 +129,36 @@ let LoginStore = Reflux.createStore({
         }
         browserHistory.push('/initial_password');
         this.trigger(this.state)
+      }
+    });
+  },
+
+  Logout: function(data){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      data: {email: localStorage.current_user},
+      context: this,
+      url: SecretConstant.HOST_API+'/logout',
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          if(Logout()){
+            this.state = {
+              message: Constant.SESION_CLOSE_SUCESS,
+              type: Constant.TYPE_FLASH_MESSAGE_SUCESS
+            }
+            browserHistory.push('/login');
+            this.trigger(this.state)
+          }else{
+            browserHistory.push('/');
+          }         
+        }else {
+          browserHistory.push('/');
+        }
+      },  
+      error: function(xhr, textStatus){
+        browserHistory.push('/')
       }
     });
   }

@@ -1,9 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router'
+
+import LoginAction from '../../actions/LoginAction'
 
 export default class TopMenu extends React.Component {
 
   constructor(){
   	super()
+  }
+
+  onClickLogin(ev){
+  	ev.preventDefault()
+  	LoginAction.Logout()
   }
 
   render() {
@@ -20,10 +28,10 @@ export default class TopMenu extends React.Component {
 	                <img src={this.props.data[0].photo} alt=""/>{this.props.data[0].personal_name} <span class=" fa fa-angle-down"></span>
 	              </a>
 	              <ul class="dropdown-menu dropdown-usermenu pull-right">
-	              <li><a href="#">PERFIL</a></li>
-	              <li><a href="#">CONFIGURACIÓN</a></li>
-	              <li><a href="#">PQRS</a></li>
-	              <li><a href="#"><i class="fa fa-power-off pull-right"></i>CERRAR SESIÓN</a></li>
+	              <li><Link>PERFIL</Link></li>
+	              <li><Link>CONFIGURACIÓN</Link></li>
+	              <li><Link>PQRS</Link></li>
+	              <li><Link onClick={this.onClickLogin.bind(this)}><i class="fa fa-power-off pull-right"></i>CERRAR SESIÓN</Link></li>
 	              </ul>
 	            </li>
 	          </ul>

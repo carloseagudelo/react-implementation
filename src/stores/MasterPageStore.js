@@ -38,7 +38,7 @@ let MasterPageStore = Reflux.createStore({
           message: Constant.AUTHENTICATION_REQUIRED,
           type: Constant.TYPE_FLASH_MESSAGE_ERROR
         }
-        browserHistory.push('/initial_password');
+        browserHistory.push('/login');
         this.trigger(this.state)
       }
     });

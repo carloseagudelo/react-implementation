@@ -9,8 +9,8 @@ export default class Content extends React.Component {
   render() {
     return (
       <div class="right_col" role="main" >
-      	{ this.props.children }
+      	{this.props.data}
       </div>
-    );
+    )
   }
 }

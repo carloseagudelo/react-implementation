@@ -16,6 +16,7 @@ export default function Authentication(token) {
     localStorage.setItem('jwtToken', 'Autorized, ' + token)
     localStorage.setItem('current_user', data.email)
     localStorage.setItem('role', data.role)
+    localStorage.setItem('user_id', data.user_id)
     SetAuthorizationToken(token)
     return true;
   }else {

@@ -13,7 +13,7 @@ export default class SubItem extends React.Component {
         <li><Link to={subItem.url}>{subItem.name}</Link></li>
       )
     })
-    return (
+    return ( 
       <ul class="nav child_menu">
         {sub_items}
       </ul>
