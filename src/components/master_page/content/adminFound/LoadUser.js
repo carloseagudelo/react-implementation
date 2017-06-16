@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export default class LoadUser extends React.Component {
 
   constructor(){
