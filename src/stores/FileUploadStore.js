@@ -16,8 +16,6 @@ let FileUpload = Reflux.createStore({
   FetchDocuments: function(){
   	$.ajax({
       crossDomain: true,
-      enctype: 'multipart/form-data',
-      processData: false,
       cache: false,
       context: this,
       url: SecretConstant.HOST_API+'/documents/'+localStorage.user_id+'.json',
@@ -25,38 +23,36 @@ let FileUpload = Reflux.createStore({
       method: 'GET',
       success: function(response, textStatus, xhr){
         console.log('succes ajax')
-        this.trigger(response) 
-      },  
+        this.trigger(response)
+      },
       error: function(xhr, textStatus){
-      	
+
       }
     });
   },
 
   SendFile: function(data){
-    let formdata = {file: data.file, document_id: data.document_id}
-    console.log('pp')
-    console.log(formdata)
-    console.log(formdata.file)
-    console.log(formdata.document_id)
-    console.log('pp')
+    var formData = new FormData();
+
+    var input = $('input[name=s' + data.document_id + ']')
+    formData.append( 'file', input[0].files[0]);
+    formData.append( 'document_id', data.document_id);
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
-      contentType: false,
+      enctype: 'multipart/form-data',
       url: SecretConstant.HOST_API+'/documents_by_people',
-      data: formdata,
+      data: formData,
+      processData: false,
+      contentType: false,
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
-        console.log('ZZZZZZZZZZZZZZZZZZZZZZZZZZzz')
-        console.log(xhr.status)
-        console.log(response)
-        console.log('ZZZZZZZZZZZZZZZZZZZZZZZZZ')        
-      },  
+
+      },
       error: function(xhr, textStatus){
-        
+
       }
     });
   }
