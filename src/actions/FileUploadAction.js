@@ -1,7 +1,8 @@
 import Reflux from 'reflux'
 
 let FileUpload = Reflux.createActions([
-  'FetchDocuments'
+  'FetchDocuments',
+  'SendFile'
 ])
 
 export default FileUpload

@@ -29,6 +29,25 @@ let FileUpload = Reflux.createStore({
       	
       }
     });
+  },
+
+  SendFile: function(data){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/documents_by_person',
+      data: {file: data.file, document_id: data.document_id},
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        console.log('succes ajax')
+        this.trigger(response) 
+      },  
+      error: function(xhr, textStatus){
+        
+      }
+    });
   }
 
 })

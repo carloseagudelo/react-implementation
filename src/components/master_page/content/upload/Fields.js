@@ -8,10 +8,6 @@ export default class Fields extends React.Component {
   	super()
   }
 
-  onSubmitSend(ev){
-    ev.preventDefault()
-  }
-
   render() {
     let fields = this.props.data.map((field) => {
       return(
