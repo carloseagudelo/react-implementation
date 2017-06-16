@@ -34,13 +34,19 @@ let FileUpload = Reflux.createStore({
   },
 
   SendFile: function(data){
+    let formdata = {file: data.file, document_id: data.document_id}
+    console.log('pp')
+    console.log(formdata)
+    console.log(formdata.file)
+    console.log(formdata.document_id)
+    console.log('pp')
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
       contentType: false,
       url: SecretConstant.HOST_API+'/documents_by_people',
-      data: {file: data.file, document_id: data.document_id},
+      data: formdata,
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
