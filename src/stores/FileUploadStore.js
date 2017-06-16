@@ -36,13 +36,15 @@ let FileUpload = Reflux.createStore({
       crossDomain: true,
       cache: false,
       context: this,
-      url: SecretConstant.HOST_API+'/documents_by_person',
+      url: SecretConstant.HOST_API+'/documents_by_people',
       data: {file: data.file, document_id: data.document_id},
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'GET',
+      method: 'POST',
       success: function(response, textStatus, xhr){
-        console.log('succes ajax')
-        this.trigger(response) 
+        console.log('ZZZZZZZZZZZZZZZZZZZZZZZZZZzz')
+        console.log(xhr.status)
+        console.log(response)
+        console.log('ZZZZZZZZZZZZZZZZZZZZZZZZZ')        
       },  
       error: function(xhr, textStatus){
         

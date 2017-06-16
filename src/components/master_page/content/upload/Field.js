@@ -20,7 +20,7 @@ export default class Field extends React.Component {
   render() {
     return(
       <div>
-        <form onSubmit={this.onSubmitSend.bind(this)} id={this.props.data.id}>
+        <form onSubmit={this.onSubmitSend.bind(this)} id={this.props.data.id} enctype="multipart/form-data">
           <label class="control-label">{this.props.data.document_name}:
             <input type="file" name="file" id={this.props.data.document_id} class="file" />
           </label>
