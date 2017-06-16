@@ -11,9 +11,11 @@ export default class Field extends React.Component {
   onSubmitSend(ev){
     ev.preventDefault()
     let form_data = $(ev.target).serializeArray()
-    console.log()
-    alert('valor:  ' + form_data[1].name)
-    let data = getParams(form_data[1].name)
+    alert('valor del id del form:  ' + form_data[1].value)
+    let data = getParams(form_data[1].value)
+    console.log('XYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYYXYX')
+    console.log(data)
+    console.log('XYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYYXYX')
     FileUploadAction.SendFile(data)
   }  
 
@@ -33,7 +35,7 @@ export default class Field extends React.Component {
           <label>OBSERVACIONES: 
             <input type="text" name="observation" id={this.props.data.document_id} value={this.props.data.observation} />
           </label>
-          <input type="hidden" name={this.props.data.id} />
+          <input type="hidden" name="document_id" value={this.props.data.id} />
           <input type="submit" value="ENVIAR" /> 
         </form>
       </div>      
@@ -42,18 +44,12 @@ export default class Field extends React.Component {
 }
 
 function getParams(idform) {
-
-  alert(idform)
   var elements = document.getElementById(idform).elements;
   var obj ={};
   for(var i = 0 ; i < elements.length ; i++){
     var item = elements.item(i);
     obj[item.name] = item.value;
   }
-  obj.document_id = idform;
-  console.log('ZZZZZZZZZZZZZZZ')
-  console.log(obj)
-  console.log('ZZZZZZZZZZZZZZZ')
   return obj
 
 }
