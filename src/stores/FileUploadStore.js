@@ -16,6 +16,8 @@ let FileUpload = Reflux.createStore({
   FetchDocuments: function(){
   	$.ajax({
       crossDomain: true,
+      enctype: 'multipart/form-data',
+      processData: false,
       cache: false,
       context: this,
       url: SecretConstant.HOST_API+'/documents/'+localStorage.user_id+'.json',
@@ -36,6 +38,7 @@ let FileUpload = Reflux.createStore({
       crossDomain: true,
       cache: false,
       context: this,
+      contentType: false,
       url: SecretConstant.HOST_API+'/documents_by_people',
       data: {file: data.file, document_id: data.document_id},
       headers: {authorization: localStorage.jwtToken.split(',')[1]},

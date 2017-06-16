@@ -42,6 +42,7 @@ export default class Field extends React.Component {
 }
 
 function getParams(idform) {
+
   alert(idform)
   var elements = document.getElementById(idform).elements;
   var obj ={};
@@ -54,4 +55,5 @@ function getParams(idform) {
   console.log(obj)
   console.log('ZZZZZZZZZZZZZZZ')
   return obj
+
 }
