@@ -2,10 +2,10 @@ import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
 
-import AdminFoundAction from '../actions/AdminFoundAction.js'
+import AdminFoundAction from '../actions/AdminFoundAction'
 
 import SecretConstant from '../utils/SecretsConstant'
-import Constant from '../utils/Constants.js'
+import Constant from '../utils/Constants'
 
 
 let AdminFoundStore = Reflux.createStore({

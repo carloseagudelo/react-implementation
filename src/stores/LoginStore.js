@@ -2,7 +2,7 @@ import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
 
-import LoginAction from '../actions/LoginAction.js'
+import LoginAction from '../actions/LoginAction'
 
 import SecretConstant from '../utils/SecretsConstant'
 import Authentication from '../utils/Authentication'

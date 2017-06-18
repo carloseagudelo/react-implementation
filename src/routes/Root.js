@@ -5,7 +5,7 @@ import MasterPage from './MasterPage';
 import Login from './Login';
 import ResetPassword from './ResetPassword';
 import InitialPassword from './InitialPassword';
-import FileUpload from '../components/master_page/content/upload/FileUpload'
+import Document from '../components/master_page/content/document/Document'
 import LoadUser from '../components/master_page/content/adminFound/LoadUser'
 
 export default class Root extends React.Component {
@@ -28,8 +28,9 @@ export default class Root extends React.Component {
  render() {
     return (
       <Router history={browserHistory}>	  	  
-        <Route path='/' component={MasterPage} onEnter={this.requireAuth}>
-          <Route path='/file_upload' component={FileUpload} />
+        <Route path='/' component={MasterPage} onEnter={this.requireAuth} >
+          <Route path='/documents' component={Document} />
+          <Route path='/documents/:id' component={Document} />
           <Route path='/load_user' component={LoadUser} />
         </Route>
         <Route path='login' component={Login} />

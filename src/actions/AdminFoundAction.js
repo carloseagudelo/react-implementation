@@ -1,7 +1,7 @@
 import Reflux from 'reflux'
 
-let AdminFound = Reflux.createActions([
+let AdminFoundAction = Reflux.createActions([
   'LoadData'
 ])
 
-export default AdminFound
+export default AdminFoundAction

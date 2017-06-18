@@ -2,10 +2,10 @@ import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
 
-import MasterPageAction from '../actions/MasterPageAction.js'
+import MasterPageAction from '../actions/MasterPageAction'
 
 import SecretConstant from '../utils/SecretsConstant'
-import Constant from '../utils/Constants.js'
+import Constant from '../utils/Constants'
 
 
 let MasterPageStore = Reflux.createStore({
