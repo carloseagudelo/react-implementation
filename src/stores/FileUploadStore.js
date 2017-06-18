@@ -33,16 +33,15 @@ let FileUpload = Reflux.createStore({
 
   SendFile: function(data){
     var formData = new FormData();
-
     var input = $('input[name=s' + data.document_id + ']')
     formData.append( 'file', input[0].files[0]);
-    formData.append( 'document_id', data.document_id);
+    formData.append( 'id', data.document_id);
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
       enctype: 'multipart/form-data',
-      url: SecretConstant.HOST_API+'/documents_by_people',
+      url: SecretConstant.HOST_API+'/load_file',
       data: formData,
       processData: false,
       contentType: false,

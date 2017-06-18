@@ -13,9 +13,6 @@ export default class Field extends React.Component {
     let form_data = $(ev.target).serializeArray()
     alert('valor del id del form:  ' + form_data[1].value)
     let data = getParams(form_data[1].value)
-    console.log('XYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYYXYX')
-    console.log(data)
-    console.log('XYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYXYYXYX')
     FileUploadAction.SendFile(data)
   }
 
