@@ -47,14 +47,14 @@ let FileUpload = Reflux.createStore({
 
         }
       });
-    }    
+    }
   },
 
   SendFile: function(data){
     var formData = new FormData();
-    var input = $('input[name=s' + data.document_id + ']')
+    var input = $('input[name=s' + data.idForm + ']')
     formData.append( 'file', input[0].files[0]);
-    formData.append( 'id', data.document_id);
+    formData.append( 'id', data.idForm);
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -87,7 +87,7 @@ let FileUpload = Reflux.createStore({
         this.trigger(response)
       },
       error: function(xhr, textStatus){
-        
+
       }
     });
   },
@@ -105,7 +105,7 @@ let FileUpload = Reflux.createStore({
         this.trigger(response)
       },
       error: function(xhr, textStatus){
-        
+
       }
     });
   }

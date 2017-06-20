@@ -22,16 +22,13 @@ export default class Field extends React.Component {
   onSubmitSend(ev){
     ev.preventDefault()
     let form_data = $(ev.target).serializeArray()
-    console.log(form_data)
     let data = getParams(form_data[0].value)
-    console.log('XXXXXXXXXXXXXXXXXXXX')
-    console.log(data)
     DocumentAction.SendFile(data)
   }
 
   onSubmitValidate(){
     ev.preventDefault()
-    let form_data = $(ev.target).serializeArray()    
+    let form_data = $(ev.target).serializeArray()
     let data = getParams(form_data[1].value)
     DocumentAction.SendValidate(data)
   }
@@ -45,7 +42,7 @@ export default class Field extends React.Component {
       $('#'+this.props.data.id+' input[name=final_validation]').attr('checked', true)
     }
   }
-  
+
   render() {
     if(localStorage.role == Constant.ROLE_BENEFICIARY){
       return(
@@ -62,7 +59,7 @@ export default class Field extends React.Component {
                 <label>VALIDACIÓN UNO:</label>
               </div>
               <div class="col col-md-1">
-                <input type="checkbox" name="pre_validation" checked={this.props.data.pre_validation} />                
+                <input type="checkbox" name="pre_validation" checked={this.props.data.pre_validation} />
               </div>
               <div class="col col-md-2">
                 <label>VALIDACIÓN DOS:</label>
@@ -73,8 +70,8 @@ export default class Field extends React.Component {
             </div>
             <div class="row">
               <div class="col col-md-6">
-                <label class="control-label">OBSERVACIONES:</label>   
-                <input type="text" name="observation" id={this.props.data.document_id} value={this.props.data.observation} disabled/>              
+                <label class="control-label">OBSERVACIONES:</label>
+                <input type="text" name="observation" id={this.props.data.document_id} value={this.props.data.observation} disabled/>
               </div>
               <div class="col col-md-6">
                 <input type="submit" value="ENVIAR" class="btn btn-primary btn-sm pull-right" />
@@ -101,7 +98,7 @@ export default class Field extends React.Component {
                 <label>VALIDACIÓN UNO:</label>
               </div>
               <div class="col col-md-1">
-                <input type="checkbox" name="pre_validation" />                
+                <input type="checkbox" name="pre_validation" />
               </div>
               <div class="col col-md-2">
                 <label>VALIDACIÓN DOS:</label>
@@ -112,8 +109,8 @@ export default class Field extends React.Component {
             </div>
             <div class="row">
               <div class="col col-md-6">
-                <label class="control-label">OBSERVACIONES:</label>   
-                <input type="text" name="observation" id={this.props.data.document_id} value={this.props.data.observation} />              
+                <label class="control-label">OBSERVACIONES:</label>
+                <input type="text" name="observation" id={this.props.data.document_id} value={this.props.data.observation} />
               </div>
               <div class="col col-md-6">
                 <input type="submit" value="ENVIAR" class="btn btn-primary btn-sm pull-right" />
@@ -123,7 +120,7 @@ export default class Field extends React.Component {
           </form>
         </div>
       )
-    }    
+    }
   }
 }
 
