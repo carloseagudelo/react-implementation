@@ -29,7 +29,6 @@ export default class TopMenu extends React.Component {
 	              </a>
 	              <ul class="dropdown-menu dropdown-usermenu pull-right">
 	              <li><Link>PERFIL</Link></li>
-	              <li><Link>CONFIGURACIÓN</Link></li>
 	              <li><Link>PQRS</Link></li>
 	              <li><Link onClick={this.onClickLogin.bind(this)}><i class="fa fa-power-off pull-right"></i>CERRAR SESIÓN</Link></li>
 	              </ul>

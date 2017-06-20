@@ -14,7 +14,7 @@ export default class ListUser extends React.Component {
   	super()
   }
 
-  componentWillMount(){        
+  componentWillMount(){    
     DocumentAction.ListUsers()     
   }
 
@@ -27,9 +27,20 @@ export default class ListUser extends React.Component {
       })
 
       return (
-        <div>       
-          {users}   
-        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>NOMBRE</th>
+              <th>ESTADO</th>
+              <th>FECHA  DE CARGA DE DOCUMENTOS</th>
+              <th>FECHA Y HORA FINALIZACIÓN</th>
+              <th>VALIDAR</th>
+            </tr>
+          </thead>
+          <tbody>      
+            {users}   
+          </tbody>
+        </table>
       )
     }else {
       return(

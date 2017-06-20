@@ -9,12 +9,13 @@ export default class User extends React.Component {
 
   render() {
     return(
-      <div>
-        <p>NOMBRE: {this.props.data.name}</p>
-        <p>ESTADO: {this.props.data.state}</p>
-        <p>HORA DE FINALIZACIÓN: {this.props.data.finised_hour}</p>
-        <Link to={'/documents/'+this.props.data.id }> VALIDAR DOCUMENTOS</Link>
-      </div>
+      <tr scope="row">
+        <th>{this.props.data.name}</th>
+        <th>{this.props.data.state}</th>
+        <th>{this.props.data.finished_upload_hour}</th>
+        <th>{this.props.data.finished_validation_hour}</th>
+        <Link to={'/documents/'+this.props.data.id}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+      </tr>
     )
   }
 }

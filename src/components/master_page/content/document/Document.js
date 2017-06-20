@@ -16,8 +16,10 @@ export default class Document extends React.Component {
       return (
         <div class="">
           <div class="page-title">
-            <div class="title_left">
+            <div class="x_title">
               <h3>CARGA DE DOCUMENTOS</h3>
+            </div>
+            <div class="x_content">
               <Fields />
             </div>
           </div>
@@ -28,8 +30,10 @@ export default class Document extends React.Component {
         return (
           <div class="">
             <div class="page-title">
-              <div class="title_left">
+              <div class="x_title">
                 <h3>VALIDACIÓN DE DOCUMENTOS</h3>
+              </div>
+              <div class="x_content">
                 <Fields data={this.props.params.id} />
               </div>
             </div>
@@ -39,8 +43,10 @@ export default class Document extends React.Component {
         return (
           <div class="">
             <div class="page-title">
-              <div class="title_left">
+              <div class="x_title">
                 <h3>VALIDACIÓN DE DOCUMENTOS</h3>
+              </div>
+              <div class="x_content">
                 <ListUser />
               </div>
             </div>

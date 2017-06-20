@@ -23,13 +23,15 @@ export default class LoadUser extends React.Component {
     return (
       <div class="">
         <div class="page-title">
-          <div class="title_left">
+          <div class="x_title">
             <h3>CARGA DE PRESELECCIONADOS</h3>
+          </div>
+          <div class="x_content">
             <MessageFlash data={this.state.response} />
             <div class="alert alert-info">
               <strong><h1>ATENCIÓN</h1></strong>
               <h3>
-                A CONTINUACIÓN INICIARÁ EL PROCESO DE CARGA PARA EL FONDO QUE ADMINISTRA, 
+                A CONTINUACIÓN INICIARÁ EL PROCESO DE CARGA DE USUARIOS PARA EL FONDO QUE ADMINISTRA, 
                 TENGA EN CUENTA QUE ANTES DE HACER ESTE CARGUE DEBE REALIZAR LA SELECCION EN LA 
                 APLICACION DEL FONDE QUE ADMINISTRA.
               </h3>
