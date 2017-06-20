@@ -22,14 +22,17 @@ export default class Field extends React.Component {
   onSubmitSend(ev){
     ev.preventDefault()
     let form_data = $(ev.target).serializeArray()
-    let data = this.getParams(form_data[1].value)
+    console.log(form_data)
+    let data = getParams(form_data[0].value)
+    console.log('XXXXXXXXXXXXXXXXXXXX')
+    console.log(data)
     DocumentAction.SendFile(data)
   }
 
   onSubmitValidate(){
     ev.preventDefault()
-    let form_data = $(ev.target).serializeArray()
-    let data = this.getParams(form_data[1].value)
+    let form_data = $(ev.target).serializeArray()    
+    let data = getParams(form_data[1].value)
     DocumentAction.SendValidate(data)
   }
 
@@ -42,17 +45,7 @@ export default class Field extends React.Component {
       $('#'+this.props.data.id+' input[name=final_validation]').attr('checked', true)
     }
   }
-
-  getParams(idform) {
-    var elements = document.getElementById(idform).elements;
-    var obj ={};
-    for(var i = 0 ; i < elements.length ; i++){
-      var item = elements.item(i);
-      obj[item.name] = item.value;
-    }
-    return obj
-  }
-
+  
   render() {
     if(localStorage.role == Constant.ROLE_BENEFICIARY){
       return(
@@ -87,7 +80,7 @@ export default class Field extends React.Component {
                 <input type="submit" value="ENVIAR" class="btn btn-primary btn-sm pull-right" />
               </div>
             </div>
-            <input type="hidden" name="document_id" value={this.props.data.id} />
+            <input type="hidden" name="idForm" value={this.props.data.id} />
           </form>
         </div>
       )
@@ -133,3 +126,13 @@ export default class Field extends React.Component {
     }    
   }
 }
+
+function getParams(idform) {
+    var elements = document.getElementById(idform).elements;
+    var obj ={};
+    for(var i = 0 ; i < elements.length ; i++){
+      var item = elements.item(i);
+      obj[item.name] = item.value;
+    }
+    return obj
+  }
