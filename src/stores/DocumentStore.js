@@ -98,9 +98,9 @@ let FileUpload = Reflux.createStore({
       cache: false,
       context: this,
       data: data,
-      url: SecretConstant.HOST_API+'/list_users',
+      url: SecretConstant.HOST_API+'/validate_document',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'GET',
+      method: 'POST',
       success: function(response, textStatus, xhr){
         this.trigger(response)
       },

@@ -17,18 +17,17 @@ export default class MasterPage extends React.Component {
   	super()
   }
 
-  componentWillMount(){        
-    MasterPageAction.FetchInformation()     
+  componentWillMount(){
+    MasterPageAction.FetchInformation()
   }
 
-  componentDidMount(){    
-    setTimeout(function () {      
+  componentDidMount(){
+    setTimeout(function () {
       require('../static/js/custom.js')
-    }, 1000);    
+    }, 1000);
   }
-
   render() {
-    if(this.state.information){ 
+    if(this.state.information){
       return (
         <div class='nav-md'>
   	      <div class='container body'>

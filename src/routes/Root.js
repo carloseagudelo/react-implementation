@@ -27,7 +27,7 @@ export default class Root extends React.Component {
 
  render() {
     return (
-      <Router history={browserHistory}>	  	  
+      <Router history={browserHistory}>
         <Route path='/' component={MasterPage} onEnter={this.requireAuth} >
           <Route path='/documents' component={Document} />
           <Route path='/documents/:id' component={Document} />

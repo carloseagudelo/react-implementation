@@ -26,15 +26,24 @@ export default class Field extends React.Component {
     DocumentAction.SendFile(data)
   }
 
-  onSubmitValidate(){
+  onSubmitValidate(ev){
     ev.preventDefault()
     let form_data = $(ev.target).serializeArray()
-    let data = getParams(form_data[1].value)
+    let data = this.getParamsO(form_data[0].value)
+    console.log(data)
     DocumentAction.SendValidate(data)
   }
 
+  getParamsO(idForm){
+    var obj ={};
+    obj['id_form'] = idForm;
+    obj['pre_validation'] = $('#'+idForm+' input[name=pre_validation]').prop('checked')
+    obj['final_validation'] = $('#'+idForm+' input[name=final_validation]').prop('checked')
+    obj['observation'] = $('#'+idForm+' input[name=observation]').val()
+    return obj
+  }
+
   setValuesToCheckBox(){
-    alert(this.props.data.pre_validation)
     if(this.props.data.pre_validation){
       $('#'+this.props.data.id+' input[name=pre_validation]').attr('checked', true)
     }
@@ -84,7 +93,8 @@ export default class Field extends React.Component {
     }else{
       return(
         <div class="component well">
-          <form onSubmit={this.onSubmitSend.bind(this)} id={this.props.data.id} enctype="multipart/form-data">
+          <form onSubmit={this.onSubmitValidate.bind(this)} id={this.props.data.id} enctype="multipart/form-data">
+            <input type="hidden" name="id_form" value={this.props.data.id} />
             <div class="row">
               <div class="col col-md-12">
                 <h4><strong>{this.props.data.document_name}</strong></h4>
@@ -98,7 +108,7 @@ export default class Field extends React.Component {
                 <label>VALIDACIÓN UNO:</label>
               </div>
               <div class="col col-md-1">
-                <input type="checkbox" name="pre_validation" />
+                <input type="checkbox" name="pre_validation" name="pre_validation" />
               </div>
               <div class="col col-md-2">
                 <label>VALIDACIÓN DOS:</label>
@@ -116,7 +126,6 @@ export default class Field extends React.Component {
                 <input type="submit" value="ENVIAR" class="btn btn-primary btn-sm pull-right" />
               </div>
             </div>
-            <input type="hidden" name="document_id" value={this.props.data.id} />
           </form>
         </div>
       )
@@ -124,7 +133,7 @@ export default class Field extends React.Component {
   }
 }
 
-function getParams(idform) {
+  function getParams(idform) {
     var elements = document.getElementById(idform).elements;
     var obj ={};
     for(var i = 0 ; i < elements.length ; i++){
