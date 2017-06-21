@@ -7,6 +7,9 @@ import ResetPassword from './ResetPassword';
 import InitialPassword from './InitialPassword';
 import Document from '../components/master_page/content/document/Document'
 import LoadUser from '../components/master_page/content/adminFound/LoadUser'
+import ListDocumets from '../components/master_page/content/configuration/ListDocuments'
+import CreateDocument from '../components/master_page/content/configuration/CreateDocument'
+
 
 export default class Root extends React.Component {
 
@@ -32,6 +35,8 @@ export default class Root extends React.Component {
           <Route path='/documents' component={Document} />
           <Route path='/documents/:id' component={Document} />
           <Route path='/load_user' component={LoadUser} />
+          <Route path='/list_documents' component={ListDocumets} />
+          <Route path='/create_document' component={CreateDocument} />
         </Route>
         <Route path='login' component={Login} />
         <Route path='reset' component={ResetPassword} />

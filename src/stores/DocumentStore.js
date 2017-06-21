@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import Reflux from 'reflux'
+import { browserHistory } from 'react-router'
 
 import DocumentAction from '../actions/DocumentAction'
 
@@ -23,7 +24,6 @@ let FileUpload = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'GET',
         success: function(response, textStatus, xhr){
-          console.log('succes ajax')
           this.trigger(response)
         },
         error: function(xhr, textStatus){
@@ -40,7 +40,6 @@ let FileUpload = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'GET',
         success: function(response, textStatus, xhr){
-          console.log('succes ajax')
           this.trigger(response)
         },
         error: function(xhr, textStatus){
@@ -108,6 +107,56 @@ let FileUpload = Reflux.createStore({
 
       }
     });
+  },
+
+  ListDocuments: function(data){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      data: data,
+      url: SecretConstant.HOST_API+'/list_documents',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        this.trigger(response)
+      },
+      error: function(xhr, textStatus){
+
+      }
+    });
+  },
+
+  SaveDocument: function(data){
+    if(data.name != '' || data.description != ''){
+      $.ajax({
+        crossDomain: true,
+        cache: false,
+        context: this,
+        data: data,
+        url: SecretConstant.HOST_API+'/save_document',
+        headers: {authorization: localStorage.jwtToken.split(',')[1]},
+        method: 'POST',
+        success: function(response, textStatus, xhr){
+          if(response.status == 200){
+            
+            browserHistory.push('/list_documents');
+            
+          }else{
+
+          }          
+        },
+        error: function(xhr, textStatus){
+
+        }
+      });
+    }else{
+      this.state = {
+        type: Constant.TYPE_FLASH_MESSAGE_ERROR,
+        message: Constant.VALIDATION_FIELDS_ERROR
+      }
+      this.trigger(this.state)
+    }
   }
 
 })

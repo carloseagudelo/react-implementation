@@ -4,7 +4,9 @@ let DocumentAction = Reflux.createActions([
   'FetchDocuments',
   'SendFile',
   'ListUsers',
-  'SendValidate'
+  'SendValidate',
+  'ListDocuments',
+  'SaveDocument'
 ])
 
 export default DocumentAction
