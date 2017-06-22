@@ -13,11 +13,14 @@ export default class ValidateComponent extends React.Component {
   	super()
   }
 
+  componentDidMount(){
+    this.setValuesToInputs()
+  }
+
   onSubmitValidate(ev){
     ev.preventDefault()
     let form_data = $(ev.target).serializeArray()
     let data = this.getParams(form_data[0].value)
-    console.log(data)
     DocumentAction.SendValidate(data)
   }
 
@@ -28,6 +31,12 @@ export default class ValidateComponent extends React.Component {
     obj['final_validation'] = $('#'+idForm+' input[name=final_validation]').prop('checked')
     obj['observation'] = $('#'+idForm+' input[name=observation]').val()
     return obj
+  }
+  
+  setValuesToInputs(){
+    $('#'+this.props.data.id+' input[name=pre_validation]').attr('checked', this.props.data.pre_validation)
+    $('#'+this.props.data.id+' input[name=final_validation]').attr('checked', this.props.data.final_validation)
+    $('#'+this.props.data.id+' input[name=observation]').val(this.props.data.observation)
   }
 
   render() {     
@@ -63,7 +72,7 @@ export default class ValidateComponent extends React.Component {
             </div>
             <div class="col col-md-6">
               <label class="control-label">OBSERVACIONES: </label>
-              <input type="text" name="observation" id={this.props.data.document_id} value={this.props.data.observation} />
+              <input type="text" name="observation" id={this.props.data.document_id} />
             </div>
           </div>
           <div class="row">

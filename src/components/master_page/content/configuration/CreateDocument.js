@@ -50,23 +50,23 @@ export default class ListDocuments extends React.Component {
             <div class="component well">
               <form onSubmit={this.sendDocumentSave.bind(this)} >
                 <MessageFlash data={this.state.response} />
-                <div class="row">
-                  <div class="col col-md-6">
-                    <label>NOMBRE: <input type="text" id="name" /></label>
-                  </div>
-                  <div class="col col-md-6">
-                    <label>DESCRIPCIÓN: <input type="text" id="description" /></label>
-                  </div>
+                <div class="form-group">
+                  <label for="name">NOMBRE: </label>
+                  <input type="text" id="name" class="form-control" placeholder="NOMBRE DOCUMENTO" />
+                </div>
+                <div class="form-group">
+                  <label for="description">DESCRIPCIÓN: </label>
+                  <input type="text" id="description" class="form-control" placeholder="DESCRIPCIÓN DOCUMENTO" />
                 </div>
                 <div class="row">
                   <div class="col col-md-4">
-                    <label>LEGALIZACIÓN: <input type="checkbox" id="type" /></label>
+                    <label class="pull-right">LEGALIZACIÓN: <input type="checkbox" id="type" /></label>
                   </div>
                   <div class="col col-md-4">
-                    <label>OBLIGATORIO: <input type="checkbox" id="require" /></label>
+                    <label class="pull-right">OBLIGATORIO: <input type="checkbox" id="require" /></label>
                   </div>
                   <div class="col col-md-4">
-                    <input type="submit" class="btn btn-primary btn-sm" value="GUARDAR" />
+                    <input type="submit" class="btn btn-primary btn-sm pull-right" value="GUARDAR" />
                   </div>
                 </div>
               </form>

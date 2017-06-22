@@ -9,7 +9,7 @@ import Document from '../components/master_page/content/document/Document'
 import LoadUser from '../components/master_page/content/adminFound/LoadUser'
 import ListDocumets from '../components/master_page/content/configuration/ListDocuments'
 import CreateDocument from '../components/master_page/content/configuration/CreateDocument'
-
+import SetDocumentFund from '../components/master_page/content/configuration/SetDocumentFund'
 
 export default class Root extends React.Component {
 
@@ -37,6 +37,7 @@ export default class Root extends React.Component {
           <Route path='/load_user' component={LoadUser} />
           <Route path='/list_documents' component={ListDocumets} />
           <Route path='/create_document' component={CreateDocument} />
+          <Route path='/set_documents' component={SetDocumentFund} />
         </Route>
         <Route path='login' component={Login} />
         <Route path='reset' component={ResetPassword} />

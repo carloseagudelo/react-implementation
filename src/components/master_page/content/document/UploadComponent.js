@@ -13,10 +13,6 @@ export default class UploadComponent extends React.Component {
   	super()
   }
 
-  componentDidMount(){
-    this.setValuesToCheckBox()
-  }
-
   onSubmitSend(ev){
     ev.preventDefault()
     let data = $(ev.target).serializeArray()
@@ -27,20 +23,10 @@ export default class UploadComponent extends React.Component {
     DocumentAction.SendFile(formData)
   }
 
-  setValuesToCheckBox(){
-    if(this.props.data.pre_validation){
-      $('#'+this.props.data.id+' input[name=pre_validation]').attr('checked', true)
-    }
-    if(this.props.data.final_validation){
-      $('#'+this.props.data.id+' input[name=final_validation]').attr('checked', true)
-    }
-  }
-
   render() {
     let link;
     if(this.props.data.file_file_name != ''){
-      link = 
-      
+      link =       
       <div class="col col-md-4">
         <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a>
       </div>
@@ -81,7 +67,7 @@ export default class UploadComponent extends React.Component {
           </div>
           <div>
             <div class="col col-md-12">
-              <input type="submit" value="ENVIAR" class="btn btn-primary btn-sm pull-right" />
+              <input type="submit" value="ENVIAR" class="btn btn-primary btn-xs pull-right" />
             </div>
           </div>
           <input type="hidden" name="idForm" value={this.props.data.id} />

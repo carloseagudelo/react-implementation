@@ -51,8 +51,7 @@ export default class ListDocuments extends React.Component {
               <Link to='/create_document' class="btn btn-primary btn-sm pull-right">CREAR DOCUMENTO</Link>
             </div>
           </div>
-        </div>
-        
+        </div>        
       )
     }else {
       return(
