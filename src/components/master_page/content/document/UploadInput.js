@@ -16,8 +16,8 @@ export default class UploadInput extends React.Component {
       )
     }else{
       return(
-        <div class="col col-md-6">
-          <input type="file" name={"s" + this.props.data.id} class="file" />
+        <div class="col col-md-3">
+          <input type="file" name={"s" + this.props.data.id} class="file" accept="application/pdf"/>
         </div>
       )
     }

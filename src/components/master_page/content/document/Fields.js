@@ -4,7 +4,11 @@ import ReactMixin from 'react-mixin'
 
 import DocumentAction from '../../../../actions/DocumentAction'
 import DocumentStore from '../../../../stores/DocumentStore'
-import Field from './Field'
+
+import UploadComponent from './UploadComponent'
+import ValidateComponent from './ValidateComponent'
+
+import Constant from '../../../../utils/Constants'
 
 @ReactMixin.decorate(Reflux.connect(DocumentStore, 'fields'))
 export default class Fields extends React.Component {
@@ -23,11 +27,20 @@ export default class Fields extends React.Component {
 
   render() {
     if(this.state.fields){
-      let fields = this.state.fields.map((field) => {
-        return(
-          <Field data={field} />
-        )
-      })
+      let fields;
+      if(localStorage.role == Constant.ROLE_BENEFICIARY){
+        fields = this.state.fields.map((field) => {
+          return(
+            <UploadComponent data={field} />
+          )
+        })
+      }else{
+        fields = this.state.fields.map((field) => {
+          return(
+            <ValidateComponent data={field} />
+          )
+        })
+      }
 
       return (
         <div>       

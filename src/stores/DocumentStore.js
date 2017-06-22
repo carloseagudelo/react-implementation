@@ -11,7 +11,7 @@ let FileUpload = Reflux.createStore({
   listenables: [DocumentAction],
 
   init: function(){
-
+    
   },
 
   FetchDocuments: function(user_id){
@@ -24,14 +24,13 @@ let FileUpload = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'GET',
         success: function(response, textStatus, xhr){
-          this.trigger(response)
+          this.trigger(response)                   
         },
         error: function(xhr, textStatus){
 
         }
       });
     }else{
-      alert('user_id: ' +  user_id)
       $.ajax({
         crossDomain: true,
         cache: false,
@@ -49,11 +48,7 @@ let FileUpload = Reflux.createStore({
     }
   },
 
-  SendFile: function(data){
-    var formData = new FormData();
-    var input = $('input[name=s' + data.idForm + ']')
-    formData.append( 'file', input[0].files[0]);
-    formData.append( 'id', data.idForm);
+  SendFile: function(formData){
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -66,24 +61,28 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
-
-      },
-      error: function(xhr, textStatus){
-
-      }
-    });
-  },
-
-  ListUsers: function(){
-    $.ajax({
-      crossDomain: true,
-      cache: false,
-      context: this,
-      url: SecretConstant.HOST_API+'/list_users',
-      headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'GET',
-      success: function(response, textStatus, xhr){
-        this.trigger(response)
+        if(response.status == 200){
+          this.state = {
+            id: response.id,
+            type: Constant.TYPE_FLASH_MESSAGE_SUCESS,
+            message: Constant.DOCUMENT_SAVED
+          }
+          alert(Constant.DOCUMENT_SAVED)
+        }else if(response.message == 'file no allow'){
+          this.state = {
+            id: response.id,
+            type: Constant.TYPE_FLASH_MESSAGE_ERROR,
+            message: Constant.DOCUMENT_FORMAT_NO_VALID
+          }
+          alert(Constant.DOCUMENT_FORMAT_NO_VALID)
+        }else{
+          this.state = {
+            id: response.id,
+            type: Constant.TYPE_FLASH_MESSAGE_ERROR,
+            message: Constant.DOCUMENT_NO_SAVED
+          }          
+          alert(Constant.DOCUMENT_NO_SAVED)
+        }
       },
       error: function(xhr, textStatus){
 
@@ -100,6 +99,27 @@ let FileUpload = Reflux.createStore({
       url: SecretConstant.HOST_API+'/validate_document',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          alert(Constant.DOCUMENT_VALIDATED)
+        }else{
+          alert(Constant.DOCUMENT_NO_VALIDATED)
+        }
+      },
+      error: function(xhr, textStatus){
+
+      }
+    });
+  },
+
+  ListUsers: function(){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/list_users',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
       success: function(response, textStatus, xhr){
         this.trigger(response)
       },
@@ -138,10 +158,8 @@ let FileUpload = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'POST',
         success: function(response, textStatus, xhr){
-          if(response.status == 200){
-            
-            browserHistory.push('/list_documents');
-            
+          if(response.status == 200){            
+            browserHistory.push('/list_documents');            
           }else{
 
           }          
