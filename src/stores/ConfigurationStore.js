@@ -1,32 +1,44 @@
 import $ from 'jquery'
 import Reflux from 'reflux'
 
-import ConfiguratioAction from '../actions/MasterPageAction'
+import ConfigurationAction from '../actions/ConfigurationAction'
 
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
 
 let ConfigurationStore = Reflux.createStore({
-  listenables: [ConfiguratioAction],
+  listenables: [ConfigurationAction],
 
-  ListFunds: function(data){
+  ListFunds: function(){
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
-      data: data,
       url: SecretConstant.HOST_API+'/list_funds',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'POST',
+      method: 'GET',
       success: function(response, textStatus, xhr){
-        if(xhr.status == 200){
-          this.trigger(response)
-        }else{
-          
-        }
+        this.trigger(response)
       },
       error: function(xhr, textStatus){
+        
+      }
+    });
+  },
 
+  ListDocumentsWithFund: function(fund_id){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/documets_with_found/'+fund_id+'.json',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        this.trigger(response)
+      },
+      error: function(xhr, textStatus){
+        
       }
     });
   }

@@ -1,7 +1,8 @@
 import Reflux from 'reflux'
 
 let ConfigurationAction = Reflux.createActions([
-  'ListFunds'
+  'ListFunds',
+  'ListDocumentsWithFund'
 ])
 
 export default ConfigurationAction

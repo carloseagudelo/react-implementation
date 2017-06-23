@@ -1,7 +1,9 @@
+import $ from 'jquery'
 import React from 'react';
 import { Link } from 'react-router'
 
 import SelectInputFund from './SelectInputFund'
+import DocumentList from './DocumentList'
 
 export default class SetDocumentFund extends React.Component {
 
@@ -18,6 +20,9 @@ export default class SetDocumentFund extends React.Component {
           </div>
           <div class="x_content">
             <SelectInputFund />
+            <br />
+            <DocumentList data={$('#fund option:selected').val()}/>
+            <button class="btn btn-primary pull-right">GUARDAR</button>
           </div>
         </div>
       </div>

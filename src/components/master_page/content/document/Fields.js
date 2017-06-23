@@ -41,10 +41,10 @@ export default class Fields extends React.Component {
           )
         })
       }
-
       return (
-        <div>       
+        <div >       
           {fields}   
+          <button class="btn btn-primary pull-right">FINALIZAR</button>
         </div>
       )
     }else{

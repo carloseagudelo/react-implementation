@@ -30,6 +30,7 @@ export default class ValidateComponent extends React.Component {
     obj['pre_validation'] = $('#'+idForm+' input[name=pre_validation]').prop('checked')
     obj['final_validation'] = $('#'+idForm+' input[name=final_validation]').prop('checked')
     obj['observation'] = $('#'+idForm+' input[name=observation]').val()
+    obj['second_observation'] = $('#'+idForm+' input[name=second_observation]').val()
     return obj
   }
   
@@ -37,9 +38,69 @@ export default class ValidateComponent extends React.Component {
     $('#'+this.props.data.id+' input[name=pre_validation]').attr('checked', this.props.data.pre_validation)
     $('#'+this.props.data.id+' input[name=final_validation]').attr('checked', this.props.data.final_validation)
     $('#'+this.props.data.id+' input[name=observation]').val(this.props.data.observation)
+    $('#'+this.props.data.id+' input[name=second_observation]').val(this.props.data.second_observation)
   }
 
-  render() {     
+  render() {
+    let component;
+    if(localStorage.user_id == this.props.data.pre_validator_id){
+      component =
+        <div>
+          <div class="row">
+            <div class="col col-md-2">
+              <label>VALIDACIÓN UNO:</label>
+            </div>
+            <div class="col col-md-4">
+              <input type="checkbox" name="pre_validation" name="pre_validation" />
+            </div>
+            <div class="col col-md-2">
+              <label>VALIDACIÓN DOS:</label>
+            </div>
+            <div class="col col-md-4">
+              <input type="checkbox" name="final_validation" disabled/>
+            </div>            
+          </div>
+          <div class="row">
+            <div class="col col-md-6">
+              <label class="control-label">OBSERVACIONES: </label>
+              <input type="text" name="observation" />
+            </div>
+            <div class="col col-md-6">
+              <label class="control-label">OBSERVACIONES: </label>
+              <input type="text" name="second_observation" disabled/>
+            </div>
+          </div>
+        </div>      
+    }else{
+      component =
+        <div>
+          <div class="row">
+            <div class="col col-md-2">
+              <label>VALIDACIÓN UNO:</label>
+            </div>
+            <div class="col col-md-4">
+              <input type="checkbox" name="pre_validation" name="pre_validation" disabled/>
+            </div>
+            <div class="col col-md-2">
+              <label>VALIDACIÓN DOS:</label>
+            </div>
+            <div class="col col-md-4">
+              <input type="checkbox" name="final_validation" />
+            </div>            
+          </div>
+          <div class="row">
+            <div class="col col-md-6">
+              <label class="control-label">OBSERVACIONES: </label>
+              <input type="text" name="observation" disabled/>
+            </div>
+            <div class="col col-md-6">
+              <label class="control-label">OBSERVACIONES: </label>
+              <input type="text" name="second_observation" />
+            </div>
+          </div>
+        </div>
+    }
+
     return(
       <div class="component well">
         <form onSubmit={this.onSubmitValidate.bind(this)} id={this.props.data.id} enctype="multipart/form-data">
@@ -47,8 +108,9 @@ export default class ValidateComponent extends React.Component {
           <div class="row">
             <div class="col col-md-12">
               <h4><strong>{this.props.data.document_name}</strong></h4>
+              <h6><strong>{this.props.data.document_description}</strong></h6>
             </div>
-          </div>
+          </div> 
           <div class="row">
             <div class="col col-md-2">
               <label>DOCUMENTO:</label>
@@ -57,24 +119,7 @@ export default class ValidateComponent extends React.Component {
               <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a>
             </div>
           </div>
-          <div class="row">
-            <div class="col col-md-2">
-              <label>VALIDACIÓN UNO:</label>
-            </div>
-            <div class="col col-md-1">
-              <input type="checkbox" name="pre_validation" name="pre_validation" />
-            </div>
-            <div class="col col-md-2">
-              <label>VALIDACIÓN DOS:</label>
-            </div>
-            <div class="col col-md-1">
-              <input type="checkbox" name="final_validation" />
-            </div>
-            <div class="col col-md-6">
-              <label class="control-label">OBSERVACIONES: </label>
-              <input type="text" name="observation" id={this.props.data.document_id} />
-            </div>
-          </div>
+          {component}
           <div class="row">
             <div class="col col-md-12">
               <input type="submit" value="ENVIAR" class="btn btn-primary btn-sm pull-right" />

@@ -11,12 +11,12 @@ export default class UploadInput extends React.Component {
     if(this.props.data.pre_validation && this.props.data.final_validation) {
       return(
         <div class="col col-md-6">
-          <a href={this.props.data.file_url}>{this.props.data.file_file_name}</a>
+          <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank">{this.props.data.file_file_name}</a>
         </div>
       )
     }else{
       return(
-        <div class="col col-md-3">
+        <div class="col col-md-6">
           <input type="file" name={"s" + this.props.data.id} class="file" accept="application/pdf"/>
         </div>
       )
