@@ -25,6 +25,14 @@ export default class Fields extends React.Component {
     }        
   }
 
+  sendFinishedHandler(){
+    if(this.props.data){
+      DocumentAction.FinishValidate()
+    }else{
+      DocumentAction.FinishLoad()
+    } 
+  }
+
   render() {
     if(this.state.fields){
       let fields;

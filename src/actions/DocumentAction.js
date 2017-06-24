@@ -6,7 +6,9 @@ let DocumentAction = Reflux.createActions([
   'ListUsers',
   'SendValidate',
   'ListDocuments',
-  'SaveDocument'
+  'SaveDocument',
+  'FinishValidate',
+  'FinishLoad'
 ])
 
 export default DocumentAction

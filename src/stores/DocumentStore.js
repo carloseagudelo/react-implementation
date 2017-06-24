@@ -174,6 +174,14 @@ let FileUpload = Reflux.createStore({
       }
       this.trigger(this.state)
     }
+  },
+
+  FinishValidate: function(){
+    // Este evento debe de validar si en realidad el guardo todo ya y guardat o si falta y devolver error
+  },
+
+  FinishLoad: function(){
+    // Este metodo debe validar si en realidad el finalizo la inscripcion y guardar o devolver error
   }
 
 })
