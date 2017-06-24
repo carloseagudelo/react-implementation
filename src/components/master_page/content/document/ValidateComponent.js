@@ -71,7 +71,7 @@ export default class ValidateComponent extends React.Component {
             </div>
           </div>
         </div>      
-    }else{
+    }else if(localStorage.user_id == this.props.data.final_validator_id){
       component =
         <div>
           <div class="row">
@@ -99,7 +99,35 @@ export default class ValidateComponent extends React.Component {
             </div>
           </div>
         </div>
-    }
+      }else{
+        component =
+        <div>
+          <div class="row">
+            <div class="col col-md-2">
+              <label>VALIDACIÓN UNO:</label>
+            </div>
+            <div class="col col-md-4">
+              <input type="checkbox" name="pre_validation" name="pre_validation" disabled/>
+            </div>
+            <div class="col col-md-2">
+              <label>VALIDACIÓN DOS:</label>
+            </div>
+            <div class="col col-md-4">
+              <input type="checkbox" name="final_validation" disabled/>
+            </div>            
+          </div>
+          <div class="row">
+            <div class="col col-md-6">
+              <label class="control-label">OBSERVACIONES: </label>
+              <input type="text" name="observation" disabled/>
+            </div>
+            <div class="col col-md-6">
+              <label class="control-label">OBSERVACIONES: </label>
+              <input type="text" name="second_observation" disabled/>
+            </div>
+          </div>
+        </div>
+      }
 
     return(
       <div class="component well">

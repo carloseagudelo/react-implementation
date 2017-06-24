@@ -176,12 +176,46 @@ let FileUpload = Reflux.createStore({
     }
   },
 
-  FinishValidate: function(){
-    // Este evento debe de validar si en realidad el guardo todo ya y guardat o si falta y devolver error
+  FinishValidate: function(personal_id){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/fisished_validate/'+personal_id+'.json',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          alert('Validación finalizada')                  
+        }else {
+          alert('Validación no finalizada')
+        }
+      },
+      error: function(xhr, textStatus){
+
+      }
+    });
   },
 
   FinishLoad: function(){
-    // Este metodo debe validar si en realidad el finalizo la inscripcion y guardar o devolver error
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/fisished_upload/'+localStorage.user_id+'.json',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          alert('carga de archivos finalizada')
+        }else {
+          alert('carga de archivos no finalizada')
+        }                  
+      },
+      error: function(xhr, textStatus){
+
+      }
+    });
   }
 
 })

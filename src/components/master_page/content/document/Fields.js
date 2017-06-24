@@ -27,7 +27,7 @@ export default class Fields extends React.Component {
 
   sendFinishedHandler(){
     if(this.props.data){
-      DocumentAction.FinishValidate()
+      DocumentAction.FinishValidate(this.props.data)
     }else{
       DocumentAction.FinishLoad()
     } 
@@ -52,7 +52,7 @@ export default class Fields extends React.Component {
       return (
         <div >       
           {fields}   
-          <button class="btn btn-primary pull-right">FINALIZAR</button>
+          <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR</button>
         </div>
       )
     }else{
