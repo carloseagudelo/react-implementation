@@ -12,13 +12,14 @@ let ConfigurationStore = Reflux.createStore({
   ListFunds: function(){
     $.ajax({
       crossDomain: true,
+      async: false,
       cache: false,
       context: this,
       url: SecretConstant.HOST_API+'/list_funds',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        this.trigger(response)
+        return {funds: response}
       },
       error: function(xhr, textStatus){
         
@@ -36,6 +37,28 @@ let ConfigurationStore = Reflux.createStore({
       method: 'GET',
       success: function(response, textStatus, xhr){
         this.trigger(response)
+      },
+      error: function(xhr, textStatus){
+        
+      }
+    });
+  },
+
+  SaveDocumentsFund: function(data){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/save_delete_document_by_found',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      data: data,
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          alert('INFORMACIÓN GUARDADA')
+        }else{
+          alert('INFORMACIÓN NO GUARDADA')
+        }
       },
       error: function(xhr, textStatus){
         

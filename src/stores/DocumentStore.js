@@ -112,12 +112,29 @@ let FileUpload = Reflux.createStore({
     });
   },
 
-  ListUsers: function(){
+  ListUsersFinished: function(){
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
-      url: SecretConstant.HOST_API+'/list_users',
+      url: SecretConstant.HOST_API+'/list_users_finished',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        this.trigger(response)
+      },
+      error: function(xhr, textStatus){
+
+      }
+    });
+  },
+
+  ListUsersPending: function(){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/list_users_pending',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){

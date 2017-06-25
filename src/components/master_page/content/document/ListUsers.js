@@ -14,8 +14,12 @@ export default class ListUser extends React.Component {
   	super()
   }
 
-  componentWillMount(){    
-    DocumentAction.ListUsers()     
+  componentWillMount(){
+    if(this.props.data == 'admin'){
+      DocumentAction.ListUsersFinished()
+    }else if(this.props.data == 'validator'){
+      DocumentAction.ListUsersPending()
+    }         
   }
 
   render() {

@@ -1,19 +1,33 @@
 import React from 'react';
-import Reflux from 'reflux'
-import ReactMixin from 'react-mixin'
 
 import ConfigurationAction from '../../../../actions/ConfigurationAction'
-import ConfigurationStore from '../../../../stores/ConfigurationStore'
 
-@ReactMixin.decorate(Reflux.connect(ConfigurationStore, 'funds'))
 export default class SelectInputFund extends React.Component {
 
   constructor(){
-  	super()
+  	super()    
   }
 
   componentWillMount(){
-    ConfigurationAction.ListFunds()
+    this.listFunds()
+  }
+
+  listFunds(){
+    $.ajax({
+      crossDomain: true,
+      async: false,
+      cache: false,
+      context: this,
+      url: 'http://localhost:3000/list_funds',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        this.setState({funds: response})
+      },
+      error: function(xhr, textStatus){
+        
+      }
+    });
   }
 
   render() {
@@ -26,11 +40,11 @@ export default class SelectInputFund extends React.Component {
       return (
         <div class="form-group">
           <label for="sel1">SELECCIONE EL FONDO</label>
-          <select class="form-control" id="fund">
+          <select class="form-control" id="fund" onChange={this.props.onChange}>
+            <option value="0">SELECCIONE UN FONDO</option>
             {funds}
           </select> 
         </div>
-
       )
     }else{
       return(

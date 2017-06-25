@@ -3,7 +3,8 @@ import Reflux from 'reflux'
 let DocumentAction = Reflux.createActions([
   'FetchDocuments',
   'SendFile',
-  'ListUsers',
+  'ListUsersFinished',
+  'ListUsersPending',
   'SendValidate',
   'ListDocuments',
   'SaveDocument',

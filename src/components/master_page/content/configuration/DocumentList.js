@@ -1,28 +1,32 @@
+import $ from 'jquery'
 import React from 'react';
-import Reflux from 'reflux'
-import ReactMixin from 'react-mixin'
 
-import ConfigurationAction from '../../../../actions/ConfigurationAction'
-import ConfigurationStore from '../../../../stores/ConfigurationStore'
-
-@ReactMixin.decorate(Reflux.connect(ConfigurationStore, 'documents'))
 export default class SelectInputFund extends React.Component {
 
   constructor(){
   	super()
   }
 
-  componentWillMount(){
-    ConfigurationAction.ListDocumentsWithFund(this.props.data)
+  setChecked(){
+    if(this.props.data){    
+      this.props.data.forEach( function(element, index) {
+        if(element.checked){
+          $('#'+String(element.id)).prop('checked', true)
+        }else{
+          $('#'+String(element.id)).prop('checked', false)
+        }
+      });
+    }    
   }
 
   render() {
-    if(this.state.documents){
-      let documents = this.state.documents.map((document) => {
+    if(this.props.data){
+      let documents = this.props.data.map((document) => {
         return(
-          <a href="#" class="list-group-item">{document.name}<input type="checkbox" class="pull-right" id={document.id} /></a>
+          <a href="#" class="list-group-item">{document.name}<input type="checkbox" class="pull-right" id={document.id}/></a>
         )
-      })    
+      })   
+      this.setChecked() 
       return (
         <div class="form-group">          
           <div class="list-group">

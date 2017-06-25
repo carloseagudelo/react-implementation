@@ -12,7 +12,7 @@ export default class Document extends React.Component {
   }  
 
   render() {
-    if(localStorage.role == Constant.ROLE_BENEFICIARY){
+    if(localStorage.role == Constant.ROLE_BENEFICIARY){ // Valida si la vista es para el beneficiario
       return (
         <div class="">
           <div class="page-title">
@@ -25,13 +25,13 @@ export default class Document extends React.Component {
           </div>
         </div>
       )
-    }else{
+    }else if(localStorage.role.includes("admin")){ // Valida si la vista es para un usuario con rol administrador de fondo
       if(this.props.params.id){
         return (
           <div class="">
             <div class="page-title">
               <div class="x_title">
-                <h3>VALIDACIÓN DE DOCUMENTOS</h3>
+                <h3>DOCUMENTOS DEL USUARIO</h3>
               </div>
               <div class="x_content">
                 <Fields data={this.props.params.id} />
@@ -39,15 +39,43 @@ export default class Document extends React.Component {
             </div>
           </div>
         )
-      }else{
+      }else{ 
         return (
           <div class="">
             <div class="page-title">
               <div class="x_title">
-                <h3>VALIDACIÓN DE DOCUMENTOS</h3>
+                <h3>USUARIOS FINALIZADOS</h3>
               </div>
               <div class="x_content">
-                <ListUser />
+                <ListUser data={'admin'}/>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    }else{  // Valida si la vista es para un usuario con rol validador de documentos
+      if(this.props.params.id){
+        return (
+          <div class="">
+            <div class="page-title">
+              <div class="x_title">
+                <h3>DOCUMENTOS DEL USUARIO</h3>
+              </div>
+              <div class="x_content">
+                <Fields data={this.props.params.id} />
+              </div>
+            </div>
+          </div>
+        )
+      }else{ 
+        return (
+          <div class="">
+            <div class="page-title">
+              <div class="x_title">
+                <h3>USUARIOS PENDIENTES</h3>
+              </div>
+              <div class="x_content">
+                <ListUser data={'validator'}/>
               </div>
             </div>
           </div>
