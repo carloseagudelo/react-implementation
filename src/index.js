@@ -2,10 +2,9 @@ import 'core-js/fn/object/assign';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import Root from './routes/Root.js'
 
-// Render the main component into the dom
+// Renderiza el componente principal en el DOM
 ReactDOM.render(
   <Root />
 ,document.getElementById('app'));
