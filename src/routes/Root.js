@@ -12,6 +12,7 @@ import LoadUser from '../components/master_page/content/adminFound/LoadUser'
 import ListDocumets from '../components/master_page/content/configuration/ListDocuments'
 import CreateDocument from '../components/master_page/content/configuration/CreateDocument'
 import SetDocumentFund from '../components/master_page/content/configuration/SetDocumentFund'
+import ChangeValidator from '../components/master_page/content/adminFound/changeValidator/ChangeValidator'
 
 export default class Root extends React.Component {
 
@@ -40,6 +41,7 @@ export default class Root extends React.Component {
           <Route path='/list_documents' component={ListDocumets} />
           <Route path='/create_document' component={CreateDocument} />
           <Route path='/set_documents' component={SetDocumentFund} />
+          <Route path='/change_validator' component={ChangeValidator} />
         </Route>
         <Route path='login' component={Login} />
         <Route path='reset' component={ResetPassword} />

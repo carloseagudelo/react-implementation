@@ -64,6 +64,44 @@ let ConfigurationStore = Reflux.createStore({
         
       }
     });
+  },
+
+  UsersWithValidators: function(){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/validators_by_fund',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          alert('INFORMACIÓN GUARDADA')
+        }else{
+          alert('INFORMACIÓN NO GUARDADA')
+        }
+      },
+      error: function(xhr, textStatus){
+        
+      }
+    });
+  }
+
+  UsersWithValidators: function(){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/user_with_validators',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        this.trigger(response)
+      },
+      error: function(xhr, textStatus){
+        
+      }
+    });
   }
 
 })
