@@ -35,6 +35,7 @@ let FileUpload = Reflux.createStore({
         crossDomain: true,
         cache: false,
         context: this,
+        data: {personal_id: user_id},
         url: SecretConstant.HOST_API+'/documents/'+user_id+'.json',
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'GET',
