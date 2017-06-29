@@ -4,7 +4,8 @@ let ConfigurationAction = Reflux.createActions([
   'ListFunds',
   'ListDocumentsWithFund',
   'SaveDocumentsFund',
-  'UsersWithValidators'
+  'UsersWithValidators',
+  'SendUpdateValidators'
 ])
 
 export default ConfigurationAction

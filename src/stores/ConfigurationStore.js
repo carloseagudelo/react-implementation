@@ -71,32 +71,31 @@ let ConfigurationStore = Reflux.createStore({
       crossDomain: true,
       cache: false,
       context: this,
-      url: SecretConstant.HOST_API+'/validators_by_fund',
+      url: SecretConstant.HOST_API+'/user_with_validator',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'POST',
+      method: 'GET',
       success: function(response, textStatus, xhr){
-        if(response.status == 200){
-          alert('INFORMACIÓN GUARDADA')
-        }else{
-          alert('INFORMACIÓN NO GUARDADA')
-        }
+        this.trigger(response)
       },
       error: function(xhr, textStatus){
         
       }
     });
-  }
+  },
 
-  UsersWithValidators: function(){
+  SendUpdateValidators(data){
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
-      url: SecretConstant.HOST_API+'/user_with_validators',
+      url: SecretConstant.HOST_API+'/set_validators',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      data: data,
       method: 'POST',
       success: function(response, textStatus, xhr){
-        this.trigger(response)
+        if(response.status == 200){
+          alert('CAMBIO REALIZADO')
+        }
       },
       error: function(xhr, textStatus){
         

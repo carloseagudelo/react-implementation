@@ -2,6 +2,8 @@ import React from 'react';
 
 import ConfigurationAction from '../../../../actions/ConfigurationAction'
 
+import SecretsConstant from '../../../../utils/SecretsConstant'
+
 export default class SelectInputFund extends React.Component {
 
   constructor(){
@@ -18,7 +20,7 @@ export default class SelectInputFund extends React.Component {
       async: false,
       cache: false,
       context: this,
-      url: 'http://localhost:3000/list_funds',
+      url: SecretsConstant.HOST_API+'/list_funds',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){

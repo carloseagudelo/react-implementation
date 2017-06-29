@@ -1,18 +1,24 @@
 import React from 'react';
 
+import SecretsConstant from '../../../../../utils/SecretsConstant'
+
 export default class SelectValidator extends React.Component {
 
   constructor(){
   	super()
   }
 
-  listFunds(){
+  componentWillMount(){
+    this.listValidators()
+  }
+
+  listValidators(){
     $.ajax({
       crossDomain: true,
       async: false,
       cache: false,
       context: this,
-      url: 'http://localhost:3000/validators_by_fund',
+      url: SecretsConstant.HOST_API+'/validators_by_fund',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
@@ -25,27 +31,29 @@ export default class SelectValidator extends React.Component {
   }
 
   render() {
-    return(
-      if(this.state.validators){
-	      let validators = this.state.validators.map((validator) => {
-	        return(
-	          <option value={validator.id}>{validator.name}</option>
-	        )
-	      })    
-	      return (
-	        <div class="form-group">
-	          <label for="sel1">SELECCIONE EL VALIDADOR</label>
-	          <select class="form-control" id="fund" onChange={this.props.onChange}>
-	            <option value="0">SELECCIONE EL VALIDADOR</option>
-	            {validators}
-	          </select> 
-	        </div>
-	      )
-	    }else{
-	      return(
-	        <div>LOADING ......</div>
-	      )
-	    }
-    )
+    if(this.state.validators){
+      let validators = this.state.validators.map((validator) => {
+        if(this.props.data == validator.id){
+          return(
+            <option value={validator.id} selected>{validator.name}</option>
+          )
+        }else{
+          return(
+            <option value={validator.id}>{validator.name}</option>
+          )
+        }        
+      })
+      return (
+        <div class="form-group">
+          <select class="form-control" name={this.props.name} onChange={this.props.onChange}>
+            {validators}
+          </select> 
+        </div>
+      )
+    }else{
+      return(
+        <div>LOADING ......</div>
+      )
+    }
   }
 }

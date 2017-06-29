@@ -2,8 +2,8 @@ import React from 'react';
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 
-import ConfigurationAction from '../../../../actions/ConfigurationAction'
-import ConfigurationStore from '../../../../stores/ConfigurationStore'
+import ConfigurationAction from '../../../../../actions/ConfigurationAction'
+import ConfigurationStore from '../../../../../stores/ConfigurationStore'
 
 import UserWithValidator from './UserWithValidator'
 
@@ -18,11 +18,24 @@ export default class ChangeValidator extends React.Component {
   	ConfigurationAction.UsersWithValidators()
   }
 
+  updateValidators(ev){
+    ev.preventDefault()
+    ConfigurationAction.SendUpdateValidators(this.getParams(ev.target.id))
+  }
+
+  getParams(user_id){
+    var obj = {}
+    obj['user_id'] = user_id
+    obj['pre_validator_id'] = $('#'+user_id+' select[name=pre_validator]').val()
+    obj['final_validator_id'] = $('#'+user_id+' select[name=final_validator]').val()
+    return obj
+  }
+
   render() {
-    if(this.state.users){
+    if(this.state.userValidators){
       let users = this.state.userValidators.map((user) => {
         return(
-          <UserWithValidator data={user} />
+          <UserWithValidator data={user} onClick={this.updateValidators.bind(this)}/>
         )
       })
 
