@@ -62,28 +62,7 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
-        if(response.status == 200){
-          this.state = {
-            id: response.id,
-            type: Constant.TYPE_FLASH_MESSAGE_SUCESS,
-            message: Constant.DOCUMENT_SAVED
-          }
-          alert(Constant.DOCUMENT_SAVED)
-        }else if(response.message == 'file no allow'){
-          this.state = {
-            id: response.id,
-            type: Constant.TYPE_FLASH_MESSAGE_ERROR,
-            message: Constant.DOCUMENT_FORMAT_NO_VALID
-          }
-          alert(Constant.DOCUMENT_FORMAT_NO_VALID)
-        }else{
-          this.state = {
-            id: response.id,
-            type: Constant.TYPE_FLASH_MESSAGE_ERROR,
-            message: Constant.DOCUMENT_NO_SAVED
-          }          
-          alert(Constant.DOCUMENT_NO_SAVED)
-        }
+        alert(response.message)
       },
       error: function(xhr, textStatus){
 
