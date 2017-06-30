@@ -77,6 +77,8 @@
     "jquery": "^3.2.1",
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
+    "react-bootstrap": "^0.31.0",
+    "react-bootstrap-dialog": "^0.9.1",
     "react-dom": "^15.0.0",
     "react-mixin": "^3.0.5",
     "reflux": "^6.4.1",

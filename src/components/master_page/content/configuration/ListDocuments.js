@@ -3,6 +3,9 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import { Link } from 'react-router'
 
+import {Button} from 'react-bootstrap'
+import Dialog from 'react-bootstrap-dialog'
+
 import DocumentAction from '../../../../actions/DocumentAction'
 import DocumentStore from '../../../../stores/DocumentStore'
 
@@ -17,6 +20,10 @@ export default class ListDocuments extends React.Component {
 
   componentWillMount(){    
     DocumentAction.ListDocuments()     
+  }
+
+  onClick(){
+    this.refs.dialog.showAlert('Hello Dialog!')
   }
 
   render() {
@@ -49,6 +56,8 @@ export default class ListDocuments extends React.Component {
                 </tbody>
               </table>
               <Link to='/create_document' class="btn btn-primary btn-sm pull-right">CREAR DOCUMENTO</Link>
+              <Button onClick={this.onClick.bind(this)}>Show alert</Button>
+              <Dialog ref='dialog' />
             </div>
           </div>
         </div>        

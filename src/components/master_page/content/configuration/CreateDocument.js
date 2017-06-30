@@ -28,6 +28,7 @@ export default class ListDocuments extends React.Component {
     obj['description'] = $('#description').val()
     obj['legalization'] = $('#type').prop('checked')
     obj['obligatory'] = $('#require').prop('checked')
+    obj['pages_number'] = $('#pages :selected').val()
     return obj
   }
 
@@ -59,13 +60,29 @@ export default class ListDocuments extends React.Component {
                   <input type="text" id="description" class="form-control" placeholder="DESCRIPCIÓN DOCUMENTO" />
                 </div>
                 <div class="row">
-                  <div class="col col-md-4">
+                  <div class="col col-md-3">
                     <label class="pull-right">LEGALIZACIÓN: <input type="checkbox" id="type" /></label>
                   </div>
-                  <div class="col col-md-4">
+                  <div class="col col-md-3">
                     <label class="pull-right">OBLIGATORIO: <input type="checkbox" id="require" /></label>
                   </div>
-                  <div class="col col-md-4">
+                  <div class="col col-md-3">
+                    <label>PAGINAS: 
+                      <select id="pages" >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="col col-md-3">
                     <input type="submit" class="btn btn-primary btn-sm pull-right" value="GUARDAR" />
                   </div>
                 </div>
