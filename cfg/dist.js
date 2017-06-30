@@ -13,6 +13,12 @@ let config = Object.assign({}, baseConfig, {
   entry: path.join(__dirname, '../src/index'),
   cache: false,
   devtool: 'sourcemap',
+  devServer: {
+    compress: true,
+    disableHostCheck: true,
+    contentBase: "./dist",
+    hot: true
+  },
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
