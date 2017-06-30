@@ -52,7 +52,7 @@ let LoginStore = Reflux.createStore({
       },  
       error: function(xhr, textStatus){
         this.state = {
-          message: response.payload.message,
+          message: Constant.USER_PASSWORD_INVALID,
           type: Constant.TYPE_FLASH_MESSAGE_ERROR
         }
         browserHistory.push('/login');
@@ -88,7 +88,7 @@ let LoginStore = Reflux.createStore({
       },  
       error: function(xhr, textStatus){
         this.state = {
-          message: response.payload.message,
+          message: Constant.CHANGIN_PASSWORD_ERROR,
           type: Constant.TYPE_FLASH_MESSAGE_ERROR
         }
         browserHistory.push('/reset');
@@ -106,8 +106,6 @@ let LoginStore = Reflux.createStore({
       url: SecretConstant.HOST_API+'/initial_password',
       method: 'POST',
       success: function(response, textStatus, xhr){
-      console.log('XXXXXXXXXXXXXXXXXXXx') 
-      console.log(response)
         if(response.status == 200){
           this.state = {
             message: Constant.PASSWORD_CHANGE,
