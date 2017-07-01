@@ -42,7 +42,7 @@ export default class UploadComponent extends React.Component {
               <h4><strong>{this.props.data.document_name}</strong></h4>
              </div>
              <div class="col col-md-6">
-              <h4>PESO DEL DOCUMENTO: <strong>{this.props.data.document_weight} MB</strong></h4>
+              <h4><strong>PESO MAXIMO:</strong> {this.props.data.document_weight} MB</h4>
              </div>
              <div class="col col-md-12">
               <h6><strong>{this.props.data.document_description}</strong></h6>
