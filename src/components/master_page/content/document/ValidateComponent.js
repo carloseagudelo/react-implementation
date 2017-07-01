@@ -144,7 +144,7 @@ export default class ValidateComponent extends React.Component {
               <label>DOCUMENTO:</label>
             </div>
             <div class="col col-md-6">
-              <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a>
+              <a href={'ftp://181.143.72.66:5010/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a>
             </div>
           </div>
           {component}

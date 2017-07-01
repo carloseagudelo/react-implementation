@@ -38,8 +38,13 @@ export default class UploadComponent extends React.Component {
           <input type="hidden" name="idForm" value={this.props.data.id} />
 
           <div class="row">
-            <div class="col col-md-12">
+            <div class="col col-md-8">
               <h4><strong>{this.props.data.document_name}</strong></h4>
+             </div>
+             <div class="col col-md-8">
+              <h4><strong>{this.props.data.document_weight}</strong></h4>
+             </div>
+             <div class="col col-md-12">
               <h6><strong>{this.props.data.document_description}</strong></h6>
             </div>
           </div> 
