@@ -9,35 +9,26 @@
 * **Servdor de aplicaciones:** Apache
 
 * **Dependencias:**
-    * mysql (Base de datos)
-    * devise (Capa de seguridad del aplicativo)
-    * jwt (Manejo de la seguridad en la sesion a travez de tokens)
-    * wicked_pdf (Tratamiento de PDF con rails)
-    * papercli (Carga de archivos al servidor)
-    * httparty (Manejo de peticiones http a servicios externos)
-    * annotate (Documentacón de las clases)
-    * rack-cors (Manejo de seguridad en las peticiones)
+    * express ()
+    * jquery ()
+    * react ()
+    * reflux ()
+    * socket ()
 
-* **Información de la base de datos de dsllo:**
-    * adater: mysql2 (Adaptador de la base de datos)
-    * encoding: utf8 (Set de caracteres de la base de datos)
-    * username: user_name (Usuario de la base de datos)
-    * password: user_password (Contraseña de la base de datos)
-    * host: 192.168.1.14 (host de la base de datos)
-    * port: 3306 (Puesto en el que se expone la base de datos)
-    * database: database_name (Nombre de la base de datos)
+* **Información del backend del aplicativo:**
+    * Remitirse al aplicativo sisap_api [a link](http://181.143.72.70:4000/informatica/sisap_api)
 
 * **Para correr el proyecto:**
 
     *Desarrollo:* 
-      * uno
-      * dos
-      * tres
+      * Encender el server del backend en el puerto 3000
+      * nvm use v8.0.0 (Selecciona la versión de node a usar en el ambiente de desarrollo)
+      * npm start (Ejecuta el script server.js que enciende un servidor local con el aplicativo)
 
     *Producción:*
-      * uno
-      * dos
-      * tres
+      * Tener corriendo el servidor del backen en la ruta http://181.172.72.70:15000
+      * npm run copy & webpack --env=dist (compila el proyecto y genera archivos para ambiente de producción en la carpeta dist)
+      * Se copian los archivos de la carpeta dist al folder del root donde es ejecutado por el Apache
 
 * **Documentación de Arquitectura:**
     
