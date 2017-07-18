@@ -29,14 +29,14 @@
 
 * **Para correr el proyecto:**
     *Desarrollo:* 
-      * 
-      *
-      *
+      * uno
+      * dos
+      * tres
 
     *Producción:*
-      * 
-      *
-      *
+      * uno
+      * dos
+      * tres
 
 * **Documentación de Arquitectura:**
     
