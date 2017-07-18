@@ -1,0 +1,44 @@
+# sisap_api (sisap backend)
+
+### Backend del aplicativo sisap (Sistema de Información de Sapiencia), en donde se lleva a cabo toda la logica de negocio del aplicativo sisap (aplicativo core de sapiencia) e integración con los demas aplicativos que hacen parte de sapiencia.
+
+
+* **Versión de ruby:** 2.3.0
+
+* **Versión de rails:** 5.0.1
+
+* **Servdor de aplicaciones:** Puma 3.9.1
+
+* **Dependencias:**
+    * mysql (Base de datos)
+    * devise (Capa de seguridad del aplicativo)
+    * jwt (Manejo de la seguridad en la sesion a travez de tokens)
+    * wicked_pdf (Tratamiento de PDF con rails)
+    * papercli (Carga de archivos al servidor)
+    * httparty (Manejo de peticiones http a servicios externos)
+    * annotate (Documentacón de las clases)
+    * rack-cors (Manejo de seguridad en las peticiones)
+
+* **Información de la base de datos de dsllo:**
+    * adater: mysql2 (Adaptador de la base de datos)
+    * encoding: utf8 (Set de caracteres de la base de datos)
+    * username: user_name (Usuario de la base de datos)
+    * password: user_password (Contraseña de la base de datos)
+    * host: 192.168.1.14 (host de la base de datos)
+    * port: 3306 (Puesto en el que se expone la base de datos)
+    * database: database_name (Nombre de la base de datos)
+
+* **Antes de correr el proyecto:**
+    * $ rake db:create (Crea la base de datos)
+    * $ rake db:migrate (Migra las tablas y campos a la base de datos)
+    * $ bundle install (Instala las gemas 'lebrerias' utilizadas en la implementación)
+    * $ rails s -b (host donde correrta el aplicatico) -p (puerto donde correra el aplicativo) -d (Corre como un proceso en el servidot)
+
+* **Documentación API:**
+    Remitase al archivo ** routes.rb ** en la ruta /app/config/routes.rb en este proyecto
+
+* **Fecha de lanzamiento:** Julio 2017
+
+* **Lugar:** (Sapiencia) Medellín Colombia
+
+* **Contacto:** desarrolladores: carlos.agudelo@sapiencia.gov.co (Carlos Agudelo) informatica@sapiencia.gov.co (Wilmer Jaramillo), sebasdeldi@hotmail.com (Sebastian Delgado), auxiliar.informatica@sapiencia.gov.co (Juan Lopez)
