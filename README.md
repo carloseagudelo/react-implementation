@@ -16,7 +16,7 @@
     * socket ()
 
 * **Información del backend del aplicativo:**
-    * Remitirse al aplicativo sisap_api [a link](http://181.143.72.70:4000/informatica/sisap_api)
+    * Remitirse al aplicativo  [sisap_api](http://181.143.72.70:4000/informatica/sisap_api)
 
 * **Para correr el proyecto:**
 
