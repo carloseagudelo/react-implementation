@@ -1,13 +1,12 @@
-# sisap_api (sisap backend)
+# sisap_cli (sisap cliente web)
 
-### Backend del aplicativo sisap (Sistema de Información de Sapiencia), en donde se lleva a cabo toda la logica de negocio del aplicativo sisap (aplicativo core de sapiencia) e integración con los demas aplicativos que hacen parte de sapiencia.
+### Cliente web del aplicativo sisap (Sistema de Información de Sapiencia), en donde se manipula toda la renderizacioín de información de cara al a los usuarios, ademas de captura de datos para su posterior manejo en el baccken del aplicativo.
 
+* **Versión de node:** 8.0.0
 
-* **Versión de ruby:** 2.3.0
+* **Versión de npm:** 5.0.0
 
-* **Versión de rails:** 5.0.1
-
-* **Servdor de aplicaciones:** Puma 3.9.1
+* **Servdor de aplicaciones:** Apache
 
 * **Dependencias:**
     * mysql (Base de datos)
@@ -28,14 +27,19 @@
     * port: 3306 (Puesto en el que se expone la base de datos)
     * database: database_name (Nombre de la base de datos)
 
-* **Antes de correr el proyecto:**
-    * $ rake db:create (Crea la base de datos)
-    * $ rake db:migrate (Migra las tablas y campos a la base de datos)
-    * $ bundle install (Instala las gemas 'lebrerias' utilizadas en la implementación)
-    * $ rails s -b (host donde correrta el aplicatico) -p (puerto donde correra el aplicativo) -d (Corre como un proceso en el servidot)
+* **Para correr el proyecto:**
+    *Desarrollo:* 
+      * 
+      *
+      *
 
-* **Documentación API:**
-    Remitase al archivo ** routes.rb ** en la ruta /app/config/routes.rb en este proyecto
+    *Producción:*
+      * 
+      *
+      *
+
+* **Documentación de Arquitectura:**
+    
 
 * **Fecha de lanzamiento:** Julio 2017
 
