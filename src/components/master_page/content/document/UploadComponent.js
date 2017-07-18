@@ -26,7 +26,7 @@ export default class UploadComponent extends React.Component {
   render() {
     let link;
     if(this.props.data.file_file_name != ''){
-      link =       
+      link =
       <div class="col col-md-4">
         <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a>
       </div>
@@ -47,7 +47,7 @@ export default class UploadComponent extends React.Component {
              <div class="col col-md-12">
               <h6><strong>{this.props.data.document_description}</strong></h6>
             </div>
-          </div> 
+          </div>
           <div class="row">
             <UploadInput data={this.props.data} />
             <div class="col col-md-2">
@@ -69,16 +69,16 @@ export default class UploadComponent extends React.Component {
             </div>
             <div class="col col-md-4">
               <input type="checkbox" name="final_validation" checked={this.props.data.final_validation} />
-            </div>       
+            </div>
           </div>
           <div class="row">
             <div class="col col-md-6">
               <label class="control-label">OBSERVACION: </label>
-              <input type="text" name="observation" value={this.props.data.observation} disabled/>
-            </div> 
+              <input type="text" name="observation" value={this.props.data.observation} title={this.props.data.observation} disabled />
+            </div>
             <div class="col col-md-6">
               <label class="control-label">OBSERVACION: </label>
-              <input type="text" name="second_observation" value={this.props.data.second_observation} disabled/>
+              <input type="text" name="second_observation" value={this.props.data.second_observation} title={this.props.data.second_observation} disabled/>
             </div>
           </div>
           <div>
