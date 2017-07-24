@@ -1,12 +1,21 @@
+/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax al servidor backend del aplicativo para 
+                 la manipulación de los documentos
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 23 de Junio 2017 */
+
+// Importa las librerias externas necesarias para el manejo de la arquitectura
 import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
-
+// Importa los componentes propios necesarios
 import DocumentAction from '../actions/DocumentAction'
-
+// Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
 
+// Define la clase
 let FileUpload = Reflux.createStore({
   listenables: [DocumentAction],
 
@@ -14,6 +23,7 @@ let FileUpload = Reflux.createStore({
     
   },
 
+  // Realiza la petición para obtener los documentos por usuario
   FetchDocuments: function(user_id){
   	if(user_id == 0){
       $.ajax({
@@ -49,6 +59,7 @@ let FileUpload = Reflux.createStore({
     }
   },
 
+  // Realiza la petición para cargar los archivos en el servidor externo
   SendFile: function(formData){
     $.ajax({
       crossDomain: true,
@@ -70,6 +81,7 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para validar la información de los documentos cargados
   SendValidate: function(data){
     $.ajax({
       crossDomain: true,
@@ -92,6 +104,7 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para obtener los usuarios que ya finalizaron la carga de documentos
   ListUsersFinished: function(){
     $.ajax({
       crossDomain: true,
@@ -109,6 +122,7 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para obtener los usuarios que aún tienen pendiente la carga de documentos
   ListUsersPending: function(){
     $.ajax({
       crossDomain: true,
@@ -126,6 +140,7 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para obtener los documentos registrados
   ListDocuments: function(data){
     $.ajax({
       crossDomain: true,
@@ -143,6 +158,7 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para registrar un nuevo documento
   SaveDocument: function(data){
     if(data.name != '' || data.description != ''){
       $.ajax({
@@ -173,6 +189,7 @@ let FileUpload = Reflux.createStore({
     }
   },
 
+  // Realiza la petición para marcar al usuario que todos sus usuarios fueron validados
   FinishValidate: function(personal_id){
     $.ajax({
       crossDomain: true,
@@ -194,6 +211,7 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para marcar al sistema que ya todos los documentos fueron cargados
   FinishLoad: function(){
     $.ajax({
       crossDomain: true,
@@ -217,5 +235,6 @@ let FileUpload = Reflux.createStore({
 
 })
 
+// Exporta la clase
 export default FileUpload
 

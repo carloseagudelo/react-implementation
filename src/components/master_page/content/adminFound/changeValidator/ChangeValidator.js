@@ -7,6 +7,8 @@ import ConfigurationStore from '../../../../../stores/ConfigurationStore'
 
 import UserWithValidator from './UserWithValidator'
 
+import Paginator from '../../../../Paginator'
+
 @ReactMixin.decorate(Reflux.connect(ConfigurationStore, 'userValidators'))
 export default class ChangeValidator extends React.Component {
 
@@ -15,7 +17,27 @@ export default class ChangeValidator extends React.Component {
   }
 
   componentWillMount(){
-  	ConfigurationAction.UsersWithValidators()
+  	ConfigurationAction.UsersWithValidators(0)
+  }
+
+  nextPage(ev){
+    ev.preventDefault()
+    console.log(ev.target)
+    if(ev.target.id == 'prev'){
+      console.log('entro prev')
+      if(parseInt(this.state.userValidators.payload.current_page) != 1){
+        ConfigurationAction.UsersWithValidators(parseInt(this.state.userValidators.payload.current_page) - 1)
+      }
+    }else if(ev.target.id == 'nxt'){
+      console.log('entro nxt')
+      console.log('current page: '+this.state.userValidators.payload.current_page)
+      console.log('array lenght: '+this.state.userValidators.payload.records_count.length)
+      if(parseInt(this.state.userValidators.payload.current_page) != this.state.userValidators.payload.records_count.length - 1){
+        ConfigurationAction.UsersWithValidators(parseInt(this.state.userValidators.payload.current_page) + 1)
+      }
+    }else{
+      ConfigurationAction.UsersWithValidators(ev.target.id)
+    }    
   }
 
   updateValidators(ev){
@@ -33,26 +55,30 @@ export default class ChangeValidator extends React.Component {
 
   render() {
     if(this.state.userValidators){
-      let users = this.state.userValidators.map((user) => {
+      let users = this.state.userValidators.payload.data.map((user) => {
         return(
           <UserWithValidator data={user} onClick={this.updateValidators.bind(this)}/>
         )
       })
 
       return (
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>NOMBRE</th>
-              <th>ESTADO</th>
-              <th>VALIDADOR 1</th>
-              <th>VALIDADOR 2</th>
-            </tr>
-          </thead>
-          <tbody>      
-            {users}   
-          </tbody>
-        </table>
+        <div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>NOMBRE</th>
+                <th>ESTADO</th>
+                <th>VALIDADOR 1</th>
+                <th>VALIDADOR 2</th>
+              </tr>
+            </thead>
+            <tbody>      
+              {users}   
+            </tbody>
+          </table>
+          <Paginator pages={this.state.userValidators.payload.records_count} current={this.state.userValidators.payload.current_page} onClick={this.nextPage.bind(this)}/>
+        </div>
+        
       )
     }else {
       return(

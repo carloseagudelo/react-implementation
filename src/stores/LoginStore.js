@@ -1,17 +1,27 @@
+/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax que relacionan las funcionalidades de registro 
+                 autentificacion y manejo de sesion al servidor backend del aplicativo  
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 23 de Junio 2017 */
+
+// Importa las librerias externas necesarias para el manejo de la arquitectura
 import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
-
+// Importa los componentes propios necesarios
 import LoginAction from '../actions/LoginAction'
-
+// Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Authentication from '../utils/Authentication'
 import Constant from '../utils/Constants'
 import Logout from '../utils/Logout'
 
+// Define la clase
 let LoginStore = Reflux.createStore({
   listenables: [LoginAction],
 
+  // Inicializa el status del componente
   init: function(){
     this.status = {
       message: '',
@@ -20,7 +30,7 @@ let LoginStore = Reflux.createStore({
     this.trigger(this.status)
   },
 
-  // Realiza la peticion de login al api del aplicativo
+  // Realiza la peticion de autentificación
   Login: function(data){
     $.ajax({
       crossDomain: true,
@@ -61,6 +71,7 @@ let LoginStore = Reflux.createStore({
     });
   },
 
+  // Realiza la petición de cambiar la contraseña
   ResetPassword: function(data){
     $.ajax({
       crossDomain: true,
@@ -97,6 +108,7 @@ let LoginStore = Reflux.createStore({
     });
   },
 
+  // Realiza la petición de cambiar la contraseña la primera vez
   InitialPassword: function(data){
     $.ajax({
       crossDomain: true,
@@ -133,6 +145,7 @@ let LoginStore = Reflux.createStore({
     });
   },
 
+  // Realiza la petición de cierre de sesion
   Logout: function(data){
     $.ajax({
       crossDomain: true,
@@ -165,4 +178,5 @@ let LoginStore = Reflux.createStore({
 
 })
 
+// Exporta la clase
 export default LoginStore

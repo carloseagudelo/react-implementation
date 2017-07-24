@@ -1,14 +1,24 @@
+/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax al servidor backend del aplicativo para 
+                 la parametrización de los fondos
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 23 de Junio 2017 */
+    
+// Importa las librerias externas necesarias para el manejo de la arquitectura
 import $ from 'jquery'
 import Reflux from 'reflux'
-
+// Importa los componentes propios necesarios
 import ConfigurationAction from '../actions/ConfigurationAction'
-
+// Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
 
+// Define la clase
 let ConfigurationStore = Reflux.createStore({
   listenables: [ConfigurationAction],
 
+  // Realiza la petición con la lista de los fondos
   ListFunds: function(){
     $.ajax({
       crossDomain: true,
@@ -27,6 +37,7 @@ let ConfigurationStore = Reflux.createStore({
     });
   },
 
+  // Realiza la petición con la lista de los usuarios por determinado fondo
   ListDocumentsWithFund: function(fund_id){
     $.ajax({
       crossDomain: true,
@@ -44,6 +55,7 @@ let ConfigurationStore = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para guardar o actualizar los documentos solicitados por fondos
   SaveDocumentsFund: function(data){
     $.ajax({
       crossDomain: true,
@@ -66,14 +78,32 @@ let ConfigurationStore = Reflux.createStore({
     });
   },
 
-  UsersWithValidators: function(){
-    $.ajax({
+  // Realiza la petición para obtener los usuarios con validador
+  UsersWithValidators: function(page){
+    if(page == 0){
+      $.ajax({
+        crossDomain: true,
+        cache: false,
+        context: this,
+        url: SecretConstant.HOST_API+'/user_with_validator',
+        headers: {authorization: localStorage.jwtToken.split(',')[1]},
+        method: 'POST',
+        success: function(response, textStatus, xhr){
+          this.trigger(response)
+        },
+        error: function(xhr, textStatus){
+          
+        }
+      });      
+    }else{
+      $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
       url: SecretConstant.HOST_API+'/user_with_validator',
+      data: {page: page},
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'GET',
+      method: 'POST',
       success: function(response, textStatus, xhr){
         this.trigger(response)
       },
@@ -81,8 +111,11 @@ let ConfigurationStore = Reflux.createStore({
         
       }
     });
+    }
+    
   },
 
+  // Realiza la petición para actualizar los validadores de un beneficiario
   SendUpdateValidators(data){
     $.ajax({
       crossDomain: true,

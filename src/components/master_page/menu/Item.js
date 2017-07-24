@@ -9,11 +9,11 @@ export default class Item extends React.Component {
   }
 
   render() {
-    let items = this.props.data.map((item) => {
+    let items = this.props.data.payload.data.map((item) => {
       if(item.level == 'Menu'){
         return(        
           <li><a><i class={item.icon}></i>{item.name}<span class="fa fa-chevron-down"></span></a>
-            <SubItem menu={item.id} dataItem={filterArray(this.props.data, item.id)} />            
+            <SubItem menu={item.id} dataItem={filterArray(this.props.data.payload.data, item.id)} />            
           </li>
         )
       }

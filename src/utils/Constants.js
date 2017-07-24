@@ -1,3 +1,9 @@
+/* Descripcion: Clase que contiene las constantes a usar en el desarrollo del aplicativo
+   Autor: Carlos Agudelo
+   Contacto: agudelo.carlos@hotmail.es
+   Fecha de creación: 10 de Junio
+   Fecha de modificacion: 10 de Junio */
+
 var Constants = {
 
   USER_PASSWORD_INVALID: 'EL USUARIO O CONTRASEÑA INGRESADOS SON INVALIDOS',
