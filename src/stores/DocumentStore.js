@@ -34,10 +34,14 @@ let FileUpload = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'GET',
         success: function(response, textStatus, xhr){
-          this.trigger(response)                   
+          if(response.status == 200){
+            this.trigger(response.payload) 
+          }else{
+            browserHistory.push('/error_page/500')
+          }                            
         },
         error: function(xhr, textStatus){
-
+          browserHistory.push('/error_page/500')
         }
       });
     }else{
@@ -50,10 +54,14 @@ let FileUpload = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'GET',
         success: function(response, textStatus, xhr){
-          this.trigger(response)
+          if(response.status == 200){
+            this.trigger(response.payload) 
+          }else{
+            browserHistory.push('/error_page/500')
+          }                            
         },
         error: function(xhr, textStatus){
-
+          browserHistory.push('/error_page/500')
         }
       });
     }
@@ -114,10 +122,14 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        this.trigger(response)
+        if(response.status == 200){
+          this.trigger(response.payload)
+        }else{
+          browserHistory.push('/error_page/500')
+        }
       },
       error: function(xhr, textStatus){
-
+        browserHistory.push('/error_page/500')
       }
     });
   },
@@ -132,7 +144,11 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        this.trigger(response)
+        if(response.status == 200){
+          this.trigger(response.payload)
+        }else{
+          browserHistory.push('/error_page/500')
+        }
       },
       error: function(xhr, textStatus){
 
@@ -150,10 +166,14 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        this.trigger(response)
+        if(response.status == 200){
+          this.trigger(response.payload)
+        }else{
+          browserHistory.push('/error_page/500')
+        }        
       },
       error: function(xhr, textStatus){
-
+        browserHistory.push('/error_page/500')
       }
     });
   },

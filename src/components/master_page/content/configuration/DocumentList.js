@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import React from 'react';
 
-export default class SelectInputFund extends React.Component {
+export default class DocumentList extends React.Component {
 
   constructor(){
   	super()

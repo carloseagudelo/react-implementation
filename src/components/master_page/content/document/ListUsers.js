@@ -1,6 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
+import { browserHistory } from 'react-router'
 
 import DocumentAction from '../../../../actions/DocumentAction'
 import DocumentStore from '../../../../stores/DocumentStore'
@@ -24,7 +25,7 @@ export default class ListUser extends React.Component {
 
   render() {
     if(this.state.users){
-      let users = this.state.users.map((user) => {
+      let users = this.state.users.data.map((user) => {
         return(
           <User data={user} />
         )

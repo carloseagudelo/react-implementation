@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { browserHistory } from 'react-router'
 
 import ConfigurationAction from '../../../../actions/ConfigurationAction'
 
@@ -24,17 +25,21 @@ export default class SelectInputFund extends React.Component {
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        this.setState({funds: response})
+        if(response.status == 200){
+          this.setState({funds: response.payload})
+        }else{
+          browserHistory.push('/error_page/500')
+        }        
       },
       error: function(xhr, textStatus){
-        
+        browserHistory.push('/error_page/500')
       }
     });
   }
 
   render() {
     if(this.state.funds){
-      let funds = this.state.funds.map((fund) => {
+      let funds = this.state.funds.data.map((fund) => {
         return(
           <option value={fund.id}>{fund.name}</option>
         )

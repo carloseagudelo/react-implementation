@@ -41,20 +41,27 @@ export default class SetDocumentFund extends React.Component {
   }
 
   render() {
-    return(      
-      <div class="">
-        <div class="page-title">
-          <div class="x_title">
-            <h3>SELECCIONAR DOCUMENTOS POR FONDO</h3>
-          </div>
-          <div class="x_content">
-            <SelectInputFund onChange={this.onChangeSelect.bind(this)} />
-            <br />
-            <DocumentList data={this.state.documents} />
-            <button class="btn btn-primary pull-right" onClick={this.onSaveDocumentsFund.bind(this)}>GUARDAR</button>
+    if(this.state.documents){
+      return(      
+        <div class="">
+          <div class="page-title">
+            <div class="x_title">
+              <h3>SELECCIONAR DOCUMENTOS POR FONDO</h3>
+            </div>
+            <div class="x_content">
+              <SelectInputFund onChange={this.onChangeSelect.bind(this)} />
+              <br />
+              <DocumentList data={this.state.documents.data} />
+              <button class="btn btn-primary pull-right" onClick={this.onSaveDocumentsFund.bind(this)}>GUARDAR</button>
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    }else{
+      return(
+        <div>LOADING ........</div>
+      )
+    }
+    
   }
 }

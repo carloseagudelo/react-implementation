@@ -19,7 +19,7 @@ export default class Paginator extends React.Component {
         )
   	  })
   	}else{
-      items = getArray(parseInt(this.props.current), this.props.pages.length).map((page, index) => {
+      items = getArray(parseInt(this.props.current), parseInt(this.props.pages.length)).map((page, index) => {
         return(
           <li class="page-item"><a class="page-link" href="" onClick={this.props.onClick} id={page}>{page}</a></li>                  
         )	 
@@ -48,13 +48,16 @@ export default class Paginator extends React.Component {
 
 function getArray(current, end_position){
   var array = []
+
   if((end_position - current) >= 10){
-    for(var i = 0; i < 10; i++){
+    for(var i = 0; i < 9; i++){
       array.push(current + i)
     }
     array.push(end_position)
   }else{
-    for(var i = 0; i < (end_position - current); i++){
+    console.log('XXXXXXXXX')
+    console.log((end_position - current)+1)
+    for(var i = 0; i < (end_position - current) + 1; i++){
       array.push(current + i)
     }
   }  

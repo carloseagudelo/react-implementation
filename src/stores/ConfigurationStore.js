@@ -47,7 +47,7 @@ let ConfigurationStore = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        this.trigger(response)
+        this.trigger(response.payload)
       },
       error: function(xhr, textStatus){
         
@@ -89,7 +89,11 @@ let ConfigurationStore = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'POST',
         success: function(response, textStatus, xhr){
-          this.trigger(response)
+          if(response.status == 200){
+            this.trigger(response.payload)
+          }else{
+            
+          }          
         },
         error: function(xhr, textStatus){
           
@@ -105,7 +109,11 @@ let ConfigurationStore = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
-        this.trigger(response)
+        if(response.status == 200){
+          this.trigger(response.payload)
+        }else{
+          
+        } 
       },
       error: function(xhr, textStatus){
         

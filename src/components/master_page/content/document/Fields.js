@@ -37,7 +37,7 @@ export default class Fields extends React.Component {
     if(this.state.fields){
       let fields;
       if(localStorage.role == Constant.ROLE_BENEFICIARY){
-        fields = this.state.fields.map((field) => {
+        fields = this.state.fields.data.map((field) => {
           return(
             <UploadComponent data={field} />
           )

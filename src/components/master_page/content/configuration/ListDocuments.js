@@ -28,7 +28,7 @@ export default class ListDocuments extends React.Component {
 
   render() {
     if(this.state.documents){
-      let documents = this.state.documents.map((document) => {
+      let documents = this.state.documents.data.map((document) => {
         return(
           <Document data={document} />
         )

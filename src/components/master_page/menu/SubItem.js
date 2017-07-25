@@ -15,7 +15,7 @@ export default class SubItem extends React.Component {
     })
     return ( 
       <ul class="nav child_menu">
-        {sub_items}
+        { sub_items }
       </ul>
     )
   }

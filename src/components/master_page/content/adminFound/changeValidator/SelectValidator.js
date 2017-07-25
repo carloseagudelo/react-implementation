@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+import { browserHistory } from 'react-router'
+
 
 import SecretsConstant from '../../../../../utils/SecretsConstant'
 
@@ -22,10 +24,14 @@ export default class SelectValidator extends React.Component {
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        this.setState({validators: response})
+        if(response.status == 200){
+          this.setState({validators: response.payload.data})
+        }else{
+          browserHistory.push('/error_page/500')
+        }        
       },
       error: function(xhr, textStatus){
-        
+        browserHistory.push('/error_page/500')
       }
     });
   }
