@@ -219,6 +219,9 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
+        console.log('XXXXXXXXXXXXXXXXXXXXXX')
+        console.log(response)
+        console.log('XXXXXXXXXXXXXXXXXXXXXX')
         if(response.status == 200){
           alert('Validación finalizada')                  
         }else {
@@ -241,6 +244,9 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
+        console.log('XXXXXXXXXXXXXXXXXXXXXX')
+        console.log(response)
+        console.log('XXXXXXXXXXXXXXXXXXXXXX')
         if(response.status == 200){
           alert('carga de archivos finalizada')
         }else {
