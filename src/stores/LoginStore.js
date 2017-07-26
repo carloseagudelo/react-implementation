@@ -1,5 +1,5 @@
-/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax que relacionan las funcionalidades de registro 
-                 autentificacion y manejo de sesion al servidor backend del aplicativo  
+/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax que relacionan las funcionalidades de registro
+                 autentificacion y manejo de sesion al servidor backend del aplicativo
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
     Fecha de creación: 6 de Mayo del 2017
@@ -39,7 +39,7 @@ let LoginStore = Reflux.createStore({
       context: this,
       url: SecretConstant.HOST_API+'/login',
       method: 'POST',
-      success: function(response, textStatus, xhr){ 
+      success: function(response, textStatus, xhr){
         if(response.status == 'authorized'){
           if(Authentication(response.payload.message.auth_token)){ // Valida el token y guarda la información en el localStores
             browserHistory.push('/');
@@ -50,20 +50,20 @@ let LoginStore = Reflux.createStore({
             }
             browserHistory.push('/login');
             this.trigger(this.state)
-          }         
+          }
         }else {
           this.state = {
             message: response.payload.message,
-            type: Constant.TYPE_FLASH_MESSAGE_ERROR
+            type: response.payload.type
           }
           browserHistory.push('/login');
           this.trigger(this.state)
         }
-      },  
-      error: function(xhr, textStatus){
+      },
+      error: function(response, xhr, textStatus){
         this.state = {
-          message: Constant.USER_PASSWORD_INVALID,
-          type: Constant.TYPE_FLASH_MESSAGE_ERROR
+          message: response.payload.message,
+          type: response.payload.type
         }
         browserHistory.push('/login');
         this.trigger(this.state)
@@ -80,27 +80,27 @@ let LoginStore = Reflux.createStore({
       context: this,
       url: SecretConstant.HOST_API+'/reset_passwors',
       method: 'POST',
-      success: function(response, textStatus, xhr){ 
+      success: function(response, textStatus, xhr){
         if(response.status == 200){
           this.state = {
             message: response.payload.message,
-            type: Constant.TYPE_FLASH_MESSAGE_SUCESS
+            type: response.payload.type
           }
           browserHistory.push('/login');
           this.trigger(this.state)
         }else {
           this.state = {
             message: response.payload.message,
-            type: Constant.TYPE_FLASH_MESSAGE_ERROR
+            type: response.payload.type
           }
           browserHistory.push('/reset');
           this.trigger(this.state)
         }
-      },  
-      error: function(xhr, textStatus){
+      },
+      error: function(response, xhr, textStatus){
         this.state = {
-          message: Constant.CHANGIN_PASSWORD_ERROR,
-          type: Constant.TYPE_FLASH_MESSAGE_ERROR
+          message: response.payload.message,
+          type: response.payload.type
         }
         browserHistory.push('/reset');
         this.trigger(this.state)
@@ -120,24 +120,24 @@ let LoginStore = Reflux.createStore({
       success: function(response, textStatus, xhr){
         if(response.status == 200){
           this.state = {
-            message: Constant.PASSWORD_CHANGE,
-            type: Constant.TYPE_FLASH_MESSAGE_SUCESS
+            message: response.payload.message,
+            type: response.payload.type
           }
           browserHistory.push('/login');
           this.trigger(this.state)
         }else {
           this.state = {
             message: response.payload.message,
-            type: Constant.TYPE_FLASH_MESSAGE_ERROR
+            type: response.payload.type
           }
           browserHistory.push('/initial_password');
           this.trigger(this.state)
         }
-      },  
-      error: function(xhr, textStatus){
+      },
+      error: function(response, xhr, textStatus){
         this.state = {
-          message: Constant.CHANGIN_PASSWORD_ERROR,
-          type: Constant.TYPE_FLASH_MESSAGE_ERROR
+          message: response.payload.message,
+          type: response.payload.type
         }
         browserHistory.push('/initial_password');
         this.trigger(this.state)
@@ -159,17 +159,17 @@ let LoginStore = Reflux.createStore({
           if(Logout()){
             this.state = {
               message: response.payload.message,
-              type: Constant.TYPE_FLASH_MESSAGE_SUCESS
+              type: response.payload.type
             }
             browserHistory.push('/login');
             this.trigger(this.state)
           }else{
             browserHistory.push('/');
-          }         
+          }
         }else {
           browserHistory.push('/');
         }
-      },  
+      },
       error: function(xhr, textStatus){
         browserHistory.push('/')
       }
