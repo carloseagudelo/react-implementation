@@ -9,8 +9,12 @@
 import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
+
+
+
 // Importa los componentes propios necesarios
 import DocumentAction from '../actions/DocumentAction'
+
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
@@ -72,6 +76,7 @@ let FileUpload = Reflux.createStore({
     $.ajax({
       crossDomain: true,
       cache: false,
+      async: false,
       context: this,
       enctype: 'multipart/form-data',
       url: SecretConstant.HOST_API+'/load_file',
@@ -80,11 +85,17 @@ let FileUpload = Reflux.createStore({
       contentType: false,
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
-      success: function(response, textStatus, xhr){
-        alert(response.message)
+      success: function(response, textStatus, xhr){ 
+        if(response.status == 200){
+          swal("HECHO", response.payload.message, "success")
+        }else if(response.status == 400){
+          swal("ERROR", response.payload.message, "error")
+        }else{
+          browserHistory.push('/error_page/500')
+        }        
       },
       error: function(xhr, textStatus){
-
+        browserHistory.push('/error_page/500')
       }
     });
   },
@@ -219,9 +230,6 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        console.log('XXXXXXXXXXXXXXXXXXXXXX')
-        console.log(response)
-        console.log('XXXXXXXXXXXXXXXXXXXXXX')
         if(response.status == 200){
           alert('Validación finalizada')                  
         }else {
@@ -244,9 +252,6 @@ let FileUpload = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        console.log('XXXXXXXXXXXXXXXXXXXXXX')
-        console.log(response)
-        console.log('XXXXXXXXXXXXXXXXXXXXXX')
         if(response.status == 200){
           alert('carga de archivos finalizada')
         }else {

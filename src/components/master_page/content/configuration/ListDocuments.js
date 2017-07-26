@@ -3,9 +3,6 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import { Link } from 'react-router'
 
-import {Button} from 'react-bootstrap'
-import Dialog from 'react-bootstrap-dialog'
-
 import DocumentAction from '../../../../actions/DocumentAction'
 import DocumentStore from '../../../../stores/DocumentStore'
 

@@ -1,8 +1,5 @@
 import React from 'react';
 
-import {Button} from 'react-bootstrap'
-import Dialog from 'react-bootstrap-dialog'
-
 export default class Paginator extends React.Component {  
 
   constructor(){

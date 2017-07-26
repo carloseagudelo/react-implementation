@@ -18,8 +18,8 @@ export default class UploadComponent extends React.Component {
     let data = $(ev.target).serializeArray()
     var formData = new FormData();
     var input = $('input[name=s' + data[0].value + ']')
-    formData.append( 'file', input[0].files[0]);
-    formData.append( 'id', data[0].value);
+    formData.append( 'file', input[0].files[0])
+    formData.append( 'id', data[0].value)
     DocumentAction.SendFile(formData)
   }
 

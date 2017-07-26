@@ -10,6 +10,6 @@ export default class ModalMessage extends React.Component {
   }
 
   render() {
-    <Dialog ref='dialog' />
+    
   }
 }
