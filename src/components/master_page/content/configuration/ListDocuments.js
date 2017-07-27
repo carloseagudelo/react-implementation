@@ -53,8 +53,6 @@ export default class ListDocuments extends React.Component {
                 </tbody>
               </table>
               <Link to='/create_document' class="btn btn-primary btn-sm pull-right">CREAR DOCUMENTO</Link>
-              <Button onClick={this.onClick.bind(this)}>Show alert</Button>
-              <Dialog ref='dialog' />
             </div>
           </div>
         </div>        

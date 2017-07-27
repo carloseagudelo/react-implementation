@@ -43,7 +43,7 @@ export default class Fields extends React.Component {
           )
         })
       }else{
-        fields = this.state.fields.map((field) => {
+        fields = this.state.fields.data.map((field) => {
           return(
             <ValidateComponent data={field} />
           )

@@ -27,27 +27,17 @@ let MasterPageStore = Reflux.createStore({
       data: {email: localStorage.current_user},
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       context: this,
-      url: SecretConstant.HOST_API+'/personal/show',
+      url: SecretConstant.HOST_API+'/personal_information',
       method: 'GET',
       success: function(response, textStatus, xhr){ 
-        if(xhr.status == 200){
+        if(response.status == 200){
           this.trigger(response)
         }else {
-          this.state = {
-	         message: Constant.AUTHENTICATION_REQUIRED,
-	         type: Constant.TYPE_FLASH_MESSAGE_ERROR
-	        }
-          browserHistory.push('/login');
-          this.trigger(this.state)
+          browserHistory.push('/error_page/500')
         }
       },  
       error: function(textStatus, xhr){
-        this.state = {
-          message: Constant.AUTHENTICATION_REQUIRED,
-          type: Constant.TYPE_FLASH_MESSAGE_ERROR
-        }
-        browserHistory.push('/login');
-        this.trigger(this.state)
+        browserHistory.push('/error_page/500')
       }
     });
   }

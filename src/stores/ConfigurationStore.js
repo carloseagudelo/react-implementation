@@ -3,13 +3,16 @@
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
     Fecha de creación: 6 de Mayo del 2017
-    Fecha de modificacion: 23 de Junio 2017 */
+    Fecha de modificacion: 27 de Julio 2017 */
     
 // Importa las librerias externas necesarias para el manejo de la arquitectura
 import $ from 'jquery'
 import Reflux from 'reflux'
+import { browserHistory } from 'react-router'
+
 // Importa los componentes propios necesarios
 import ConfigurationAction from '../actions/ConfigurationAction'
+
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
@@ -29,10 +32,14 @@ let ConfigurationStore = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        return {funds: response}
+        if(response.status == 200){
+          return {funds: response.payload.data}
+        }else{
+          browserHistory.push('/error_page/500')
+        }        
       },
       error: function(xhr, textStatus){
-        
+        browserHistory.push('/error_page/500')
       }
     });
   },
@@ -47,10 +54,14 @@ let ConfigurationStore = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
-        this.trigger(response.payload)
-      },
+        if(response.status == 200){
+          this.trigger(response.payload)
+        }else{
+          browserHistory.push('/error_page/500')
+        }
+      },  
       error: function(xhr, textStatus){
-        
+        browserHistory.push('/error_page/500')
       }
     });
   },
@@ -67,13 +78,13 @@ let ConfigurationStore = Reflux.createStore({
       method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          alert('INFORMACIÓN GUARDADA')
+          swal("HECHO", response.payload.message, "success")
         }else{
-          alert('INFORMACIÓN NO GUARDADA')
+          browserHistory.push('/error_page/500')
         }
       },
       error: function(xhr, textStatus){
-        
+        browserHistory.push('/error_page/500')
       }
     });
   },
@@ -92,11 +103,11 @@ let ConfigurationStore = Reflux.createStore({
           if(response.status == 200){
             this.trigger(response.payload)
           }else{
-            
+            browserHistory.push('/error_page/500')
           }          
         },
         error: function(xhr, textStatus){
-          
+          browserHistory.push('/error_page/500')
         }
       });      
     }else{
@@ -112,11 +123,11 @@ let ConfigurationStore = Reflux.createStore({
         if(response.status == 200){
           this.trigger(response.payload)
         }else{
-          
+          browserHistory.push('/error_page/500')
         } 
       },
       error: function(xhr, textStatus){
-        
+        browserHistory.push('/error_page/500')
       }
     });
     }
@@ -135,11 +146,15 @@ let ConfigurationStore = Reflux.createStore({
       method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          alert('CAMBIO REALIZADO')
+          swal("HECHO", response.payload.message, "success")
+        }else if(response.status == 400){
+          swal("ERROR", response.payload.message, "error")
+        }else {
+          browserHistory.push('/error_page/500')
         }
       },
       error: function(xhr, textStatus){
-        
+        browserHistory.push('/error_page/500')
       }
     });
   }

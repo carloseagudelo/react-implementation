@@ -3,14 +3,12 @@
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
     Fecha de creación: 6 de Mayo del 2017
-    Fecha de modificacion: 23 de Junio 2017 */
+    Fecha de modificacion: 27 de Julio 2017 */
 
 // Importa las librerias externas necesarias para el manejo de la arquitectura
 import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
-
-
 
 // Importa los componentes propios necesarios
 import DocumentAction from '../actions/DocumentAction'
@@ -112,13 +110,15 @@ let FileUpload = Reflux.createStore({
       method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          alert(Constant.DOCUMENT_VALIDATED)
+          swal("HECHO", response.payload.message, "success")
+        }else if(response.status == 400){
+          swal("ERROR", response.payload.message, "error")
         }else{
-          alert(Constant.DOCUMENT_NO_VALIDATED)
+          browserHistory.push('/error_page/500')
         }
       },
       error: function(xhr, textStatus){
-
+        browserHistory.push('/error_page/500')
       }
     });
   },
@@ -162,7 +162,7 @@ let FileUpload = Reflux.createStore({
         }
       },
       error: function(xhr, textStatus){
-
+        browserHistory.push('/error_page/500')
       }
     });
   },
@@ -181,7 +181,7 @@ let FileUpload = Reflux.createStore({
           this.trigger(response.payload)
         }else{
           browserHistory.push('/error_page/500')
-        }        
+        }     
       },
       error: function(xhr, textStatus){
         browserHistory.push('/error_page/500')
@@ -201,14 +201,17 @@ let FileUpload = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'POST',
         success: function(response, textStatus, xhr){
-          if(response.status == 200){            
+          if(response.status == 200){
+            swal("HECHO", response.payload.message, "success")            
             browserHistory.push('/list_documents');            
+          }else if(response.status == 400){
+            swal("ERROR", response.payload.message, "error")
           }else{
-
-          }          
+            browserHistory.push('/error_page/500')
+          }        
         },
         error: function(xhr, textStatus){
-
+          browserHistory.push('/error_page/500')
         }
       });
     }else{
@@ -231,13 +234,15 @@ let FileUpload = Reflux.createStore({
       method: 'GET',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          alert('Validación finalizada')                  
-        }else {
-          alert('Validación no finalizada')
+          swal("HECHO", response.payload.message, "success")                  
+        }else if(response.status == 400){
+          swal("ERROR", response.payload.message, "error")
+        }else{
+          browserHistory.push('/error_page/500')
         }
       },
       error: function(xhr, textStatus){
-
+        browserHistory.push('/error_page/500')
       }
     });
   },
@@ -253,13 +258,15 @@ let FileUpload = Reflux.createStore({
       method: 'GET',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          alert('carga de archivos finalizada')
+          swal("HECHO", response.payload.message, "success")
+        }else if(response.status == 200){
+          swal("ERROR", response.payload.message, "error")
         }else {
-          alert('carga de archivos no finalizada')
-        }                  
+          browserHistory.push('/error_page/500')
+        }                 
       },
       error: function(xhr, textStatus){
-
+        browserHistory.push('/error_page/500')
       }
     });
   }
