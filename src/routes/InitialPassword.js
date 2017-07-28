@@ -21,7 +21,8 @@ export default class InitialPassword extends React.Component {
   	let data = {
   	  'email': form_data[0].value,
   	  'password': form_data[1].value,
-  	  'password_confirmation': form_data[2].value
+  	  'password_confirmation': form_data[2].value,
+			'current_password': form_data[3].value
   	}
   	LoginAction.InitialPassword(data)
   }
@@ -44,6 +45,9 @@ export default class InitialPassword extends React.Component {
 		          </div>
 		          <div>
 		            <input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
+		          </div>
+							<div>
+		            <input type='password' name='current_password' class='form-control' placeholder='CONTRASEÑA ACTUAL' required='' />
 		          </div>
 		          <div>
 		            <input type='submit' class='submit' value='CAMBIAR CONTRASEÑA' />
