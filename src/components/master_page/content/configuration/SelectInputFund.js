@@ -1,20 +1,33 @@
+/*  Descripcion: Componente que lista fondos registrados
+                 validadores con el fin de poder cambiar alguno de estos
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import React from 'react'
 import { browserHistory } from 'react-router'
 
-import ConfigurationAction from '../../../../actions/ConfigurationAction'
+// importa los componentes necesarios
+import Loading from '../../../Loading'
 
+// importa las clases propias al componente
 import SecretsConstant from '../../../../utils/SecretsConstant'
 
+// Inicializa y exporta la clase que contiene el componente
 export default class SelectInputFund extends React.Component {
 
   constructor(){
   	super()    
   }
 
+  // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
     this.listFunds()
   }
 
+  // Metodo que obtiene la informacion de los fondos
   listFunds(){
     $.ajax({
       crossDomain: true,
@@ -37,6 +50,7 @@ export default class SelectInputFund extends React.Component {
     });
   }
 
+  // Retorna el componente
   render() {
     if(this.state.funds){
       let funds = this.state.funds.data.map((fund) => {
@@ -55,7 +69,7 @@ export default class SelectInputFund extends React.Component {
       )
     }else{
       return(
-        <div>LOADING ......</div>
+        <Loading />
       )
     }
   }

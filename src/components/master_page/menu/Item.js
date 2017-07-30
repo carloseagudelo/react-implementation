@@ -1,7 +1,16 @@
+/*  Descripcion: Componente que renderiza una lista los items del menu vertical derecho
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import React from 'react'
 
+// importa los componentes necesarios
 import SubItem from './SubItem'
 
+// Inicializa y exporta la clase que contiene el componente
 export default class Item extends React.Component {
 
   constructor(){
@@ -9,6 +18,7 @@ export default class Item extends React.Component {
   }
 
   render() {
+    // Maneja la logica del componente
     let items = this.props.data.payload.data.map((item) => {
       if(item.level == 'Menu'){
         return(        
@@ -18,6 +28,7 @@ export default class Item extends React.Component {
         )
       }
     })
+    // Retorna el componente
     return(
       <div class="menu_section">
         <ul class="nav side-menu">
@@ -28,6 +39,7 @@ export default class Item extends React.Component {
   }
 }
 
+// Metodo que filtra los subitems del un item especifico
 function filterArray(data, id){
   var result = [];
   for( var i = 0; i < data.length; i++) {

@@ -7,6 +7,7 @@ import DocumentAction from '../../../../actions/DocumentAction'
 import DocumentStore from '../../../../stores/DocumentStore'
 
 import User from './User'
+import Loading from '../../../Loading'
 
 @ReactMixin.decorate(Reflux.connect(DocumentStore, 'users'))
 export default class ListUser extends React.Component {
@@ -49,7 +50,7 @@ export default class ListUser extends React.Component {
       )
     }else {
       return(
-        <div>LOADING ......</div>
+        <Loading />
       )
     }
   }

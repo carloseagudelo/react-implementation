@@ -1,15 +1,27 @@
+/*  Descripcion: Componente que lista los preseleccionados a determinado fondo, junto con sus dos 
+                 validadores con el fin de poder cambiar alguno de estos
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import $ from 'jquery'
 import React from 'react';
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 
+// importa las clases necesarias para el manejo de la arquitectura
 import DocumentAction from '../../../../actions/DocumentAction'
 import DocumentStore from '../../../../stores/DocumentStore'
 
+// importa los componentes necesarios
 import MessageFlash from '../../../../components/MessageFlash'
 
+// importa las clases propias necesarias
 import Constant from '../../../../utils/Constants'
 
+// inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(DocumentStore, 'response'))
 export default class ListDocuments extends React.Component {
 
@@ -17,11 +29,13 @@ export default class ListDocuments extends React.Component {
   	super()
   }
 
+  // Metodo que realiza el guardado del documenteo el servidor
   sendDocumentSave(ev){
     ev.preventDefault()   
     DocumentAction.SaveDocument(this.getParams())
   }
 
+  // Metodo que obtiene el valores del documento a guardar
   getParams(){
     var obj = {};
     obj['name'] = $('#name').val()
@@ -32,6 +46,7 @@ export default class ListDocuments extends React.Component {
     return obj
   }
 
+  // Metodo que valida la información a guardar
   validateFields(){    
     if($('#name').val() == '' || $('#description').val() == ''){
       return false
@@ -40,6 +55,7 @@ export default class ListDocuments extends React.Component {
     }
   }
 
+  // Retorna el componente
   render() {
     return (
       <div class="">

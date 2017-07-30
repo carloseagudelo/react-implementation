@@ -1,14 +1,25 @@
+/*  Descripcion: Componente que permite realizar la selcción de documentos por fondo
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import $ from 'jquery'
 import React from 'react';
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 
+// importa las clases necesarias para el manejo de la arquitectura
 import ConfigurationAction from '../../../../actions/ConfigurationAction'
 import ConfigurationStore from '../../../../stores/ConfigurationStore'
 
+// importa los componentes necesarios
 import SelectInputFund from './SelectInputFund'
 import DocumentList from './DocumentList'
+import Loading from '../../../Loading'
 
+// inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(ConfigurationStore, 'documents'))
 export default class SetDocumentFund extends React.Component {
 
@@ -16,14 +27,17 @@ export default class SetDocumentFund extends React.Component {
   	super()
   }
 
+  // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){    
     ConfigurationAction.ListDocumentsWithFund(0)
   }
 
+  // Metodo ue lista los documentos selecionados por fondo
   onChangeSelect(){
     ConfigurationAction.ListDocumentsWithFund($("#fund option:selected").val())
   }  
 
+  // Metodo que guarda los documentos por seleccionados
   onSaveDocumentsFund(ev){
     ev.preventDefault()
     var data = {}
@@ -31,6 +45,7 @@ export default class SetDocumentFund extends React.Component {
     ConfigurationAction.SaveDocumentsFund(this.getValues(data))
   }
 
+  // Metodo que obtiene los valores a guardar
   getValues(data){
     $('input').each(function( key, value ) {
       if(value.checked){
@@ -40,6 +55,7 @@ export default class SetDocumentFund extends React.Component {
     return data
   }
 
+  // Retorna el componente
   render() {
     if(this.state.documents){
       return(      
@@ -59,7 +75,7 @@ export default class SetDocumentFund extends React.Component {
       )
     }else{
       return(
-        <div>LOADING ........</div>
+        <Loading />
       )
     }
     

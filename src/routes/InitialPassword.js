@@ -1,13 +1,22 @@
+/*  Descripcion: Componente que renderiza la funcionalidad de cambiar la contraseña 
+				 la primera ves de ingreso a la plataforma
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import $ from 'jquery'
 import React from 'react';
 import ReactMixin from 'react-mixin'
 import Reflux from 'reflux'
 
+// importa los componentes necesarios
 import LoginAction from '../actions/LoginAction.js'
 import LoginStore from '../stores/LoginStore.js'
-
 import MessageFlash from '../components/MessageFlash'
 
+// inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(LoginStore, 'login'))
 export default class InitialPassword extends React.Component {
 
@@ -15,6 +24,7 @@ export default class InitialPassword extends React.Component {
   	super()
   }
 
+  // Metodo que envia captura la solicitud de cambio inicial de contraseña
   onSubmitLogin(ev){
   	ev.preventDefault()
   	let form_data = $(ev.target).serializeArray()
@@ -27,6 +37,7 @@ export default class InitialPassword extends React.Component {
   	LoginAction.InitialPassword(data)
   }
 
+  // Retorna el componente
   render() {
     return (
       <div class='login'>

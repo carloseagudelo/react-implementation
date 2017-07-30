@@ -1,8 +1,18 @@
+/*  Descripcion: Componente que lista los preseleccionados a determinado fondo, junto con sus dos 
+                 validadores con el fin de poder cambiar alguno de estos
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import React from 'react';
 
+// importa los componentes necesarios
 import Fields from './Fields'
 import ListUser from './ListUsers'
 
+// importa las clases propias
 import Constant from '../../../../utils/Constants'
 
 export default class Document extends React.Component {
@@ -11,6 +21,7 @@ export default class Document extends React.Component {
   	super()
   }  
 
+  // Retorna el componente
   render() {
     if(localStorage.role == Constant.ROLE_BENEFICIARY){ // Valida si la vista es para el beneficiario
       return (

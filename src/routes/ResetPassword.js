@@ -1,13 +1,23 @@
+/*  Descripcion: Componente que reestablece la contraseña de un usuario
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import $ from 'jquery'
 import React from 'react';
 import ReactMixin from 'react-mixin'
 import Reflux from 'reflux'
 
+// importa las clases necesarias para el manejo de la arquitectura reflux
 import LoginAction from '../actions/LoginAction.js'
 import LoginStore from '../stores/LoginStore.js'
 
+// importa los componentes necesarios
 import MessageFlash from '../components/MessageFlash'
 
+// inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(LoginStore, 'login'))
 export default class ResetPassword extends React.Component {
 
@@ -15,6 +25,7 @@ export default class ResetPassword extends React.Component {
   	super()
   }
 
+  // Realiza la solicitud de cabio de contraseña
   onSubmitLogin(ev){
   	ev.preventDefault()
   	let form_data = $(ev.target).serializeArray()
@@ -27,6 +38,7 @@ export default class ResetPassword extends React.Component {
   	LoginAction.ResetPassword(data)
   }
 
+  // Retorna el componente
   render() {
     return (
       <div class='login'>

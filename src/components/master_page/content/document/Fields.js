@@ -7,6 +7,7 @@ import DocumentStore from '../../../../stores/DocumentStore'
 
 import UploadComponent from './UploadComponent'
 import ValidateComponent from './ValidateComponent'
+import Loading from '../../../Loading'
 
 import Constant from '../../../../utils/Constants'
 
@@ -57,7 +58,7 @@ export default class Fields extends React.Component {
       )
     }else{
       return(
-        <div>LOADING ......</div>
+        <Loading />
       )
     }
   }

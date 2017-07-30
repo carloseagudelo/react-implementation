@@ -1,19 +1,32 @@
+/*  Descripcion: Componente que lista los validadores de docuentos para determinado fondo
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import React from 'react'
 import { browserHistory } from 'react-router'
 
+// importa los componentes necesarios
+import Loading from '../../../../Loading'
 
+// importa las clases necesarios
 import SecretsConstant from '../../../../../utils/SecretsConstant'
 
+// Inicializa y exporta la clase que contiene el componente
 export default class SelectValidator extends React.Component {
 
   constructor(){
   	super()
   }
 
+  // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
     this.listValidators()
   }
 
+  // Metodo que obtiene la información de los validadores por fondo
   listValidators(){
     $.ajax({
       crossDomain: true,
@@ -37,6 +50,7 @@ export default class SelectValidator extends React.Component {
   }
 
   render() {
+    // Meneja la logica del componente
     if(this.state.validators){
       let validators = this.state.validators.map((validator) => {
         if(this.props.data == validator.id){
@@ -49,6 +63,8 @@ export default class SelectValidator extends React.Component {
           )
         }        
       })
+
+      // Retorna el componente
       return (
         <div class="form-group">
           <select class="form-control" name={this.props.name} onChange={this.props.onChange}>
@@ -58,7 +74,7 @@ export default class SelectValidator extends React.Component {
       )
     }else{
       return(
-        <div>LOADING ......</div>
+        <Loading />
       )
     }
   }

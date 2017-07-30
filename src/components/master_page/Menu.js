@@ -1,13 +1,24 @@
+/*  Descripcion: Componente que renderiza el menú vertical derecho donde se listan todas las 
+				 funcionalidades del sistema
+    Autor: Carlos Agudelo
+    Contacto: agudelo.carlos@hotmail.es
+    Fecha de creación: 6 de Mayo del 2017
+    Fecha de modificacion: 29 de Junio 2017 */
+
+// importa las librerias externas necesarias
 import React from 'react';
 
+// Importa los componentes necesarios
 import Item from './menu/Item'
 
+// Inicializa y exporta la clase que contiene el componente
 export default class Menu extends React.Component {
 
   constructor(){
   	super()
   }
 
+  // Retorna el compnente
   render() {
     return (
       <div class="col-md-3 left_col">
