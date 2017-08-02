@@ -43,15 +43,18 @@ export default class Login extends React.Component {
 	  <div class="custom-style">
 		<div class="wrapper">
 		  <div class="custom-container">
-		    <h1>SAPIENCIA</h1>
+			<MessageFlash data={this.state.login} />
+		  <h1>SAPIENCIA</h1>
 			<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
-              <MessageFlash data={this.state.login} />
 			  <input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
 			  <input type="password" name="pass" class="form-control" placeholder="CONTRASEÑA" required="" />
 			  <button type="submit" id="login-button">INGRESAR</button>
+				<br/>
+				<Link to='reset'>Reestablecer Contraseña</Link>
 			</form>
+
 		  </div>
-			
+
 		  <ul class="bg-bubbles">
 		 	<li></li>
 		 	<li></li>
@@ -64,7 +67,7 @@ export default class Login extends React.Component {
 			<li></li>
 			<li></li>
 		  </ul>
-		</div>	
+		</div>
 	  </div>
 	);
   }
