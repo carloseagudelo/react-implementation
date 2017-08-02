@@ -5129,3 +5129,9 @@ function logOutRequest (){
   localStorage.removeItem('current_user')
   localStorage.removeItem('role')
 }
+
+
+$("#login-button").click(function(event){
+	$('form').fadeOut(500);
+	$('.wrapper').addClass('form-success');
+});
