@@ -1,16 +1,26 @@
 
 html , body{
-	
+
  height:100%;
- 
+
 }
- 
+
+.loader{
+    border-radius: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    z-index: 99999;
+}
+
 .full-width {
-	
+
  width:100%;
- 
+
  }
- 
+
 .full-height{
  height:100%;
  }
@@ -4247,7 +4257,7 @@ ul.notifications {
 table thead .checkbox { margin-top:-7px;margin-top:-21px; }
 table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 */
-			
+
 .daterangepicker.xdisplay { width:228px; }
 
 .dataTables_wrapper > .row{
@@ -4255,8 +4265,8 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 }
 
 .center-loading{
-  position: absolute;  
+  position: absolute;
   z-index: 7;
   top: 20%;
-  left: 40%;  
+  left: 40%;
 }

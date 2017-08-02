@@ -21,21 +21,24 @@ let AdminFoundStore = Reflux.createStore({
 
   // Realiza la peticion para obtener las lista de usuarios preseleccionados
   LoadData: function(){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
   	$.ajax({
       crossDomain: true,
-      cache: false,      
+      cache: false,
       context: this,
       url: SecretConstant.HOST_API+'/load_preselected_users_data', // Parametriza la url a donde ira la peticion
       headers: {authorization: localStorage.jwtToken.split(',')[1]}, // Parametriza la autentificación de la petición
       method: 'GET',
-      success: function(response, textStatus, xhr){ 
+      success: function(response, textStatus, xhr){
+        $(".loader").hide();
         this.state = {
           message: Constant.LOAD_USERS_SUCESS,
           type: Constant.TYPE_FLASH_MESSAGE_SUCESS
         }
         this.trigger(this.state)
-      },  
+      },
       error: function(textStatus, xhr){
+        $(".loader").hide();
         this.state = {
           message: Constant.LOAD_USERS_ERROR,
           ype: Constant.TYPE_FLASH_MESSAGE_ERROR

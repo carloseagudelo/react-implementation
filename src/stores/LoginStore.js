@@ -32,6 +32,7 @@ let LoginStore = Reflux.createStore({
 
   // Realiza la peticion de autentificación
   Login: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -40,6 +41,7 @@ let LoginStore = Reflux.createStore({
       url: SecretConstant.HOST_API+'/login',
       method: 'POST',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 'authorized'){
           if(Authentication(response.payload.message.auth_token)){ // Valida el token y guarda la información en el localStores
             browserHistory.push('/');
@@ -73,6 +75,7 @@ let LoginStore = Reflux.createStore({
 
   // Realiza la petición de cambiar la contraseña
   ResetPassword: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -81,6 +84,7 @@ let LoginStore = Reflux.createStore({
       url: SecretConstant.HOST_API+'/reset_passwors',
       method: 'POST',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
           this.state = {
             message: response.payload.message,
@@ -110,6 +114,7 @@ let LoginStore = Reflux.createStore({
 
   // Realiza la petición de cambiar la contraseña la primera vez
   InitialPassword: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -118,6 +123,7 @@ let LoginStore = Reflux.createStore({
       url: SecretConstant.HOST_API+'/initial_password',
       method: 'POST',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
           this.state = {
             message: response.payload.message,
@@ -147,6 +153,7 @@ let LoginStore = Reflux.createStore({
 
   // Realiza la petición de cierre de sesion
   Logout: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -155,6 +162,7 @@ let LoginStore = Reflux.createStore({
       url: SecretConstant.HOST_API+'/logout',
       method: 'POST',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
           if(Logout()){
             this.state = {

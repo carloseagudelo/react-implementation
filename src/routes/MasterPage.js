@@ -1,4 +1,4 @@
-/*  Descripcion: Componente principal del aplicativo, es el encargado de renderizar toda la informacion 
+/*  Descripcion: Componente principal del aplicativo, es el encargado de renderizar toda la informacion
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
     Fecha de creación: 6 de Mayo del 2017
@@ -30,7 +30,7 @@ export default class MasterPage extends React.Component {
 
   // Metodo propio de react que carga la informción antes de montar el componente
   componentWillMount(){
-    MasterPageAction.FetchInformation()
+    MasterPageAction.FetchInformation();
   }
 
   // Metodo propio de react que se ejecuta una ves el componete fue cargado

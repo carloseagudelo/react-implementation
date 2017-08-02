@@ -1,10 +1,10 @@
-/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax al servidor backend del aplicativo para 
+/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax al servidor backend del aplicativo para
                  la parametrización de los fondos
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
     Fecha de creación: 6 de Mayo del 2017
     Fecha de modificacion: 27 de Julio 2017 */
-    
+
 // Importa las librerias externas necesarias para el manejo de la arquitectura
 import $ from 'jquery'
 import Reflux from 'reflux'
@@ -23,6 +23,7 @@ let ConfigurationStore = Reflux.createStore({
 
   // Realiza la petición con la lista de los fondos
   ListFunds: function(){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       async: false,
@@ -32,13 +33,15 @@ let ConfigurationStore = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
           return {funds: response.payload.data}
         }else{
           browserHistory.push('/error_page/500')
-        }        
+        }
       },
       error: function(xhr, textStatus){
+        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
@@ -46,6 +49,7 @@ let ConfigurationStore = Reflux.createStore({
 
   // Realiza la petición con la lista de los usuarios por determinado fondo
   ListDocumentsWithFund: function(fund_id){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -54,13 +58,15 @@ let ConfigurationStore = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
           this.trigger(response.payload)
         }else{
           browserHistory.push('/error_page/500')
         }
-      },  
+      },
       error: function(xhr, textStatus){
+        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
@@ -68,6 +74,7 @@ let ConfigurationStore = Reflux.createStore({
 
   // Realiza la petición para guardar o actualizar los documentos solicitados por fondos
   SaveDocumentsFund: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -77,6 +84,7 @@ let ConfigurationStore = Reflux.createStore({
       data: data,
       method: 'POST',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
         }else{
@@ -84,6 +92,7 @@ let ConfigurationStore = Reflux.createStore({
         }
       },
       error: function(xhr, textStatus){
+        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
@@ -91,6 +100,7 @@ let ConfigurationStore = Reflux.createStore({
 
   // Realiza la petición para obtener los usuarios con validador
   UsersWithValidators: function(page){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     if(page == 0){
       $.ajax({
         crossDomain: true,
@@ -100,16 +110,18 @@ let ConfigurationStore = Reflux.createStore({
         headers: {authorization: localStorage.jwtToken.split(',')[1]},
         method: 'POST',
         success: function(response, textStatus, xhr){
+          $(".loader").hide();
           if(response.status == 200){
             this.trigger(response.payload)
           }else{
             browserHistory.push('/error_page/500')
-          }          
+          }
         },
         error: function(xhr, textStatus){
+          $(".loader").hide();
           browserHistory.push('/error_page/500')
         }
-      });      
+      });
     }else{
       $.ajax({
       crossDomain: true,
@@ -120,22 +132,25 @@ let ConfigurationStore = Reflux.createStore({
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
           this.trigger(response.payload)
         }else{
           browserHistory.push('/error_page/500')
-        } 
+        }
       },
       error: function(xhr, textStatus){
+        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
     }
-    
+
   },
 
   // Realiza la petición para actualizar los validadores de un beneficiario
   SendUpdateValidators(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -145,6 +160,7 @@ let ConfigurationStore = Reflux.createStore({
       data: data,
       method: 'POST',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
         }else if(response.status == 400){
@@ -154,6 +170,7 @@ let ConfigurationStore = Reflux.createStore({
         }
       },
       error: function(xhr, textStatus){
+        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
