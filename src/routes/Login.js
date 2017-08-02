@@ -39,41 +39,33 @@ export default class Login extends React.Component {
 
   // Retorna el componente
   render() {
-		return(
-
-			<div class="login">
-				<div>
-					<div class="login_wrapper">
-						<div class="animate form login_form">
-							<section class="login_content">
-								<form onSubmit={this.onSubmitLogin.bind(this)} >
-									<h1>Iniciar Sesion</h1>
-									<MessageFlash data={this.state.login} />
-									<div>
-										<input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
-									</div>
-									<div>
-										<input type="password" name="pass" class="form-control" placeholder="CONTRASEÑA" required="" />
-									</div>
-									<div>
-										<input type="submit" class="submit" value="INICIAR SESIÓN" />
-										<Link to='reset'>Reestablecer Contraseña</Link>
-									</div>
-									<div class="clearfix"></div>
-									<div class="separator">
-										<div class="clearfix"></div>
-											<br />
-											<div>
-												<h1>SAPIENCIA MEDELLIN</h1>
-												<p>Agencia de Educación Superior</p>
-											</div>
-										</div>
-								</form>
-							</section>
-						</div>
-					</div>
-				</div>
-			</div>
-		);
+	return(
+	  <div class="custom-style">
+		<div class="wrapper">
+		  <div class="custom-container">
+		    <h1>SAPIENCIA</h1>
+			<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
+              <MessageFlash data={this.state.login} />
+			  <input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
+			  <input type="password" name="pass" class="form-control" placeholder="CONTRASEÑA" required="" />
+			  <button type="submit" id="login-button">INGRESAR</button>
+			</form>
+		  </div>
+			
+		  <ul class="bg-bubbles">
+		 	<li></li>
+		 	<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		  </ul>
+		</div>	
+	  </div>
+	);
   }
 }
