@@ -1,4 +1,4 @@
-/*  Descripcion: Componente que renderiza la funcionalidad de cambiar la contraseña 
+/*  Descripcion: Componente que renderiza la funcionalidad de cambiar la contraseña
 				 la primera ves de ingreso a la plataforma
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
@@ -39,45 +39,39 @@ export default class InitialPassword extends React.Component {
 
   // Retorna el componente
   render() {
-    return (
-      <div class='login'>
-		<div>
-		  <div class='login_wrapper'>
-		    <div class='animate form login_form'>
-		      <section class='login_content'>
-		        <form onSubmit={this.onSubmitLogin.bind(this)}>
-		          <h1>CAMBIAR CONTRASEÑA</h1>
-		          <MessageFlash data={this.state.login} />
-		          <div>
-		            <input type='text' name='email' class='form-control' placeholder='CORREO ELECTRONICO' required='' />
-		          </div>
-		          <div>
-		            <input type='password' name='password' class='form-control' placeholder='CONTRASEÑA NUEVA' required='' />
-		          </div>
-		          <div>
-		            <input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
-		          </div>
-							<div>
-		            <input type='password' name='current_password' class='form-control' placeholder='CONTRASEÑA ACTUAL' required='' />
-		          </div>
-		          <div>
-		            <input type='submit' class='submit' value='CAMBIAR CONTRASEÑA' />
-		          </div>
-		          <div class='clearfix'></div>
-		          <div class='separator'>
-		            <div class='clearfix'></div>
-		              <br />
-		              <div>
-		                <h1>SAPIENCIA MEDELLIN</h1>
-		                <p>Agencia de Educación Superior</p>
-		              </div>
-		            </div>
-		        </form>
-		      </section>
-		    </div>
-		  </div>
-		</div>
-      </div>
-    );
+
+		return (
+			<div class="custom-style">
+				<div class="wrapper">
+					<center>
+						<MessageFlash data={this.state.login} />
+						<h1 class="form-title"> CAMBIAR CONTRASEÑA </h1>
+					</center>
+					<div class="custom-container">
+						<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
+		          <input type='text' name='email' class='form-control' placeholder='CORREO ELECTRÓNICO' required='' />
+		          <input type='password' name='password' class='form-control' placeholder='CONTRASEÑA NUEVA' required='' />
+							<input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
+							<input type='password' name='current_password' class='form-control' placeholder='CONTRASEÑA ACTUAL' required='' />
+							<button type='submit' class='submit'> CAMBIAR CONTRASEÑA </button>
+							<br/>
+						</form>
+					</div>
+
+					<ul class="bg-bubbles">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		);
   }
 }

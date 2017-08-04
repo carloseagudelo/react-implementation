@@ -39,36 +39,37 @@ export default class Login extends React.Component {
 
   // Retorna el componente
   render() {
-	return(
-	  <div class="custom-style">
-		<div class="wrapper">
-		  <div class="custom-container">
-			<MessageFlash data={this.state.login} />
-		  <h1>SAPIENCIA</h1>
-			<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
-			  <input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
-			  <input type="password" name="pass" class="form-control" placeholder="CONTRASEÑA" required="" />
-			  <button type="submit" id="login-button">INGRESAR</button>
-				<br/>
-				<Link to='reset'>Reestablecer Contraseña</Link>
-			</form>
+		return(
+			<div class="custom-style">
+				<div class="wrapper">
+					<center>
+						<MessageFlash data={this.state.login} />
+						<img class="logo" src='../static/img/logo.png'/>
+					</center>
+					<div class="custom-container">
+						<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
+							<input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
+							<input type="password" name="pass" class="form-control" placeholder="CONTRASEÑA" required="" />
+							<button type="submit" id="login-button">INGRESAR</button>
+							<br/>
+							<Link to='reset'>Reestablecer Contraseña</Link>
+						</form>
+					</div>
 
-		  </div>
-
-		  <ul class="bg-bubbles">
-		 	<li></li>
-		 	<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		  </ul>
-		</div>
-	  </div>
-	);
+					<ul class="bg-bubbles">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		);
   }
 }
