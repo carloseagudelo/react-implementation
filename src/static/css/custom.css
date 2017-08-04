@@ -318,7 +318,7 @@ html , body{
 }
 .active a span.fa {
     text-align: right !important;
-    margin-right: 4px
+    margin-right: 2px
 }
 .nav-sm .menu_section {
     margin: 0
@@ -1850,7 +1850,7 @@ h4.graph_title {
     margin-right: 10px
 }
 .main_menu .fa {
-    width: 26px;
+    width: 21px;
     opacity: .99;
     display: inline-block;
     font-family: FontAwesome;
@@ -4491,4 +4491,9 @@ form button:hover {
 
 .form-title{
     margin-top: 15%;
+}
+
+.table-header{
+    font-weight: bold;
+    text-align: center;
 }

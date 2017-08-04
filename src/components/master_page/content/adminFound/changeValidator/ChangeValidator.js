@@ -48,7 +48,7 @@ export default class ChangeValidator extends React.Component {
       }
     }else{
       ConfigurationAction.UsersWithValidators(ev.target.id)
-    }    
+    }
   }
 
   // Metodo que actualiza el validador del usuario
@@ -83,18 +83,18 @@ export default class ChangeValidator extends React.Component {
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>NOMBRE</th>
-                <th>ESTADO</th>
-                <th>VALIDADOR 1</th>
-                <th>VALIDADOR 2</th>
+                <th class="table-header">NOMBRE</th>
+                <th class="table-header">ESTADO</th>
+                <th class="table-header">VALIDADOR 1</th>
+                <th class="table-header">VALIDADOR 2</th>
               </tr>
             </thead>
-            <tbody>      
-              {users}   
+            <tbody>
+              {users}
             </tbody>
           </table>
           <Paginator pages={this.state.userValidators.records_count} current={this.state.userValidators.current_page} onClick={this.nextPage.bind(this)}/>
-        </div>        
+        </div>
       )
     }else {
       return(
