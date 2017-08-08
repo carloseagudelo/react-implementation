@@ -1,4 +1,4 @@
-/*  Descripcion: Componente que lista los preseleccionados a determinado fondo, junto con sus dos 
+/*  Descripcion: Componente que lista los preseleccionados a determinado fondo, junto con sus dos
                  validadores con el fin de poder cambiar alguno de estos
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
@@ -26,7 +26,7 @@ export default class UserWithValidator extends React.Component {
 	    <th>{this.props.data.state}</th>
 	    <th><SelectValidator data={this.props.data.pre_validator_id} name={'pre_validator'}/></th>
 	    <th><SelectValidator data={this.props.data.final_validator_id} name={'final_validator'}/></th>
-	    <button id={this.props.data.id} onClick={this.props.onClick}>CAMBIAR</button>
+	    <th><button class="table-button" id={this.props.data.id} onClick={this.props.onClick}>CAMBIAR</button></th>
 	  </tr>
 	)
   }
