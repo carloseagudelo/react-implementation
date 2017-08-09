@@ -28,14 +28,14 @@ export default class SetDocumentFund extends React.Component {
   }
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
-  componentWillMount(){    
+  componentWillMount(){
     ConfigurationAction.ListDocumentsWithFund(0)
   }
 
   // Metodo ue lista los documentos selecionados por fondo
   onChangeSelect(){
     ConfigurationAction.ListDocumentsWithFund($("#fund option:selected").val())
-  }  
+  }
 
   // Metodo que guarda los documentos por seleccionados
   onSaveDocumentsFund(ev){
@@ -58,7 +58,7 @@ export default class SetDocumentFund extends React.Component {
   // Retorna el componente
   render() {
     if(this.state.documents){
-      return(      
+      return(
         <div class="">
           <div class="page-title">
             <div class="x_title">
@@ -73,11 +73,6 @@ export default class SetDocumentFund extends React.Component {
           </div>
         </div>
       )
-    }else{
-      return(
-        <Loading />
-      )
     }
-    
   }
 }

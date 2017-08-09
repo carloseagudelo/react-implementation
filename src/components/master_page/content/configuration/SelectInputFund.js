@@ -19,7 +19,7 @@ import SecretsConstant from '../../../../utils/SecretsConstant'
 export default class SelectInputFund extends React.Component {
 
   constructor(){
-  	super()    
+  	super()
   }
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
@@ -42,7 +42,7 @@ export default class SelectInputFund extends React.Component {
           this.setState({funds: response.payload})
         }else{
           browserHistory.push('/error_page/500')
-        }        
+        }
       },
       error: function(xhr, textStatus){
         browserHistory.push('/error_page/500')
@@ -57,19 +57,15 @@ export default class SelectInputFund extends React.Component {
         return(
           <option value={fund.id}>{fund.name}</option>
         )
-      })    
+      })
       return (
         <div class="form-group">
           <label for="sel1">SELECCIONE EL FONDO</label>
           <select class="form-control" id="fund" onChange={this.props.onChange}>
             <option value="0">SELECCIONE UN FONDO</option>
             {funds}
-          </select> 
+          </select>
         </div>
-      )
-    }else{
-      return(
-        <Loading />
       )
     }
   }

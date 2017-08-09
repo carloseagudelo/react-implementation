@@ -20,7 +20,7 @@ export default class DocumentList extends React.Component {
 
   // Meotodo que carga como seleccionados loc documentos por fondo
   setChecked(){
-    if(this.props.data){    
+    if(this.props.data){
       this.props.data.forEach( function(element, index) {
         if(element.checked){
           $('#'+String(element.id)).prop('checked', true)
@@ -28,7 +28,7 @@ export default class DocumentList extends React.Component {
           $('#'+String(element.id)).prop('checked', false)
         }
       });
-    }    
+    }
   }
 
   render() {
@@ -38,21 +38,17 @@ export default class DocumentList extends React.Component {
         return(
           <a href="#" class="list-group-item">{document.name}<input type="checkbox" class="pull-right" id={document.id}/></a>
         )
-      })   
-      this.setChecked() 
+      })
+      this.setChecked()
 
       // Retorna el componente
       return (
-        <div class="form-group">          
+        <div class="form-group">
           <div class="list-group">
             <a href="#" class="list-group-item active">SELECCIONE LOS DOCUMENTOS POR FONDO</a>
             {documents}
           </div>
         </div>
-      )
-    }else{
-      return(
-        <Loading />
       )
     }
   }

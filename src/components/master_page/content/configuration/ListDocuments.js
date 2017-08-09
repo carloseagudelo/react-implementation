@@ -27,8 +27,8 @@ export default class ListDocuments extends React.Component {
   }
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
-  componentWillMount(){    
-    DocumentAction.ListDocuments()     
+  componentWillMount(){
+    DocumentAction.ListDocuments()
   }
 
   render() {
@@ -39,7 +39,7 @@ export default class ListDocuments extends React.Component {
           <Document data={document} />
         )
       })
-  
+
       // Retorna el componente
       return (
         <div class="">
@@ -55,21 +55,17 @@ export default class ListDocuments extends React.Component {
                     <th>DESCRIPCIÓN</th>
                     <th>REQUERIDO</th>
                     <th>TIPO</th>
-                    <th>FECHA DE CREACIÓN</th>                    
+                    <th>FECHA DE CREACIÓN</th>
                   </tr>
                 </thead>
-                <tbody>      
-                  {documents}   
+                <tbody>
+                  {documents}
                 </tbody>
               </table>
               <Link to='/create_document' class="btn btn-primary btn-sm pull-right">CREAR DOCUMENTO</Link>
             </div>
           </div>
-        </div>        
-      )
-    }else {
-      return(
-        <Loading />
+        </div>
       )
     }
   }

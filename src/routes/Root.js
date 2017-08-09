@@ -21,6 +21,8 @@ import ListDocumets from '../components/master_page/content/configuration/ListDo
 import CreateDocument from '../components/master_page/content/configuration/CreateDocument'
 import SetDocumentFund from '../components/master_page/content/configuration/SetDocumentFund'
 import ChangeValidator from '../components/master_page/content/adminFound/changeValidator/ChangeValidator'
+import SetRestriction from '../components/master_page/content/configuration/SetRestriction'
+
 
 export default class Root extends React.Component {
 
@@ -52,6 +54,7 @@ export default class Root extends React.Component {
           <Route path='/create_document' component={CreateDocument} />
           <Route path='/set_documents' component={SetDocumentFund} />
           <Route path='/change_validator' component={ChangeValidator} />
+          <Route path='/set_restriction' component={SetRestriction} />
         </Route>
         <Route path='login' component={Login} />
         <Route path='reset' component={ResetPassword} />

@@ -174,6 +174,55 @@ let ConfigurationStore = Reflux.createStore({
         browserHistory.push('/error_page/500')
       }
     });
+  },
+
+  // Realiza la petición para guardar una restricción a convocatoria
+  SaveRestriction: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/restriction',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      data: data,
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        $(".loader").hide();
+        if(response.status == 200){
+          swal("HECHO", response.payload.message, "success")
+        }else{
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        $(".loader").hide();
+        browserHistory.push('/error_page/500')
+      }
+    });
+  },
+
+  // Metodo que obtiene la lista de convocatorias
+  listConvocatories(){
+    $.ajax({
+      crossDomain: true,
+      async: false,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/convocatories',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          this.trigger("response.payload")
+        }else{
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
+      }
+    });
   }
 
 })
