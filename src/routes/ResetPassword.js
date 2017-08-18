@@ -16,6 +16,8 @@ import LoginStore from '../stores/LoginStore.js'
 
 // importa los componentes necesarios
 import MessageFlash from '../components/MessageFlash'
+import Bubbles from '../components/login/Bubbles'
+import Logo from '../components/login/Logo'
 
 // inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(LoginStore, 'login'))
@@ -40,38 +42,27 @@ export default class ResetPassword extends React.Component {
 
   // Retorna el componente
   render() {
-		return (
-			<div class="custom-style">
-				<div class="wrapper">
-					<center>
-						<MessageFlash data={this.state.login} />
-						<h1 class="form-title"> CAMBIAR CONTRASEÑA </h1>
-					</center>
-					<div class="custom-container">
-						<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
-							<input type='text' name='email' class='form-control' placeholder='CORREO ELECTRONICO' required='' />
-		          <input type='password' name='current_password' class='form-control' placeholder='CONTRASEÑA ACTUAL' required='' />
-		          <input type='password' name='password' class='form-control' placeholder='CONTRASEÑA NUEVA' required='' />
-		          <input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
-							<button type='submit' class='submit'>CAMBIAR CONTRASEÑA </button>
-							<br/>
-						</form>
-					</div>
-
-					<ul class="bg-bubbles">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-				</div>
-			</div>
-		);
+	return (
+	  <div class="custom-style">
+		<div class="wrapper">
+	      <center>
+		    <MessageFlash data={this.state.login} />
+		    <Logo />
+		  </center>
+		  <div class="custom-container">
+		  	<h1 class="form-title">CAMBIAR CONTRASEÑA</h1>
+		    <form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
+			  <input type='text' name='email' class='form-control' placeholder='CORREO ELECTRONICO' required='' />
+		      <input type='password' name='current_password' class='form-control' placeholder='CONTRASEÑA ACTUAL' required='' />
+		      <input type='password' name='password' class='form-control' placeholder='CONTRASEÑA NUEVA' required='' />
+		      <input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
+			  <button type='submit' class='submit'>CAMBIAR CONTRASEÑA </button>
+			  <br/>
+			 </form>
+		   </div>
+		   <Bubbles />
+		  </div>
+	   </div>
+	);
   }
 }

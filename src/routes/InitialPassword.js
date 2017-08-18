@@ -14,7 +14,11 @@ import Reflux from 'reflux'
 // importa los componentes necesarios
 import LoginAction from '../actions/LoginAction.js'
 import LoginStore from '../stores/LoginStore.js'
+
+// importa los componentes necesarios
 import MessageFlash from '../components/MessageFlash'
+import Bubbles from '../components/login/Bubbles'
+import Logo from '../components/login/Logo'
 
 // inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(LoginStore, 'login'))
@@ -32,46 +36,34 @@ export default class InitialPassword extends React.Component {
   	  'email': form_data[0].value,
   	  'password': form_data[1].value,
   	  'password_confirmation': form_data[2].value,
-			'current_password': form_data[3].value
+	  'current_password': form_data[3].value
   	}
   	LoginAction.InitialPassword(data)
   }
 
   // Retorna el componente
   render() {
-
-		return (
-			<div class="custom-style">
-				<div class="wrapper">
-					<center>
-						<MessageFlash data={this.state.login} />
-						<h1 class="form-title"> CAMBIAR CONTRASEÑA </h1>
-					</center>
-					<div class="custom-container">
-						<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
-		          <input type='text' name='email' class='form-control' placeholder='CORREO ELECTRÓNICO' required='' />
-		          <input type='password' name='password' class='form-control' placeholder='CONTRASEÑA NUEVA' required='' />
-							<input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
-							<input type='password' name='current_password' class='form-control' placeholder='CONTRASEÑA ACTUAL' required='' />
-							<button type='submit' class='submit'> CAMBIAR CONTRASEÑA </button>
-							<br/>
-						</form>
-					</div>
-
-					<ul class="bg-bubbles">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-				</div>
-			</div>
-		);
+	return (
+	  <div class="custom-style">
+		<div class="wrapper">
+	      <center>
+			<MessageFlash data={this.state.login} />
+			<Logo />
+		  </center>
+		  <div class="custom-container">
+		  	<h1 class="form-title">CAMBIAR CONTRASEÑA</h1>
+		  	<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
+		      <input type='text' name='email' class='form-control' placeholder='CORREO ELECTRÓNICO' required='' />
+		      <input type='password' name='current_password' class='form-control' placeholder='CODIGO DE VERIFICACIÓN' required='' />
+		      <input type='password' name='password' class='form-control' placeholder='CONTRASEÑA NUEVA' required='' />
+			  <input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
+			  <button type='submit' class='submit'> CAMBIAR CONTRASEÑA </button>
+			  <br/>
+			</form>
+		  </div>
+		<Bubbles />
+	  </div>
+	</div>
+	);
   }
 }

@@ -14,9 +14,12 @@ import { Link } from 'react-router'
 // importa las librerias externas necesarias
 import LoginAction from '../actions/LoginAction.js'
 import LoginStore from '../stores/LoginStore.js'
+
+// importa los componentes necesarios
 import MessageFlash from '../components/MessageFlash'
 import Loading from '../components/Loading'
-
+import Bubbles from '../components/login/Bubbles'
+import Logo from '../components/login/Logo'
 
 // inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(LoginStore, 'login'))
@@ -39,37 +42,26 @@ export default class Login extends React.Component {
 
   // Retorna el componente
   render() {
-		return(
-			<div class="custom-style">
-				<div class="wrapper">
-					<center>
-						<MessageFlash data={this.state.login} />
-						<img class="logo" src='../static/img/logo.png'/>
-					</center>
-					<div class="custom-container">
-						<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
-							<input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
-							<input type="password" name="pass" class="form-control" placeholder="CONTRASEÑA" required="" />
-							<button type="submit" id="login-button">INGRESAR</button>
-							<br/>
-							<Link to='reset'>Reestablecer Contraseña</Link>
-						</form>
-					</div>
-
-					<ul class="bg-bubbles">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-				</div>
-			</div>
-		);
+	return(
+	  <div class="custom-style">
+	    <div class="wrapper">
+	      <center>
+		    <MessageFlash data={this.state.login} />
+		    <Logo />
+		  </center>
+		  <div class="custom-container">
+		  	<h1 class="form-title">INICIAR SESIÓN</h1>
+		    <form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
+		      <input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
+		      <input type="password" name="pass" class="form-control" placeholder="CONTRASEÑA" required="" />
+			  <button type="submit" id="login-button">INGRESAR</button>
+			  <br/>
+			  <Link to='reset'>Reestablecer Contraseña</Link>
+			</form>
+		  </div>
+		  <Bubbles />
+		</div>
+	  </div>
+	);
   }
 }

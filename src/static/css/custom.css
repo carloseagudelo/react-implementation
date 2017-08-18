@@ -4343,7 +4343,7 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 	font-weight: 200;
 }
 .custom-form {
-	padding: 20px 0;
+	
 	position: relative;
 	z-index: 2;
 }
@@ -4484,13 +4484,13 @@ form button:hover {
 }
 
 .logo{
-    margin-top: 100px;
+    margin-top: 7%;
     width: 250px;
     height: 250px;
 }
 
 .form-title{
-    margin-top: 15%;
+    margin-top: 1%;
 }
 
 .table-header{
