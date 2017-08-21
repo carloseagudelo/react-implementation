@@ -9,6 +9,8 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 
+import SelectRole from '../utils/SelectRole'
+
 // importa los componentes necesarios
 import MasterPage from './MasterPage';
 import Login from './Login';
@@ -23,12 +25,11 @@ import SetDocumentFund from '../components/master_page/content/configuration/Set
 import ChangeValidator from '../components/master_page/content/adminFound/changeValidator/ChangeValidator'
 import SetRestriction from '../components/master_page/content/configuration/SetRestriction'
 
-
 export default class Root extends React.Component {
 
   constructor(){
   	super()
-  }
+  }  
 
   // Valida si la ruta a la que accede el usuario esta autentificado
   requireAuth() {
@@ -36,6 +37,8 @@ export default class Root extends React.Component {
       var data = localStorage.jwtToken.split(',');
       if (data[0] != 'Autorized') {
         browserHistory.push('/error_page/403')
+      }if(localStorage.role == ''){
+        SelectRole();
       }
     }else{
       browserHistory.push('/error_page/403')
@@ -64,4 +67,3 @@ export default class Root extends React.Component {
     );
   }
 }
-

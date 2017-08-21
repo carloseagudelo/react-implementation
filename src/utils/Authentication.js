@@ -28,7 +28,7 @@ export default function Authentication(token) {
 
 // Funcion que valida la autenticidad del token que recibe del servidore backend
 function validate(data) {
-  if(data.secret == SecretConstant.PASSWORD_AUT_TOKEN && data.date <= Date.now && data.email != '' && data.role != ''){
+  if(data.secret == SecretConstant.PASSWORD_AUT_TOKEN && data.date <= Date.now && data.email != ''){
     return true
   }else {
     return false
