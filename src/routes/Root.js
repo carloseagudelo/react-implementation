@@ -24,12 +24,14 @@ import CreateDocument from '../components/master_page/content/configuration/Crea
 import SetDocumentFund from '../components/master_page/content/configuration/SetDocumentFund'
 import ChangeValidator from '../components/master_page/content/adminFound/changeValidator/ChangeValidator'
 import SetRestriction from '../components/master_page/content/configuration/SetRestriction'
+import CreateConvocatory from '../components/master_page/content/configuration/CreateConvocatory'
+
 
 export default class Root extends React.Component {
 
   constructor(){
   	super()
-  }  
+  }
 
   // Valida si la ruta a la que accede el usuario esta autentificado
   requireAuth() {
@@ -58,6 +60,7 @@ export default class Root extends React.Component {
           <Route path='/set_documents' component={SetDocumentFund} />
           <Route path='/change_validator' component={ChangeValidator} />
           <Route path='/set_restriction' component={SetRestriction} />
+          <Route path='/create_convocatory' component={CreateConvocatory} />
         </Route>
         <Route path='login' component={Login} />
         <Route path='reset' component={ResetPassword} />

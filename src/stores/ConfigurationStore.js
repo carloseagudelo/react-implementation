@@ -202,8 +202,34 @@ let ConfigurationStore = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para guardar una convocatoria
+  SaveConvocatory: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/save_convocatories',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      data: data,
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        $(".loader").hide();
+        if(response.status == 200){
+          swal("HECHO", response.payload.message, "success")
+        }else{
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        $(".loader").hide();
+        browserHistory.push('/error_page/500')
+      }
+    });
+  },
+
   // Metodo que obtiene la lista de convocatorias
-  listConvocatories(){
+  ListConvocatories(){
     $.ajax({
       crossDomain: true,
       async: false,

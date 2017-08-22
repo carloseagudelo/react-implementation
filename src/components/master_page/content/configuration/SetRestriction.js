@@ -1,8 +1,8 @@
-/*  Descripcion: Componente que permite realizar la selcción de documentos por fondo
-    Autor: Carlos Agudelo
-    Contacto: agudelo.carlos@hotmail.es
-    Fecha de creación: 6 de Mayo del 2017
-    Fecha de modificacion: 29 de Junio 2017 */
+/*  Descripcion: Componente que permite realizar la creación de una restricción para una convocatoria
+    Autor: Sebastián Delgado Díaz
+    Contacto: sebasdeldi@hotmail.com
+    Fecha de creación: Agosto 2017
+    Fecha de modificacion: Agosto 2017 */
 
 // importa las librerias externas necesarias
 import $ from 'jquery'
@@ -15,9 +15,9 @@ import ConfigurationAction from '../../../../actions/ConfigurationAction'
 import ConfigurationStore from '../../../../stores/ConfigurationStore'
 
 // importa los componentes necesarios
-import SelectInputFund from './SelectInputFund'
-import DocumentList from './DocumentList'
-import Loading from '../../../Loading'
+// import SelectInputFund from './SelectInputFund'
+// import DocumentList from './DocumentList'
+// import Loading from '../../../Loading'
 
 // inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(ConfigurationStore, 'convocatories'))
@@ -29,7 +29,7 @@ export default class SetRestrictions extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    ConfigurationAction.listConvocatories()
+    ConfigurationAction.ListConvocatories()
   }
 
   onSubmitRestriction(ev){
@@ -48,7 +48,7 @@ export default class SetRestrictions extends React.Component {
 
   // Retorna el componente
   render() {
-
+    //TODO ver por que motivo this.state.convocatories llega null
     if (this.state.convocatories){
       let convocatories = this.state.convocatories.data.map((convocatory) => {
         return(
