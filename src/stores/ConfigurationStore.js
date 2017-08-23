@@ -183,7 +183,7 @@ let ConfigurationStore = Reflux.createStore({
       crossDomain: true,
       cache: false,
       context: this,
-      url: SecretConstant.HOST_API+'/restriction',
+      url: SecretConstant.HOST_API+'/save_restriction',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       data: data,
       method: 'POST',
