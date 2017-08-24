@@ -25,21 +25,6 @@ export default function Authentication(user_id) {
 	}
   })
 
-  var XXXX = new Promise(function (resolve) {
-  setTimeout(function () {
-    resolve({
-      1: 'rol1',
-      2: 'rol2',
-      3: 'rol 3'
-    })
-  }, 2000)
-})
-
-  console.log('=============================================')
-  console.log(XXXX)
-  console.log('=============================================')
-
-  console.log('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ')
   var data = inputOptions,
   roles = data.map(function (str) {
     var piece = str.split(':');
@@ -50,8 +35,6 @@ export default function Authentication(user_id) {
     map[obj.id] = obj.name;
     return map;
   }, {});
-  console.log(result)
-  console.log('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ')
 
   swal({
     title: "SELECCIONE UN ROL",
@@ -72,18 +55,19 @@ export default function Authentication(user_id) {
 		    headers: {authorization: localStorage.jwtToken.split(',')[1]},
 		    method: 'PUT',
 		    success: function(response, textStatus, xhr){
+          localStorage.setItem('role', response.payload.role);
 		      $(".loader").hide();
-		        if(response.status == 200){
-		          swal({
-				    type: 'success',
-				    html: 'You selected: ' + value
-				  })
-			      resolve()
-		        }else if(response.status == 400){
-		          swal("ERROR", response.payload.message, "error")
-		        }else{
-		        browserHistory.push('/error_page/500')
-		      }
+          if(response.status == 200){
+            swal({
+              type: 'success',
+              html: 'You selected: ' + value
+            })
+            resolve()
+            }else if(response.status == 400){
+              swal("ERROR", response.payload.message, "error")
+            }else{
+            browserHistory.push('/error_page/500')
+          }
 		    },
 		    error: function(xhr, textStatus){
 		      $(".loader").hide();
