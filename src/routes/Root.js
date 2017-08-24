@@ -13,9 +13,11 @@ import SelectRole from '../utils/SelectRole'
 
 // importa los componentes necesarios
 import MasterPage from './MasterPage';
+import Registration from './Registration';
 import Login from './Login';
 import ResetPassword from './ResetPassword';
-import InitialPassword from './InitialPassword';
+import GetSecureCode from './GetSecureCode';
+import RestorePassword from './RestorePassword';
 import ErrorPage from './ErrorPage'
 import Document from '../components/master_page/content/document/Document'
 import LoadUser from '../components/master_page/content/adminFound/LoadUser'
@@ -25,7 +27,6 @@ import SetDocumentFund from '../components/master_page/content/configuration/Set
 import ChangeValidator from '../components/master_page/content/adminFound/changeValidator/ChangeValidator'
 import SetRestriction from '../components/master_page/content/configuration/SetRestriction'
 import CreateConvocatory from '../components/master_page/content/configuration/CreateConvocatory'
-
 
 export default class Root extends React.Component {
 
@@ -62,9 +63,11 @@ export default class Root extends React.Component {
           <Route path='/set_restriction' component={SetRestriction} />
           <Route path='/create_convocatory' component={CreateConvocatory} />
         </Route>
+        <Route path='registration' component={Registration} />
         <Route path='login' component={Login} />
-        <Route path='reset' component={ResetPassword} />
-        <Route path='initial_password' component={InitialPassword} />
+        <Route path='reset' component={ResetPassword} /> 
+        <Route path='get_code' component={GetSecureCode} />
+        <Route path='restore_password' component={RestorePassword} />
         <Route path='/error_page/:er' component={ErrorPage} />
 	    </Router>
     );

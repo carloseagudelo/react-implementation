@@ -22,7 +22,7 @@ import Logo from '../components/login/Logo'
 
 // inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(LoginStore, 'login'))
-export default class InitialPassword extends React.Component {
+export default class RestorePassword extends React.Component {
 
   constructor(){
   	super()
@@ -34,9 +34,9 @@ export default class InitialPassword extends React.Component {
   	let form_data = $(ev.target).serializeArray()
   	let data = {
   	  'email': form_data[0].value,
-  	  'password': form_data[1].value,
-  	  'password_confirmation': form_data[2].value,
-	  'current_password': form_data[3].value
+  	  'current_password': form_data[1].value,
+  	  'password': form_data[2].value,
+	  'password_confirmation': form_data[3].value
   	}
   	LoginAction.InitialPassword(data)
   }
@@ -54,7 +54,7 @@ export default class InitialPassword extends React.Component {
 		  	<h1 class="form-title">CAMBIAR CONTRASEÑA</h1>
 		  	<form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
 		      <input type='text' name='email' class='form-control' placeholder='CORREO ELECTRÓNICO' required='' />
-		      <input type='password' name='current_password' class='form-control' placeholder='CODIGO DE VERIFICACIÓN' required='' />
+		      <input type='text' name='current_password' class='form-control' placeholder='CODIGO DE VERIFICACIÓN' required='' />
 		      <input type='password' name='password' class='form-control' placeholder='CONTRASEÑA NUEVA' required='' />
 			  <input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
 			  <button type='submit' class='submit'> CAMBIAR CONTRASEÑA </button>

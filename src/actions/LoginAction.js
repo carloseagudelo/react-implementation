@@ -13,7 +13,9 @@ let LoginAction = Reflux.createActions([
   'Login',
   'ResetPassword',
   'InitialPassword',
-  'Logout'
+  'Logout',
+  'Register',
+  'GetSecureCode'
 ])
 
 // Exporta la clase

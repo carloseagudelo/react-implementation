@@ -182,6 +182,82 @@ let LoginStore = Reflux.createStore({
         browserHistory.push('/')
       }
     });
+  },
+
+  Register: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      data: data,
+      context: this,
+      url: SecretConstant.HOST_API+'/canditate_registration',
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        $(".loader").hide();
+        if(response.status == 200){
+          this.state = {
+            message: response.payload.message,
+            type: response.payload.type
+          }
+          browserHistory.push('/login');
+          this.trigger(this.state)
+        }else {
+          this.state = {
+            message: response.payload.message,
+            type: response.payload.type
+          }
+          browserHistory.push('/reset');
+          this.trigger(this.state)
+        }
+      },
+      error: function(response, xhr, textStatus){
+        this.state = {
+          message: response.payload.message,
+          type: response.payload.type
+        }
+        browserHistory.push('/reset');
+        this.trigger(this.state)
+      }
+    });
+  },
+
+  GetSecureCode: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      data: data,
+      context: this,
+      url: SecretConstant.HOST_API+'/get_security_code',
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        $(".loader").hide();
+        if(response.status == 200){
+          this.state = {
+            message: response.payload.message,
+            type: response.payload.type
+          }
+          browserHistory.push('/login');
+          this.trigger(this.state)
+        }else {
+          this.state = {
+            message: response.payload.message,
+            type: response.payload.type
+          }
+          browserHistory.push('/reset');
+          this.trigger(this.state)
+        }
+      },
+      error: function(response, xhr, textStatus){
+        this.state = {
+          message: response.payload.message,
+          type: response.payload.type
+        }
+        browserHistory.push('/reset');
+        this.trigger(this.state)
+      }
+    });
   }
 
 })
