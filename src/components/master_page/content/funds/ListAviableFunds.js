@@ -9,6 +9,9 @@ import $ from 'jquery'
 import React from 'react';
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
+// Importa las clases necesarias donde se almacenas las contantes del aplicativo
+import SecretConstant from '../../../../utils/SecretsConstant'
+
 
 export default class ListAviableFunds extends React.Component {
 
@@ -18,21 +21,15 @@ export default class ListAviableFunds extends React.Component {
 
   onSubmitFund(ev){
   	$.ajax({
-      crossDomain: true,
-      async: false,
       cache: false,
       context: this,
-      data: this.getData()
-      url: SecretConstant.HOST_API+'/autenticate_platform',
+      data: {'information' : this.getData()},
+      url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
         $(".loader").hide();
-        if(response.status == 200){
-          window.open('localhost:3001/personals/new')
-        }else{
-         swalt('Ni mierda')
-        }
+        window.open('http://localhost:3001/personals/new')
       },
       error: function(xhr, textStatus){
         $(".loader").hide();
@@ -44,11 +41,12 @@ export default class ListAviableFunds extends React.Component {
   getData(){
     var obj = {
       'user_id': localStorage.user_id,
-      'email': localStorage.current_user, 
+      'email': localStorage.current_user,
       'jwt': localStorage.jwtToken.split(',')[1],
-      'user_name': 'CARLOS ENRIQUE AGUDELO GIRALDO',
-      'document_type': 'TI',
-      'document_number': '12345678'
+      'user_name': localStorage.user_name,
+      'document_type': localStorage.document_type,
+      'document_number': localStorage.document_number,
+      'secret': localStorage.secret
     }
     return obj;
   }
