@@ -207,7 +207,6 @@ let LoginStore = Reflux.createStore({
             message: response.payload.message,
             type: response.payload.type
           }
-          browserHistory.push('/reset');
           this.trigger(this.state)
         }
       },
@@ -216,7 +215,7 @@ let LoginStore = Reflux.createStore({
           message: response.payload.message,
           type: response.payload.type
         }
-        browserHistory.push('/reset');
+        browserHistory.push('/login');
         this.trigger(this.state)
       }
     });
@@ -245,7 +244,6 @@ let LoginStore = Reflux.createStore({
             message: response.payload.message,
             type: response.payload.type
           }
-          browserHistory.push('/reset');
           this.trigger(this.state)
         }
       },
@@ -254,7 +252,7 @@ let LoginStore = Reflux.createStore({
           message: response.payload.message,
           type: response.payload.type
         }
-        browserHistory.push('/reset');
+        browserHistory.push('/login');
         this.trigger(this.state)
       }
     });

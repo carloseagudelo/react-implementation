@@ -27,6 +27,7 @@ import SetDocumentFund from '../components/master_page/content/configuration/Set
 import ChangeValidator from '../components/master_page/content/adminFound/changeValidator/ChangeValidator'
 import SetRestriction from '../components/master_page/content/configuration/SetRestriction'
 import CreateConvocatory from '../components/master_page/content/configuration/CreateConvocatory'
+import ListAviableFunds from '../components/master_page/content/funds/ListAviableFunds'
 
 export default class Root extends React.Component {
 
@@ -62,6 +63,7 @@ export default class Root extends React.Component {
           <Route path='/change_validator' component={ChangeValidator} />
           <Route path='/set_restriction' component={SetRestriction} />
           <Route path='/create_convocatory' component={CreateConvocatory} />
+          <Route path='/list_funds_aviables' component={ListAviableFunds} />
         </Route>
         <Route path='registration' component={Registration} />
         <Route path='login' component={Login} />
