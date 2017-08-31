@@ -20,19 +20,25 @@ export default class ListAviableFunds extends React.Component {
   }
 
   onSubmitFund(ev){
+    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
+    //window.open('http://localhost:3001/personals/new')
+    //window.open('http://localhost:3001/personals/2/edit')
   	$.ajax({
       cache: false,
       context: this,
-      data: {'information' : this.getData()},
+      data: {jwt: localStorage.jwtToken.split(',')[1]},
       url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform',
-      headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'POST',
+      method: 'GET',
       success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        window.open('http://localhost:3001/personals/new')
+        if(response.status == 200){
+          console.log(response.payload.message)
+          window.open('http://localhost:3001'+response.payload.message)
+        }else {
+          alert('NI VERGA')
+          console.log(response)
+        }        
       },
       error: function(xhr, textStatus){
-        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
@@ -60,7 +66,7 @@ export default class ListAviableFunds extends React.Component {
             <h3>BECAS TECNOLOGIA</h3>
           </div>
           <div class="x_content">
-            <button class="btn btn-primary pull-right" onClick={this.onSubmitFund.bind(this)} target="_blank">INSCRIBIRME</button>
+            <button class="btn btn-primary pull-right" onClick={this.onSubmitFund.bind(this)} value="Syncronous request">INSCRIBIRME</button>
           </div>
         </div>
       </div>
