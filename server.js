@@ -15,11 +15,11 @@ let isInitialCompilation = true;
 const compiler = webpack(config);
 
 new WebpackDevServer(compiler, config.devServer)
-.listen(config.port, 'localhost', (err) => {
+.listen(5500, '192.168.1.12', (err) => {
   if (err) {
     console.log(err);
   }
-  console.log('Listening at localhost:' + config.port);
+  console.log('Listening at 192.168.1.12:5500');
 });
 
 compiler.plugin('done', () => {
