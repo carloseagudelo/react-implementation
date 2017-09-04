@@ -7,7 +7,7 @@
 
 // importa las librerias externas necesarias
 import React from 'react'
-import ReactLoading from 'react-loading'
+//import ReactLoading from 'react-loading'
 
 // Inicializa y exporta la clase que contiene el componente
 export default class Loading extends React.Component {  
@@ -19,9 +19,7 @@ export default class Loading extends React.Component {
   // Renderiza el componente
   render() {
   	return(
-      <div class="center-loading">
-        <ReactLoading type="spokes" color="444" height='600' width='400' />
-      </div>
+      <div></div>
     )
   }
 }
