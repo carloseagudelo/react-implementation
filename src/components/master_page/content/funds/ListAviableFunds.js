@@ -26,6 +26,7 @@ export default class ListAviableFunds extends React.Component {
   	$.ajax({
       cache: false,
       context: this,
+      async: false,
       data: {jwt: localStorage.jwtToken.split(',')[1]},
       url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform',
       method: 'GET',
