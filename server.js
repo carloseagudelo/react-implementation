@@ -19,7 +19,7 @@ new WebpackDevServer(compiler, config.devServer)
   if (err) {
     console.log(err);
   }
-  console.log('Listening at 192.168.1.12:5500');
+  console.log('Listening at localhost:8000');
 });
 
 compiler.plugin('done', () => {
