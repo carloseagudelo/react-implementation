@@ -56,7 +56,10 @@ export default class Login extends React.Component {
 		      <input type="password" name="pass" class="form-control" placeholder="CONTRASEÑA" required="" />
 			  <button type="submit" id="login-button">INGRESAR</button>
 			  <br/>
-			  <Link to='reset'>Reestablecer Contraseña</Link>
+				<p>
+					<Link class="mg-right" to='registration'>Registro en Plataforma </Link>
+					<Link to='reset'>Reestablecer Contraseña</Link>
+				</p>
 			</form>
 		  </div>
 		  <Bubbles />

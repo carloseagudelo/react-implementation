@@ -19,6 +19,9 @@ import MessageFlash from '../components/MessageFlash'
 import Bubbles from '../components/login/Bubbles'
 import Logo from '../components/login/Logo'
 
+import { Link } from 'react-router'
+
+
 // inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(LoginStore, 'login'))
 export default class ResetPassword extends React.Component {
@@ -58,6 +61,10 @@ export default class ResetPassword extends React.Component {
 		      <input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
 			  <button type='submit' class='submit'>CAMBIAR CONTRASEÑA </button>
 			  <br/>
+				<p>
+					<Link class="mg-right" to='login'>Iniciar Sesión </Link>
+					<Link to='register'>Registro en Plataforma</Link>
+				</p>
 			 </form>
 		   </div>
 		   <Bubbles />
