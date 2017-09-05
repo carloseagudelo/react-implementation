@@ -4082,8 +4082,8 @@ ul.verticle_bars li {
     position: absolute;
     margin-top: 25px;
     color: #ffffff;
-    background-color: #0cd188;
-    border-color: #0cd188
+    background-color:rgba(12, 209, 136, 0.88);
+    border-color: rgba(12, 209, 136, 0.88);
 }
 .alert-info {
     color: #E9EDEF;
