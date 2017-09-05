@@ -20,6 +20,9 @@ import Loading from '../components/Loading'
 import Bubbles from '../components/login/Bubbles'
 import Logo from '../components/login/Logo'
 
+import { Link } from 'react-router'
+
+
 // inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
 @ReactMixin.decorate(Reflux.connect(LoginStore, 'login'))
 export default class Registration extends React.Component {
@@ -64,6 +67,11 @@ export default class Registration extends React.Component {
 		      <input type="text" name="document_number" class="form-control" placeholder="NÚMERO DE DOCUMENTO" required="" />
 		      <input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
 			  <button type="submit" id="login-button">REGISTRAR</button>
+				<br/>
+				<p>
+					<Link class="mg-right" to='login'>Iniciar Sesión </Link>
+					<Link to='reset'>Reestablecer Contraseña</Link>
+				</p>
 			</form>
 		  </div>
 		  <Bubbles />
