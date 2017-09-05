@@ -21,8 +21,6 @@ export default class ListAviableFunds extends React.Component {
 
   onSubmitFund(ev){
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-    //window.open('http://localhost:3001/personals/new')
-    //window.open('http://localhost:3001/personals/2/edit')
   	$.ajax({
       cache: false,
       context: this,
