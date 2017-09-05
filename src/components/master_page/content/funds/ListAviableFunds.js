@@ -44,22 +44,42 @@ export default class ListAviableFunds extends React.Component {
     });
   }
 
-  getData(){
-    var obj = {
-      'user_id': localStorage.user_id,
-      'email': localStorage.current_user,
-      'jwt': localStorage.jwtToken.split(',')[1],
-      'user_name': localStorage.user_name,
-      'document_type': localStorage.document_type,
-      'document_number': localStorage.document_number,
-      'secret': localStorage.secret
-    }
-    return obj;
-  }
-
   // Retorna el componente
   render() {
     return(
+
+/*
+      <div class="">
+        <div class="page-title">
+          <div class="x_title">
+            <h3>FONDOS DISPONIBLES</h3>
+          </div>
+          <div class="x_content">
+            <p>LISTA DE FONDOS DISPONLE EN SAPIENCIA MEDELLÍN</p>
+          </div>
+
+          <br />
+          <br />
+
+          <div class="component well">
+            <div class="row">
+              <div class="col col-md-4">
+                <h6><strong>BECAS TECNOLOGIA</strong></h6>
+              </div>
+              <div class="col col-md-8">
+                <h5 class="pull-right"><strong>DESDE EL 6 DE SEPTIEMBRE HASTA EL 6 DE OCTUBRE</strong></h5>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+*/
+
+
+     
+
+
       <div class="">
         <div class="page-title">
           <div class="x_title">
@@ -70,6 +90,7 @@ export default class ListAviableFunds extends React.Component {
           </div>
         </div>
       </div>
+
     )
   }
 }
