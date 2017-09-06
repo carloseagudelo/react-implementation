@@ -58,15 +58,10 @@ export default class Registration extends React.Component {
 		    <form class="custom-form" onSubmit={this.onSubmitRegistration.bind(this)}>
 		      <input type="text" name="name" class="form-control" placeholder="NOMBRE Y APELLIDO" required="" />
 		      <select name="document_type" class="form-control" required="">
-		      	<option value="TI">TIPO DE DOCUMENTO</option>
+		      	<option value="">TIPO DE DOCUMENTO</option>
 		        <option value="TI">TARJETA DE IDENTIDAD</option>
-<<<<<<< HEAD
-		        <option value="CC">CEDULA DE CIUDADANIA</option>
-		        <option value="CE">CEDULA DE EXTRANGERÍA</option>
-=======
-		        <option value="CC">CÉDULA DE CIUDADANÍA</option>
-		        <option value="CE">CÉDULA DE EXTRANJERÍA</option>
->>>>>>> development
+		        <option value="CC">CEDULA DE CIUDADANÍA</option>
+		        <option value="CE">CÉDULA DE EXTRANJERÍA</option>>
 		        <option value="PS">PASAPORTE</option>
 		      </select>
 		      <input type="text" name="document_number" class="form-control" placeholder="NÚMERO DE DOCUMENTO" required="" />
