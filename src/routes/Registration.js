@@ -59,9 +59,9 @@ export default class Registration extends React.Component {
 		      <input type="text" name="name" class="form-control" placeholder="NOMBRE Y APELLIDO" required="" />
 		      <select name="document_type" class="form-control" required="">
 		      	<option value="TI">TIPO DE DOCUMENTO</option>
-		        <option value="TI">TARGETA DE IDENTIDAD</option>
-		        <option value="CC">CEDULA DE CIUDADANIA</option>
-		        <option value="CE">CEDULA DE EXTRANGERIA</option>
+		        <option value="TI">TARJETA DE IDENTIDAD</option>
+		        <option value="CC">CÉDULA DE CIUDADANÍA</option>
+		        <option value="CE">CÉDULA DE EXTRANJERÍA</option>
 		        <option value="PS">PASAPORTE</option>
 		      </select>
 		      <input type="text" name="document_number" class="form-control" placeholder="NÚMERO DE DOCUMENTO" required="" />
