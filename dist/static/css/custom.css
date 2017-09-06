@@ -3,6 +3,7 @@ html , body{
 
  height:100%;
 
+<<<<<<< HEAD
 }
 
 .loader{
@@ -15,6 +16,20 @@ html , body{
     z-index: 99999;
 }
 
+=======
+}
+
+.loader{
+    border-radius: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    z-index: 99999;
+}
+
+>>>>>>> development
 .full-width {
 
  width:100%;
@@ -4557,5 +4572,18 @@ select { width: 400px; text-align-last:center; }
 
 .table-button{
     padding: 0 15px;
+<<<<<<< HEAD
     height: 34px
+=======
+    height: 34px;
+}
+
+.banner {
+    width: 100%;
+}
+
+.banner-button {
+    margin-top: 15px;
+    border: none !important;
+>>>>>>> development
 }

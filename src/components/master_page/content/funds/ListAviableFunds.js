@@ -35,7 +35,7 @@ export default class ListAviableFunds extends React.Component {
         }else {
           alert('NI VERGA')
           console.log(response)
-        }        
+        }
       },
       error: function(xhr, textStatus){
         browserHistory.push('/error_page/500')
@@ -76,7 +76,7 @@ export default class ListAviableFunds extends React.Component {
 */
 
 
-     
+
 
 
       <div class="">
@@ -85,7 +85,9 @@ export default class ListAviableFunds extends React.Component {
             <h3>BECAS TECNOLOGIA</h3>
           </div>
           <div class="x_content">
-            <button class="btn btn-primary pull-right" onClick={this.onSubmitFund.bind(this)} value="Syncronous request">INSCRIBIRME</button>
+            <button class= "banner-button" onClick={this.onSubmitFund.bind(this)} value="Syncronous request">
+	            <img class="banner" src='../../static/img/banner.png' />
+            </button>
           </div>
         </div>
       </div>
