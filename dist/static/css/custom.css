@@ -4557,5 +4557,14 @@ select { width: 400px; text-align-last:center; }
 
 .table-button{
     padding: 0 15px;
-    height: 34px
+    height: 34px;
+}
+
+.banner {
+    width: 100%;
+}
+
+.banner-button {
+    margin-top: 15px;
+    border: none !important;
 }
