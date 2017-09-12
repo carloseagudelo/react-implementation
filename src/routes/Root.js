@@ -28,6 +28,7 @@ import ChangeValidator from '../components/master_page/content/adminFound/change
 import SetRestriction from '../components/master_page/content/configuration/SetRestriction'
 import CreateConvocatory from '../components/master_page/content/configuration/CreateConvocatory'
 import ListAviableFunds from '../components/master_page/content/funds/ListAviableFunds'
+import Report from '../components/master_page/content/report/Report'
 
 export default class Root extends React.Component {
 
@@ -55,6 +56,7 @@ export default class Root extends React.Component {
       <Router history={browserHistory}>
         <Route path='/' component={MasterPage} onEnter={this.requireAuth} >
           <Route path='/documents' component={Document} />
+          <Route path='/reports' component={Report} />
           <Route path='/documents/:id' component={Document} />
           <Route path='/load_user' component={LoadUser} />
           <Route path='/list_documents' component={ListDocumets} />
@@ -67,7 +69,7 @@ export default class Root extends React.Component {
         </Route>
         <Route path='registration' component={Registration} />
         <Route path='login' component={Login} />
-        <Route path='reset' component={ResetPassword} /> 
+        <Route path='reset' component={ResetPassword} />
         <Route path='get_code' component={GetSecureCode} />
         <Route path='restore_password' component={RestorePassword} />
         <Route path='/error_page/:er' component={ErrorPage} />
