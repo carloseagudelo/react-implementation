@@ -15,6 +15,7 @@ import SelectRole from '../utils/SelectRole'
 import MasterPage from './MasterPage';
 import Registration from './Registration';
 import Login from './Login';
+import HabeasData from './HabeasData';
 import ResetPassword from './ResetPassword';
 import GetSecureCode from './GetSecureCode';
 import RestorePassword from './RestorePassword';
@@ -68,6 +69,7 @@ export default class Root extends React.Component {
           <Route path='/list_funds_aviables' component={ListAviableFunds} />
         </Route>
         <Route path='registration' component={Registration} />
+        <Route path='habeas_data' component={HabeasData} />
         <Route path='login' component={Login} />
         <Route path='reset' component={ResetPassword} />
         <Route path='get_code' component={GetSecureCode} />

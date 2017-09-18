@@ -4568,3 +4568,12 @@ select { width: 400px; text-align-last:center; }
     margin-top: 15px;
     border: none !important;
 }
+
+.justificar{
+    text-align: justify;
+    font-weight:900;
+}
+
+.hidden-field{
+  display: none;
+}

@@ -5129,3 +5129,11 @@ function logOutRequest (){
   localStorage.removeItem('current_user')
   localStorage.removeItem('role')
 }
+
+$('#habeas_check').click( function(){
+   if( $(this).is(':checked') ){
+   	$('#btnAcepto').show();
+   }else{
+   	$('#btnAcepto').hide();	   		
+   }
+});  

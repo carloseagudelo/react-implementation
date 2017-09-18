@@ -57,7 +57,7 @@ export default class Login extends React.Component {
 			  <button type="submit" id="login-button">INGRESAR</button>
 			  <br/>
 				<p>
-					<Link class="mg-right" to='registration'>Registro en Plataforma </Link>
+					<Link class="mg-right" to='habeas_data'>Registro en Plataforma </Link>
 					<Link to='reset'>Reestablecer Contraseña</Link>
 				</p>
 			</form>
