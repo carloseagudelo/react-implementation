@@ -5129,3 +5129,4 @@ function logOutRequest (){
   localStorage.removeItem('current_user')
   localStorage.removeItem('role')
 }
+

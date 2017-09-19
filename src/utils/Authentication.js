@@ -21,8 +21,6 @@ export default function Authentication(token) {
     localStorage.setItem('user_id', data.user_id)
     localStorage.setItem('user_name', data.user_name)
     localStorage.setItem('document_type', data.document_type)
-    console.log(data)
-    console.log(data.document_number)
     localStorage.setItem('document_number', data.document_number)
 
     SetAuthorizationToken(token)
