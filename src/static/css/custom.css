@@ -4577,3 +4577,14 @@ select { width: 400px; text-align-last:center; }
 .hidden-field{
   display: none;
 }
+
+.in-line{
+    z-index: 2;
+    position: relative;
+}
+
+#habeas_check,#habeas_label {
+
+    margin-right: 20px;
+}
+

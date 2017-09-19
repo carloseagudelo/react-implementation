@@ -18,6 +18,15 @@ export default class HabeasData extends React.Component {
 
   constructor(){
   	super()
+	}
+
+	handleChange(event) {
+		if (event.target.checked){
+			$('#btnAcepto').show();
+
+		}else{
+			$('#btnAcepto').hide();
+		}
   }
 
   // Retorna el componente
@@ -31,39 +40,31 @@ export default class HabeasData extends React.Component {
 		  <div class="custom-container">
 		    <form class="custom-form">
 
-			  <p class="justificar"> 
-			    Certifico que he leído y autorizo expresamente a La Agencia de Educación Superior de Medellín – SAPIENCIA, 
-			    el tratamiento de los datos personales, con miras a la planeación, diseño, desarrollo y evaluación de los 
+			  <p class="justificar">
+			    Certifico que he leído y autorizo expresamente a La Agencia de Educación Superior de Medellín – SAPIENCIA,
+			    el tratamiento de los datos personales, con miras a la planeación, diseño, desarrollo y evaluación de los
 			    proyectos adelantados por dicha entidad, y podrá ser suministrada a las autoridades que lo soliciten,
-			    con observancia de los principios y disposiciones consagradas en la Ley 1581 de 2012 y el Decreto 1377 de 2013 y 
+			    con observancia de los principios y disposiciones consagradas en la Ley 1581 de 2012 y el Decreto 1377 de 2013 y
 			    aquellos consagrados en el Manual de Políticas y Tratamiento de Datos Personales de La Agencia de Educación Superior
 			    de Medellín – SAPIENCIA.
 			  </p>
 			  <br />
 			  <p class="justificar">
-			    Así mismo, acepto las condiciones del programa según se estipula en la 
-			    <strong><a href="http://www.sapiencia.gov.co/wp-content/uploads/2017/05/Resolución-de-apertura.pdf" target="_blank">Resolución 6665 del 2017</a></strong> 
-			    para iniciar el diligenciamiento del formulario, y autorizo a La Agencia de Educación Superior de Medellín – SAPIENCIA, 
+			    Así mismo, acepto las condiciones del programa según se estipula en la
+			    <strong><a href="http://www.sapiencia.gov.co/wp-content/uploads/2017/05/Resolución-de-apertura.pdf" target="_blank"> Resolución 6665 del 2017 </a></strong>
+			    para iniciar el diligenciamiento del formulario, y autorizo a La Agencia de Educación Superior de Medellín – SAPIENCIA,
 			    para que la información y notificación demandados de éste proceso, sean realizados al correo electrónico indicado en éste
 			    formulario.
 			  </p>
 
-			  <div class="row">
-			    <div class="col-sm-6">
-			  	  <div class="checkbox-default">
-			  	    <input type="checkbox" id="habeas_check"></input>
-				    <label class="pull-rigth">		    
-				      <p class="justificar">ACEPTO</p>
-				    </label>
-				  </div>
-			    </div>
-			    <div class="col-sm-6">
-			  	  <Link class="mg-right" to='registration' id="btnAcepto" class="hidden-field">INICIAR </Link>
-			    </div>
-			  </div>
-
 			</form>
+			<br/>
+			<div class="row in-line">
+				<b><label for="habeas_check" id="habeas_label">ACEPTO </label></b>
+			  <input onChange={this.handleChange.bind(this)} type="checkbox" id="habeas_check"></input>
+				<Link class="mg-right" to='registration' id="btnAcepto" class="hidden-field"><b>INICIAR INSCRIPCIÓN</b> </Link>
 
+			  </div>
 		  </div>
 		  <Bubbles />
 		</div>
