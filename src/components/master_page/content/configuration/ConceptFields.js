@@ -21,31 +21,41 @@ export default class ConceptFields extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+    var i,j,hash,chunk = 3;
+    var newArr= []
+    for (i=0, j =this.state.value.length; i<j; i+=chunk) {
+      console.log("a")
+      console.log(this.state.value.slice(i,i+chunk)[0])
+      hash = "{"+ JSON.stringify("name") +":" + JSON.stringify(this.state.value.slice(i,i+chunk)[0]) + "," + JSON.stringify("salaries_number") + ":" +this.state.value.slice(i,i+chunk)[1] + "," + JSON.stringify('fund_category') + ":" + JSON.stringify(this.state.value.slice(i,i+chunk)[2] )+ "}";
+      newArr.push(hash);
+    }
+    //'[{"name":"loling","salaries_number":33,"fund_category":"jeje"},{"name":"lmao","salaries_number":444,"fund_category":"dddd"}]'
+
+    console.log(newArr)
+    return String("[" + newArr.toString() + "]");
   }
 
   addClick(){
-    this.setState({count: this.state.count+1})
+    this.setState({count: this.state.count+3})
   }
 
   removeClick(i){
     let value = this.state.value.slice();
     value.splice(i,1);
     this.setState({
-      count: this.state.count - 1,
+      count: this.state.count - 3,
       value
     })
   }
 
     createUI(){
       let uiItems = [];
-      for(let i = 0; i < this.state.count; i++){
+      for(let i = 0; i < this.state.count; i = i + 3){
         uiItems.push(
-          <div key={i}>
-            <input type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this,i)} />
-            <input type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this,i)} />
-            <input type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this,i)} />
+          <div key={i}  id={"input-set-" + i} >
+            <input type="text" onChange={this.handleChange.bind(this,i)} placeholder="NOMBRE DEL CONCEPTO" />
+            <input type="text" onChange={this.handleChange.bind(this,i+1)} placeholder="NÚMERO DE SALARIOS" />
+            <input type="text" onChange={this.handleChange.bind(this,i+2)} placeholder="CATEGORÍA DEL FONDO" />
             <input type='button' value='Eliminar' onClick={this.removeClick.bind(this,i)}/>
           </div>
         )

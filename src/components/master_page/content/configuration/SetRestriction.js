@@ -40,10 +40,13 @@ export default class SetRestrictions extends React.Component {
   	  'smlv': form_data[1].value,
       'internal_operation': form_data[2].value,
   	  'budget_percentage': form_data[3].value,
-      'convocatory_name': '2222',
-      'concepts': '[{"name": "abc", "salaries_number":123, "fund_category":"abcd"}, {"name": "eee", "salaries_number":111, "fund_category":"www"}]'
-  	}
+      'convocatory_name': 'convocatoria 2014-34',
+      'concepts':  this.refs.child.handleSubmit()
+
+      //'concepts': this.refs.child.handleSubmit()
+    }
     ConfigurationAction.SaveRestriction(data)
+
   }
 
   // Retorna el componente
@@ -69,7 +72,7 @@ export default class SetRestrictions extends React.Component {
               <input type="number" name="budget_percentage" min="0" class="form-control"  required="" autofocus></input>
               <br />
               <label> CONCEPTOS </label>
-              <ConceptFields />
+              <ConceptFields ref="child"/>
               <br />
               {/*<select>
                 {convocatories}
