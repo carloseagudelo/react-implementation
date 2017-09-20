@@ -44,9 +44,19 @@ export default class Report extends React.Component {
   render() {
     if(localStorage.role == "adminTechnology" ){ // Valida si la vista es para un usuario con rol administrador de  technology fondo
       return (
-        <button onClick={this.onSubmitFund.bind(this)}>
-          Descargar resultados 2018-1
-        </button>
+        <div class="">
+        <div class="page-title">
+          <div class="x_title">
+            <h3>DESCARGA DE RESULTADOS</h3>
+          </div>
+          <div class="x_content">
+            <button onClick={this.onSubmitFund.bind(this)}>
+              Descargar resultados 2018-1
+            </button>
+          </div>
+        </div>
+      </div>
+
       )
     }
   }

@@ -14,6 +14,7 @@ import React from 'react';
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 import ConceptFields from './ConceptFields'
+import SelectTag from '../../../SelectTag';
 
 // importa las clases necesarias para el manejo de la arquitectura
 import ConfigurationAction from '../../../../actions/ConfigurationAction'
@@ -70,6 +71,8 @@ export default class SetRestrictions extends React.Component {
               <br />
               <label for="budget_percentage">PORCENTAJE DE PRESUPUESTO</label>
               <input type="number" name="budget_percentage" min="0" class="form-control"  required="" autofocus></input>
+              <br />
+              <SelectTag endPoint="list_convocatories"/>
               <br />
               <label> CONCEPTOS </label>
               <ConceptFields ref="child"/>
