@@ -195,7 +195,7 @@ let ConfigurationStore = Reflux.createStore({
           if (response.status == 500){
             browserHistory.push('/error_page/500')
           } else {
-            swal("ERROR", response.payload.message)
+            swal("ERROR", response.payload.message, "error")
           }
         }
       },

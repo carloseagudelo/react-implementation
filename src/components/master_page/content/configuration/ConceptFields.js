@@ -24,14 +24,10 @@ export default class ConceptFields extends React.Component {
     var i,j,hash,chunk = 3;
     var newArr= []
     for (i=0, j =this.state.value.length; i<j; i+=chunk) {
-      console.log("a")
-      console.log(this.state.value.slice(i,i+chunk)[0])
       hash = "{"+ JSON.stringify("name") +":" + JSON.stringify(this.state.value.slice(i,i+chunk)[0]) + "," + JSON.stringify("salaries_number") + ":" +this.state.value.slice(i,i+chunk)[1] + "," + JSON.stringify('fund_category') + ":" + JSON.stringify(this.state.value.slice(i,i+chunk)[2] )+ "}";
       newArr.push(hash);
     }
-    //'[{"name":"loling","salaries_number":33,"fund_category":"jeje"},{"name":"lmao","salaries_number":444,"fund_category":"dddd"}]'
 
-    console.log(newArr)
     return String("[" + newArr.toString() + "]");
   }
 
@@ -53,9 +49,9 @@ export default class ConceptFields extends React.Component {
       for(let i = 0; i < this.state.count; i = i + 3){
         uiItems.push(
           <div key={i}  id={"input-set-" + i} >
-            <input type="text" onChange={this.handleChange.bind(this,i)} placeholder="NOMBRE DEL CONCEPTO" />
-            <input type="text" onChange={this.handleChange.bind(this,i+1)} placeholder="NÚMERO DE SALARIOS" />
-            <input type="text" onChange={this.handleChange.bind(this,i+2)} placeholder="CATEGORÍA DEL FONDO" />
+            <input class="concept-field" type="text" onChange={this.handleChange.bind(this,i)} placeholder="NOMBRE DEL CONCEPTO" />
+            <input class="concept-field" type="number" min="0" onChange={this.handleChange.bind(this,i+1)} placeholder="NÚMERO DE SALARIOS" />
+            <input class="concept-field" type="text" onChange={this.handleChange.bind(this,i+2)} placeholder="CATEGORÍA DEL FONDO" />
             <input type='button' value='Eliminar' onClick={this.removeClick.bind(this,i)}/>
           </div>
         )
@@ -68,8 +64,7 @@ export default class ConceptFields extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         {this.createUI()}
-        <input type='button' value='Agregar otro' onClick={this.addClick.bind(this)}/>
-        <input type="submit" value="Enviar" />
+        <input type='button' value='Agregar otro concepto' onClick={this.addClick.bind(this)}/>
       </form>
     );
   }

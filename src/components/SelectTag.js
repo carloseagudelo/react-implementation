@@ -1,11 +1,10 @@
-/*  Descripcion: Componente que lista fondos registrados
-                 validadores con el fin de poder cambiar alguno de estos
-    Autor: Carlos Agudelo
-    Contacto: agudelo.carlos@hotmail.es
-    Fecha de creación: 6 de Mayo del 2017
-    Fecha de modificacion: 29 de Junio 2017 */
-
+/*  Descripcion: Componente que permite agregar y quitar dinamicamente campos de conceptos para las restricciones
+  Autor: Sebastián Delgado Díaz
+  Contacto: sebasdeldi@hotmail.com
+  Fecha de creación: Agosto 2017
+  Fecha de modificacion: Agosto 2017 */
 // importa las librerias externas necesarias
+
 import React from 'react'
 import { browserHistory } from 'react-router'
 

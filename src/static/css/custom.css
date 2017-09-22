@@ -4588,3 +4588,9 @@ select { width: 400px; text-align-last:center; }
     margin-right: 20px;
 }
 
+.concept-field{
+    height: 35px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
