@@ -65,6 +65,7 @@ export default class SetDocumentFund extends React.Component {
               <h3>SELECCIONAR DOCUMENTOS POR FONDO</h3>
             </div>
             <div class="x_content">
+              <label for="sel1">SELECCIONE FONDO</label>
               <SelectTag onChange={this.onChangeSelect.bind(this)} endPoint="list_funds"/>
               <br />
               <DocumentList data={this.state.documents.data} />

@@ -41,10 +41,8 @@ export default class SetRestrictions extends React.Component {
   	  'smlv': form_data[1].value,
       'internal_operation': form_data[2].value,
   	  'budget_percentage': form_data[3].value,
-      'convocatory_name': 'convocatoria 2014-34',
+      'convocatory_id': $("#element option:selected").val(),
       'concepts':  this.refs.child.handleSubmit()
-
-      //'concepts': this.refs.child.handleSubmit()
     }
     ConfigurationAction.SaveRestriction(data)
 
@@ -72,14 +70,12 @@ export default class SetRestrictions extends React.Component {
               <label for="budget_percentage">PORCENTAJE DE PRESUPUESTO</label>
               <input type="number" name="budget_percentage" min="0" class="form-control"  required="" autofocus></input>
               <br />
+              <label for="sel1">SELECCIONE CONVOCATORIA</label>
               <SelectTag endPoint="list_convocatories"/>
               <br />
               <label> CONCEPTOS </label>
               <ConceptFields ref="child"/>
               <br />
-              {/*<select>
-                {convocatories}
-              </select>*/}
               <button type="submit">Guardar</button>
             </form>
           </div>

@@ -33,7 +33,8 @@ export default class SetRestrictions extends React.Component {
   	let form_data = $(ev.target).serializeArray()
   	let data = {
   	  'name': form_data[0].value,
-  	  'description': form_data[1].value
+      'description': form_data[1].value,
+      'convocatory_id': $("#element option:selected").val()
   	}
     ConfigurationAction.SaveFund(data)
   }
@@ -55,6 +56,7 @@ export default class SetRestrictions extends React.Component {
               <label for="description">DESCRIPCIÓN</label>
               <input type="text" name="description" class="form-control"  required="" autofocus></input>
               <br />
+              <label for="sel1">SELECCIONE CONVOCATORIA</label>
               <SelectTag endPoint="list_convocatories"/>
               <br />
               <button type="submit">Guardar</button>

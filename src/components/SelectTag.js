@@ -61,7 +61,6 @@ export default class SelectTag extends React.Component {
       })
       return (
         <div class="form-group">
-          <label for="sel1">SELECCIONE</label>
           <select class="form-control" id="element" onChange={this.props.onChange}>
             <option value="0">SELECCIONE</option>
             {items}

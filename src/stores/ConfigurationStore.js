@@ -222,7 +222,11 @@ let ConfigurationStore = Reflux.createStore({
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
         }else{
-          browserHistory.push('/error_page/500')
+          if(response.status == 400){
+            swal("ERROR", response.payload.message, "error")
+          }else{
+            browserHistory.push('/error_page/500')
+          }
         }
       },
       error: function(xhr, textStatus){
@@ -232,24 +236,31 @@ let ConfigurationStore = Reflux.createStore({
     });
   },
 
-  // Metodo que obtiene la lista de convocatorias
-  ListConvocatories(){
+  // Realiza la petición para guardar una convocatoria
+  SaveFund: function(data){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
-      async: false,
       cache: false,
       context: this,
-      url: SecretConstant.HOST_API+'/list_convocatories',
+      url: SecretConstant.HOST_API+'/save_funds',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'GET',
+      data: data,
+      method: 'POST',
       success: function(response, textStatus, xhr){
+        $(".loader").hide();
         if(response.status == 200){
-          this.trigger("response.payload")
+          swal("HECHO", response.payload.message, "success")
         }else{
-          browserHistory.push('/error_page/500')
+          if (response.status == 400){
+            swal("ERROR", response.payload.message, "error")
+          }else{
+            browserHistory.push('/error_page/500')
+          }
         }
       },
       error: function(xhr, textStatus){
+        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
