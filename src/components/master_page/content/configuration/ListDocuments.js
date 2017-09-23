@@ -67,6 +67,10 @@ export default class ListDocuments extends React.Component {
           </div>
         </div>
       )
+    }else{
+      return (
+        <div></div>
+      )
     }
   }
 }

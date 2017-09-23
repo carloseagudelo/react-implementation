@@ -31,7 +31,7 @@ export default class ListAviableFunds extends React.Component {
       success: function(response, textStatus, xhr){
         if(response.status == 200){
           console.log(response.payload.message)
-          window.open('http://181.143.72.70:9000'+response.payload.message)
+          window.open('http://localhost:3001'+response.payload.message)
         }else {
           alert('NI VERGA')
           console.log(response)
