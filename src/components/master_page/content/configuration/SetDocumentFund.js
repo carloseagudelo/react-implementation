@@ -15,7 +15,7 @@ import ConfigurationAction from '../../../../actions/ConfigurationAction'
 import ConfigurationStore from '../../../../stores/ConfigurationStore'
 
 // importa los componentes necesarios
-import SelectInputFund from './SelectInputFund'
+import SelectTag from '../../../SelectTag'
 import DocumentList from './DocumentList'
 import Loading from '../../../Loading'
 
@@ -65,12 +65,18 @@ export default class SetDocumentFund extends React.Component {
               <h3>SELECCIONAR DOCUMENTOS POR FONDO</h3>
             </div>
             <div class="x_content">
-              <SelectInputFund onChange={this.onChangeSelect.bind(this)} />
+              <label for="sel1">SELECCIONE FONDO</label>
+              <SelectTag onChange={this.onChangeSelect.bind(this)} endPoint="list_funds"/>
               <br />
               <DocumentList data={this.state.documents.data} />
               <button class="btn btn-primary pull-right" onClick={this.onSaveDocumentsFund.bind(this)}>GUARDAR</button>
             </div>
           </div>
+        </div>
+      )
+    }else{
+      return(
+        <div>
         </div>
       )
     }

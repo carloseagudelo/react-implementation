@@ -1,22 +1,19 @@
-/*  Descripcion: Componente que lista fondos registrados
-                 validadores con el fin de poder cambiar alguno de estos
-    Autor: Carlos Agudelo
-    Contacto: agudelo.carlos@hotmail.es
-    Fecha de creación: 6 de Mayo del 2017
-    Fecha de modificacion: 29 de Junio 2017 */
-
+/*  Descripcion: Componente que permite agregar y quitar dinamicamente campos de conceptos para las restricciones
+  Autor: Sebastián Delgado Díaz
+  Contacto: sebasdeldi@hotmail.com
+  Fecha de creación: Agosto 2017
+  Fecha de modificacion: Agosto 2017 */
 // importa las librerias externas necesarias
+
 import React from 'react'
 import { browserHistory } from 'react-router'
 
-// importa los componentes necesarios
-import Loading from '../../../Loading'
 
 // importa las clases propias al componente
-import SecretsConstant from '../../../../utils/SecretsConstant'
+import SecretsConstant from '../utils/SecretsConstant'
 
 // Inicializa y exporta la clase que contiene el componente
-export default class SelectInputFund extends React.Component {
+export default class SelectTag extends React.Component {
 
   constructor(){
   	super()
@@ -24,22 +21,24 @@ export default class SelectInputFund extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    this.listFunds()
+    this.getData(this.props.endPoint)
   }
 
   // Metodo que obtiene la informacion de los fondos
-  listFunds(){
+  getData(endPoint){
+    var url = String(SecretsConstant.HOST_API+'/'+endPoint.toString())
+
     $.ajax({
       crossDomain: true,
       async: false,
       cache: false,
       context: this,
-      url: SecretsConstant.HOST_API+'/list_funds',
+      url: url ,
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          this.setState({funds: response.payload})
+          this.setState({response: response.payload})
         }else{
           browserHistory.push('/error_page/500')
         }
@@ -52,18 +51,18 @@ export default class SelectInputFund extends React.Component {
 
   // Retorna el componente
   render() {
-    if(this.state.funds){
-      let funds = this.state.funds.data.map((fund) => {
+
+    if(this.state.response){
+      let items = this.state.response.data.map((item) => {
         return(
-          <option value={fund.id}>{fund.name}</option>
+          <option value={item.id}>{item.name}</option>
         )
       })
       return (
         <div class="form-group">
-          <label for="sel1">SELECCIONE EL FONDO</label>
-          <select class="form-control" id="fund" onChange={this.props.onChange}>
-            <option value="0">SELECCIONE UN FONDO</option>
-            {funds}
+          <select class="form-control" id="element" onChange={this.props.onChange}>
+            <option value="0">SELECCIONE</option>
+            {items}
           </select>
         </div>
       )

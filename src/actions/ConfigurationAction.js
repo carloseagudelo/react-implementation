@@ -17,7 +17,8 @@ let ConfigurationAction = Reflux.createActions([
   'SendUpdateValidators',
   'SaveRestriction',
   'ListConvocatories',
-  'SaveConvocatory'
+  'SaveConvocatory',
+  'SaveFund'
 ])
 
 // Exporta la clase
