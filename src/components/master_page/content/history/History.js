@@ -27,34 +27,39 @@ export default class History extends React.Component {
 
 
   onSubmit(ev){
-  	ev.preventDefault()
-  	let data = {
-      'convocatory': $("#element option:selected").val()
+    ev.preventDefault()
+
+    if($("#element option:selected").text() == "SELECCIONE"){
+      swal("INFORMACIÓN INCOMPLETA", "Por favor suministre la información requerida", "warning");
+    }else{
+      document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
+      $.ajax({
+        cache: false,
+        context: this,
+        async: false,
+        data: {jwt: localStorage.jwtToken.split(',')[1]},
+        url: SecretConstant.TECHNOLOGY_API+'/validate_authentication_from_sisap_api_for_pdf',
+        method: 'POST',
+        success: function(response, textStatus, xhr){
+
+          console.log(response.payload)
+          if(response.status == 400){
+            swal("", response.payload.message, "error")
+          }
+
+          if(response.status == 200){
+            $.post(SecretConstant.TECHNOLOGY_API+response.payload.message, {"user_id": localStorage.getItem("user_id"), 'convocatory': $("#element option:selected").text()  }, function(d){
+              var new_window = window.open();
+              $(new_window.document.body).append(d);
+            });
+          }
+        },
+        error: function(xhr, textStatus){
+          browserHistory.push('/error_page/500')
+        }
+      });
     }
 
-
-    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-  	$.ajax({
-      cache: false,
-      context: this,
-      async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1]},
-      url: SecretConstant.TECHNOLOGY_API+'/validate_authentication_from_sisap_api_for_pdf',
-      method: 'POST',
-      success: function(response, textStatus, xhr){
-        if(response.status == 200){
-          $.post(SecretConstant.TECHNOLOGY_API+response.payload.message, {"user_id": "4" }, function(d){
-            var new_window = window.open();
-            $(new_window.document.body).append(d);
-          });
-        }else {
-          alert('NI VERGA')
-        }
-      },
-      error: function(xhr, textStatus){
-        browserHistory.push('/error_page/500')
-      }
-    });
   }
 
 
