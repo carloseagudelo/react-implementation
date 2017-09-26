@@ -21,14 +21,14 @@ export default class ListUser extends React.Component {
       DocumentAction.ListUsersFinished()
     }else if(this.props.data == 'validator'){
       DocumentAction.ListUsersPending()
-    }         
+    }
   }
 
   render() {
     if(this.state.users){
       let users = this.state.users.data.map((user) => {
         return(
-          <User data={user} />
+          <User data={user} role={this.props.data} />
         )
       })
 
@@ -43,8 +43,8 @@ export default class ListUser extends React.Component {
               <th>VALIDAR</th>
             </tr>
           </thead>
-          <tbody>      
-            {users}   
+          <tbody>
+            {users}
           </tbody>
         </table>
       )
