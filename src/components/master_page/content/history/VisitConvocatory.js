@@ -17,7 +17,7 @@ import {browserHistory } from 'react-router';
 // import DocumentList from './DocumentList'
 // import Loading from '../../../Loading'
 
-export default class GetPDF
+export default class VisitConvocatory
  extends React.Component {
 
   constructor(){
@@ -27,23 +27,16 @@ export default class GetPDF
 
 
   onSubmit(ev){
-    ev.preventDefault()
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-    $.ajax({
+  	$.ajax({
       cache: false,
       context: this,
       async: false,
       data: {jwt: localStorage.jwtToken.split(',')[1]},
-      url: SecretConstant.TECHNOLOGY_API+'/validate_authentication_from_sisap_api_for_pdf',
+      url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform_open_form',
       method: 'POST',
       success: function(response, textStatus, xhr){
-
-        if(response.status == 400){
-          swal("", response.payload.message, "error")
-        }
-
         if(response.status == 200){
-
           $.post(SecretConstant.TECHNOLOGY_API+response.payload.message, {"user_id": localStorage.getItem("user_id"), 'convocatory': this.props.convocatory  }, function(d){
             var new_window = window.open();
             $(new_window.document.body).append(d);
@@ -54,7 +47,6 @@ export default class GetPDF
         browserHistory.push('/error_page/500')
       }
     });
-
 
   }
 
