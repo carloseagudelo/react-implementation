@@ -71,7 +71,6 @@ export default class Root extends React.Component {
           <Route path='/create_fund' component={CreateFund} />
           <Route path='/list_funds_aviables' component={ListAviableFunds} />
           <Route path='/personal_history' component={History} />
-
         </Route>
         <Route path='registration' component={Registration} />
         <Route path='habeas_data' component={HabeasData}  />
