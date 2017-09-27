@@ -7,6 +7,7 @@
 
 import React from 'react'
 import { browserHistory } from 'react-router'
+import $ from 'jquery'
 
 
 // importa las clases propias al componente

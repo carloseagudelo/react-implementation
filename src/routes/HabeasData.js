@@ -33,12 +33,12 @@ export default class HabeasData extends React.Component {
   render() {
 	return(
 	  <div class="custom-style">
-	    <div class="wrapper">
+	    <div class="wrapper habeas">
 	      <center>
 		    <Logo />
 		  </center>
 		  <div class="custom-container">
-		    <form class="custom-form">
+		    <form class="custom-form ">
 
 			  <p class="justificar">
 			    Certifico que he leído y autorizo expresamente a La Agencia de Educación Superior de Medellín – SAPIENCIA,

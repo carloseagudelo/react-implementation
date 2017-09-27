@@ -29,6 +29,7 @@ import ChangeValidator from '../components/master_page/content/adminFound/change
 import SetRestriction from '../components/master_page/content/configuration/SetRestriction'
 import ListAviableFunds from '../components/master_page/content/funds/ListAviableFunds'
 import Report from '../components/master_page/content/report/Report'
+import History from '../components/master_page/content/history/History'
 import CreateFund from '../components/master_page/content/configuration/CreateFunds'
 import CreateConvocatory from '../components/master_page/content/configuration/CreateConvocatory'
 
@@ -69,6 +70,8 @@ export default class Root extends React.Component {
           <Route path='/create_convocatory' component={CreateConvocatory} />
           <Route path='/create_fund' component={CreateFund} />
           <Route path='/list_funds_aviables' component={ListAviableFunds} />
+          <Route path='/personal_history' component={History} />
+
         </Route>
         <Route path='registration' component={Registration} />
         <Route path='habeas_data' component={HabeasData}  />
