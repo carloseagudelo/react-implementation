@@ -10,30 +10,29 @@ import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
 // Importa los componentes propios necesarios
-import MasterPageAction from '../actions/MasterPageAction'
+import UserAction from '../actions/UserAction'
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
 
 // Define la clase
-let MasterPageStore = Reflux.createStore({
-  listenables: [MasterPageAction],
+let UserStore = Reflux.createStore({
+  listenables: [UserAction],
 
   // Realiza la peticion de login al api del aplicativo
-  FetchInformation: function(){
+  list_registers: function(){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
   	$.ajax({
       crossDomain: true,
       cache: false,
-      data: {email: localStorage.current_user},
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       context: this,
-      url: SecretConstant.HOST_API+'/personal_information',
+      url: SecretConstant.HOST_API+'/get_historial',
       method: 'GET',
       success: function(response, textStatus, xhr){ 
         $(".loader").hide();
         if(response.status == 200){
-          this.trigger(response)
+          this.trigger(response.payload)
         }else {
           browserHistory.push('/error_page/500')
         }
@@ -47,4 +46,4 @@ let MasterPageStore = Reflux.createStore({
 })
 
 // Exporta la clase
-export default MasterPageStore
+export default UserStore
