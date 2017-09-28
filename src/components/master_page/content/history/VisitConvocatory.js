@@ -34,6 +34,7 @@ export default class VisitConvocatory
       method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
+          document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
           document.cookie = "convocatory="+this.props.convocatory;
           window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
         }
