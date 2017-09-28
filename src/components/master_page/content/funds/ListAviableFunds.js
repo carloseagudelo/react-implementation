@@ -20,20 +20,20 @@ export default class ListAviableFunds extends React.Component {
   }
 
   onSubmitFund(ev){
-    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
   	$.ajax({
       cache: false,
       context: this,
       async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1]},
+      data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: '2018-1'},
       url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform',
-      method: 'GET',
+      method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
+          document.cookie = "convocatory=2018-1"
+          document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
           console.log(response.payload.message)
           window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
         }else {
-          alert('NI VERGA')
           console.log(response)
         }
       },
@@ -46,38 +46,6 @@ export default class ListAviableFunds extends React.Component {
   // Retorna el componente
   render() {
     return(
-
-/*
-      <div class="">
-        <div class="page-title">
-          <div class="x_title">
-            <h3>FONDOS DISPONIBLES</h3>
-          </div>
-          <div class="x_content">
-            <p>LISTA DE FONDOS DISPONLE EN SAPIENCIA MEDELLÍN</p>
-          </div>
-
-          <br />
-          <br />
-
-          <div class="component well">
-            <div class="row">
-              <div class="col col-md-4">
-                <h6><strong>BECAS TECNOLOGIA</strong></h6>
-              </div>
-              <div class="col col-md-8">
-                <h5 class="pull-right"><strong>DESDE EL 6 DE SEPTIEMBRE HASTA EL 6 DE OCTUBRE</strong></h5>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-*/
-
-
-
-
 
       <div class="">
         <div class="page-title">

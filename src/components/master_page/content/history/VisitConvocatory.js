@@ -24,32 +24,25 @@ export default class VisitConvocatory
   	super()
   }
 
-
-
   onSubmit(ev){
-    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
   	$.ajax({
       cache: false,
       context: this,
       async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1]},
-      url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform_open_form',
+      data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: this.props.convocatory},
+      url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform',
       method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          $.post(SecretConstant.TECHNOLOGY_API+response.payload.message, {"user_id": localStorage.getItem("user_id"), 'convocatory': this.props.convocatory  }, function(d){
-            var new_window = window.open();
-            $(new_window.document.body).append(d);
-          });
+          document.cookie = "convocatory="+this.props.convocatory;
+          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
         }
       },
       error: function(xhr, textStatus){
         browserHistory.push('/error_page/500')
       }
     });
-
   }
-
 
   // Retorna el componente
   render() {
