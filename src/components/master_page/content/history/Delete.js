@@ -34,8 +34,10 @@ export default class Delete extends React.Component {
         url: SecretConstant.TECHNOLOGY_API+'/delete_register',
         method: 'POST',
         success: function(response, textStatus, xhr){
+          console.log('XXXXXXXXXXXXXXXXXXXX')
+          console.log(response.status)
           if(response.status == 200){
-           
+           swal("", response.payload.message, "success")
           }else{
             swal("", response.payload.message, "error")
           }
