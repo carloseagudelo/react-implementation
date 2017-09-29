@@ -11,12 +11,6 @@ import React from 'react';
 import SecretConstant from '../../../../utils/SecretsConstant'
 import {browserHistory } from 'react-router';
 
-
-// importa los componentes necesarios
-// import SelectInputFund from './SelectInputFund'
-// import DocumentList from './DocumentList'
-// import Loading from '../../../Loading'
-
 export default class VisitConvocatory
  extends React.Component {
 
@@ -48,7 +42,7 @@ export default class VisitConvocatory
   // Retorna el componente
   render() {
     return(
-      <th onClick={this.onSubmit.bind(this)}> <button class="btn btn-default">VER</button></th>
+      <th onClick={this.onSubmit.bind(this)}><i class="fa fa-eye" aria-hidden="true" alt="VISUALIZAR EL FORMULARIO"></i></th>
     );
   }
 }

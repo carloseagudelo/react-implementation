@@ -54,7 +54,7 @@ export default class GetPDF
   // Retorna el componente
   render() {
     return(
-      <th onClick={this.onSubmit.bind(this)}> <button class="btn btn-default">VER</button></th>
+      <th onClick={this.onSubmit.bind(this)}><i class="fa fa-download" aria-hidden="true"></i></th>
     );
   }
 }

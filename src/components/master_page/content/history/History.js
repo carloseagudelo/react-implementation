@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router'
 import UserAction from '../../../../actions/UserAction'
 import UserStore from '../../../../stores/UserStore'
 
+
 import Register from './Register'
 import Loading from '../../../Loading'
 
