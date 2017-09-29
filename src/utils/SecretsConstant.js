@@ -5,7 +5,7 @@
 
 
 var SecretsConstant = {
-  HOST_API: 'http://192.169.1.12:4500',
+  HOST_API: 'http://192.168.1.12:4500',
   TECHNOLOGY_API: 'http://192.168.1.12:3500',
   PASSWORD_AUT_TOKEN: '/s4P13Nc1A2014mEdCoL/'
 };

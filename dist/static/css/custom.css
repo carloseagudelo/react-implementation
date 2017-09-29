@@ -4594,3 +4594,22 @@ select { width: 400px; text-align-last:center; }
     margin-bottom: 10px;
     padding: 10px;
 }
+
+.habeas{
+    overflow-y: scroll;
+}
+
+.centered-table{
+    text-align: center;
+}
+
+
+.info-table{
+    margin: 25px 0;
+    background-color: #EDEDED;
+    padding: 35px;
+}
+
+.table{
+    margin-bottom: 0 !important;
+}
