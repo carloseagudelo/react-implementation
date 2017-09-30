@@ -55,7 +55,6 @@ export default class SetRestrictions extends React.Component {
               <label for="description">DESCRIPCIÓN</label>
               <input type="text" name="description" class="form-control"  required="" autofocus></input>
               <br />
-              <label for="sel1">SELECCIONE CONVOCATORIA</label>
               <button type="submit">Guardar</button>
             </form>
           </div>
