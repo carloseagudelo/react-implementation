@@ -9,6 +9,7 @@ import $ from 'jquery'
 import React from 'react';
 import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
+import SelectTag from '../../../SelectTag';
 
 // importa las clases necesarias para el manejo de la arquitectura
 import ConfigurationAction from '../../../../actions/ConfigurationAction'
@@ -46,6 +47,10 @@ export default class SetRestrictions extends React.Component {
           </div>
           <div class="x_content">
             <form  onSubmit={this.onSubmitConvocatory.bind(this)}>
+              <br />
+              <label for="sel1">FONDO</label>
+              <SelectTag endPoint="list_funds"/>
+              <br />
               <label for="name">NOMBRE</label>
               <input type="text" name="name" class="form-control" required="" autofocus ></input>
               <br />
