@@ -34,7 +34,7 @@ export default class SetDocumentFund extends React.Component {
 
   // Metodo ue lista los documentos selecionados por fondo
   onChangeSelect(){
-    ConfigurationAction.ListDocumentsWithFund($("#fund option:selected").val())
+    ConfigurationAction.ListDocumentsWithFund($("#element option:selected").val())
   }
 
   // Metodo que guarda los documentos por seleccionados
