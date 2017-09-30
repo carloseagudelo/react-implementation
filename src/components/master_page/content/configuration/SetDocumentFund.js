@@ -41,7 +41,7 @@ export default class SetDocumentFund extends React.Component {
   onSaveDocumentsFund(ev){
     ev.preventDefault()
     var data = {}
-    data['fund_id'] = $("#fund option:selected").val()
+    data['fund_id'] = $("#element option:selected").val()
     ConfigurationAction.SaveDocumentsFund(this.getValues(data))
   }
 
