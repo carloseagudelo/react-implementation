@@ -31,7 +31,7 @@ export default class SetRestrictions extends React.Component {
   	let form_data = $(ev.target).serializeArray()
   	let data = {
   	  'name': form_data[0].value,
-  	  'description': form_data[1].value
+  	  'description': form_data[1].value,
       'fund_id': $("#element option:selected").val()
   	}
     ConfigurationAction.SaveConvocatory(data)
