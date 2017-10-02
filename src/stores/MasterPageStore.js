@@ -31,15 +31,17 @@ let MasterPageStore = Reflux.createStore({
       url: SecretConstant.HOST_API+'/personal_information',
       method: 'GET',
       success: function(response, textStatus, xhr){ 
-        $(".loader").hide();
         if(response.status == 200){
           this.trigger(response)
+          $(".loader").hide();
         }else {
           browserHistory.push('/error_page/500')
+          $(".loader").hide();
         }
       },  
       error: function(textStatus, xhr){
         browserHistory.push('/error_page/500')
+        $(".loader").hide();
       }
     });
   }

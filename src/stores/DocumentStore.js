@@ -214,38 +214,30 @@ let FileUpload = Reflux.createStore({
   // Realiza la petición para registrar un nuevo documento
   SaveDocument: function(data){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    if(data.name != '' || data.description != ''){
-      $.ajax({
-        crossDomain: true,
-        cache: false,
-        context: this,
-        data: data,
-        url: SecretConstant.HOST_API+'/save_document',
-        headers: {authorization: localStorage.jwtToken.split(',')[1]},
-        method: 'POST',
-        success: function(response, textStatus, xhr){
-          $(".loader").hide();
-          if(response.status == 200){
-            swal("HECHO", response.payload.message, "success")
-            browserHistory.push('/list_documents');
-          }else if(response.status == 400){
-            swal("ERROR", response.payload.message, "error")
-          }else{
-            browserHistory.push('/error_page/500')
-          }
-        },
-        error: function(xhr, textStatus){
-          $(".loader").hide();
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      data: data,
+      url: SecretConstant.HOST_API+'/save_document',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        $(".loader").hide();
+        if(response.status == 200){
+          swal("HECHO", response.payload.message, "success")
+          browserHistory.push('/list_documents');
+        }else if(response.status == 400){
+          swal("ERROR", response.payload.message, "error")
+        }else{
           browserHistory.push('/error_page/500')
         }
-      });
-    }else{
-      this.state = {
-        type: Constant.TYPE_FLASH_MESSAGE_ERROR,
-        message: Constant.VALIDATION_FIELDS_ERROR
+      },
+      error: function(xhr, textStatus){
+        $(".loader").hide();
+        browserHistory.push('/error_page/500')
       }
-      this.trigger(this.state)
-    }
+    });
   },
 
   // Realiza la petición para marcar al usuario que todos sus usuarios fueron validados
