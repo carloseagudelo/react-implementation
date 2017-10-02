@@ -135,15 +135,16 @@ let FileUpload = Reflux.createStore({
   },
 
   // Realiza la petición para obtener los usuarios que ya finalizaron la carga de documentos
-  ListUsersFinished: function(){
+  ListUsersFinished: function(page){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
+      data: {page: page},
       url: SecretConstant.HOST_API+'/list_users_finished',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'GET',
+      method: 'POST',
       success: function(response, textStatus, xhr){
         $(".loader").hide();
         if(response.status == 200){
@@ -160,15 +161,16 @@ let FileUpload = Reflux.createStore({
   },
 
   // Realiza la petición para obtener los usuarios que aún tienen pendiente la carga de documentos
-  ListUsersPending: function(){
+  ListUsersPending: function(page){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
+      data: {page: page},
       url: SecretConstant.HOST_API+'/list_users_pending',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'GET',
+      method: 'POST',
       success: function(response, textStatus, xhr){
         $(".loader").hide();
         if(response.status == 200){
