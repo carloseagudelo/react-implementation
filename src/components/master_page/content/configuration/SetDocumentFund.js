@@ -29,21 +29,24 @@ export default class SetDocumentFund extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    ConfigurationAction.ListDocumentsWithFund(0)
+    ConfigurationAction.ListDocumentsWithFund(0, 0)
   }
 
   // Metodo ue lista los documentos selecionados por fondo
-  onChangeSelect(){
-    ConfigurationAction.ListDocumentsWithFund($("#element option:selected").val())
+  onChangeSelect(event){
+    event.preventDefault()
+    ConfigurationAction.ListDocumentsWithFund($("#element option:selected").val(),  $("#second-element option:selected").val())
   }
 
   // Metodo que guarda los documentos por seleccionados
   onSaveDocumentsFund(ev){
     ev.preventDefault()
     var data = {}
-    data['fund_id'] = $("#fund option:selected").val()
+    data['fund_id'] = $("#element option:selected").val()
+    data['convocatory_id'] = $("#second-element option:selected").val()
     ConfigurationAction.SaveDocumentsFund(this.getValues(data))
   }
+
 
   // Metodo que obtiene los valores a guardar
   getValues(data){
@@ -66,7 +69,9 @@ export default class SetDocumentFund extends React.Component {
             </div>
             <div class="x_content">
               <label for="sel1">SELECCIONE FONDO</label>
-              <SelectTag onChange={this.onChangeSelect.bind(this)} endPoint="list_funds"/>
+              <SelectTag onChange={ this.onChangeSelect.bind(this) } endPoint="list_funds"/>
+              <label for="sel1">SELECCIONE CONVOCATORIA</label>
+              <SelectTag element_number={"second-element"} onChange={this.onChangeSelect.bind(this)} endPoint="list_convocatories" />
               <br />
               <DocumentList data={this.state.documents.data} />
               <button class="btn btn-primary pull-right" onClick={this.onSaveDocumentsFund.bind(this)}>GUARDAR</button>

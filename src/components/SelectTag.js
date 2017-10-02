@@ -22,12 +22,15 @@ export default class SelectTag extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    this.getData(this.props.endPoint)
+    this.getData(this.props.endPoint, this.props.query)
   }
 
   // Metodo que obtiene la informacion de los fondos
-  getData(endPoint){
+  getData(endPoint, query){
     var url = String(SecretsConstant.HOST_API+'/'+endPoint.toString())
+    if (query != null){
+      url = String(SecretsConstant.HOST_API+'/'+endPoint.toString()+'/'+query)
+    }
 
     $.ajax({
       crossDomain: true,
@@ -61,7 +64,7 @@ export default class SelectTag extends React.Component {
       })
       return (
         <div class="form-group">
-          <select class="form-control" id="element" onChange={this.props.onChange}>
+          <select class="form-control" id={this.props.element_number == "second-element" ? "second-element" : "element"} onChange={this.props.onChange}>
             <option value="0">SELECCIONE</option>
             {items}
           </select>

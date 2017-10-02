@@ -48,13 +48,13 @@ let ConfigurationStore = Reflux.createStore({
   },
 
   // Realiza la petición con la lista de los usuarios por determinado fondo
-  ListDocumentsWithFund: function(fund_id){
+  ListDocumentsWithFund: function(fund_id, convocatory_id){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
-      url: SecretConstant.HOST_API+'/documets_with_found/'+fund_id+'.json',
+      url: SecretConstant.HOST_API+'/documets_with_found/'+fund_id+'/'+convocatory_id+'.json',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'GET',
       success: function(response, textStatus, xhr){
@@ -71,6 +71,7 @@ let ConfigurationStore = Reflux.createStore({
       }
     });
   },
+
 
   // Realiza la petición para guardar o actualizar los documentos solicitados por fondos
   SaveDocumentsFund: function(data){
@@ -265,6 +266,8 @@ let ConfigurationStore = Reflux.createStore({
       }
     });
   }
+
+
 
 })
 
