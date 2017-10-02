@@ -43,7 +43,10 @@ export default class SetDocumentFund extends React.Component {
     ev.preventDefault()
     var data = {}
     data['fund_id'] = $("#element option:selected").val()
+<<<<<<< HEAD
     data['convocatory_id'] = $("#second-element option:selected").val()
+=======
+>>>>>>> a1033e96b477d56878da60935f3ae96f04765e4f
     ConfigurationAction.SaveDocumentsFund(this.getValues(data))
   }
 

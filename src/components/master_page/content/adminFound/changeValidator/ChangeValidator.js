@@ -36,9 +36,7 @@ export default class ChangeValidator extends React.Component {
   // Parametro: ev, evento del tag
   nextPage(ev){
     ev.preventDefault()
-    console.log(ev.target)
     if(ev.target.id == 'prev'){
-      console.log('entro prev')
       if(parseInt(this.state.userValidators.current_page) != 1){
         ConfigurationAction.UsersWithValidators(parseInt(this.state.userValidators.current_page) - 1)
       }

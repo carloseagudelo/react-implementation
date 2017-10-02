@@ -30,7 +30,7 @@ export default class MasterPage extends React.Component {
 
   // Metodo propio de react que carga la informción antes de montar el componente
   componentWillMount(){
-    MasterPageAction.FetchInformation();
+    MasterPageAction.FetchInformation();    
   }
 
   // Metodo propio de react que se ejecuta una ves el componete fue cargado
@@ -38,6 +38,7 @@ export default class MasterPage extends React.Component {
     setTimeout(function () {
       require('../static/js/custom.js')
     }, 1000);
+    
   }
 
   // Retorna el componente

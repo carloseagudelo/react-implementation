@@ -82,23 +82,24 @@ export default class ListDocuments extends React.Component {
                   <div class="col col-md-3">
                     <label class="pull-right">OBLIGATORIO: <input type="checkbox" id="require" /></label>
                   </div>
-                  <div class="col col-md-3">
-                    <label>PAGINAS: 
-                      <select id="pages" >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                      </select>
-                    </label>
+                  <div class="col col-md-2">
+                    <label class="pull-right">PAGINAS:</label>
                   </div>
-                  <div class="col col-md-3">
+                  <div class="col col-md-2">
+                    <select id="pages" class="form-control pull-left" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                  <div class="col col-md-2">
                     <input type="submit" class="btn btn-primary btn-sm pull-right" value="GUARDAR" />
                   </div>
                 </div>
