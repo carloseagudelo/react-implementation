@@ -88,7 +88,10 @@ let ConfigurationStore = Reflux.createStore({
         $(".loader").hide();
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
-        }else{
+        }else if(response.status == 400){
+          swal("ERROR", response.payload.message, "error")
+        }
+        else{
           browserHistory.push('/error_page/500')
         }
       },
