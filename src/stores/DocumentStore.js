@@ -186,30 +186,6 @@ let FileUpload = Reflux.createStore({
     });
   },
 
-  // Realiza la petición para obtener los documentos registrados
-  ListDocuments: function(data){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    $.ajax({
-      crossDomain: true,
-      cache: false,
-      context: this,
-      url: SecretConstant.HOST_API+'/list_documents',
-      headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      method: 'GET',
-      success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        if(response.status == 200){
-          this.trigger(response.payload)
-        }else{
-          browserHistory.push('/error_page/500')
-        }
-      },
-      error: function(xhr, textStatus){
-        $(".loader").hide();
-        browserHistory.push('/error_page/500')
-      }
-    });
-  },
 
   // Realiza la petición para registrar un nuevo documento
   SaveDocument: function(data){

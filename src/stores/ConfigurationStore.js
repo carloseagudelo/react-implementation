@@ -59,6 +59,7 @@ let ConfigurationStore = Reflux.createStore({
       method: 'GET',
       success: function(response, textStatus, xhr){
         $(".loader").hide();
+
         if(response.status == 200){
           this.trigger(response.payload)
         }else{

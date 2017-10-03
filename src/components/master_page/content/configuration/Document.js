@@ -17,6 +17,8 @@ export default class User extends React.Component {
 
   // Renderiza el componente
   render() {
+    console.log("8=======================================================D")
+    console.log(this.props.data)
     return(
       <tr scope="row" id={this.props.data.name} >
         <th>{this.props.data.name}</th>
