@@ -13,13 +13,16 @@ import { Link } from 'react-router'
 // importa las clases necesarias para el manejo de la arquitectura
 import DocumentAction from '../../../../actions/DocumentAction'
 import DocumentStore from '../../../../stores/DocumentStore'
+import ConfigurationStore from '../../../../stores/ConfigurationStore'
+import ConfigurationAction from '../../../../actions/ConfigurationAction'
 
 // importa los componentes necesario
 import Document from './Document'
 import Loading from '../../../Loading'
+import SelectTag from '../../../SelectTag'
 
 // inicializa el mixing que es la variable donde se alojara el contenido del objeto que retorna la respuesta en el store
-@ReactMixin.decorate(Reflux.connect(DocumentStore, 'documents'))
+@ReactMixin.decorate(Reflux.connect(ConfigurationStore, 'documents'))
 export default class ListDocuments extends React.Component {
 
   constructor(){
@@ -28,16 +31,27 @@ export default class ListDocuments extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    DocumentAction.ListDocuments()
+    ConfigurationAction.ListDocumentsWithFund(0,2)
   }
 
+
+  // Metodo que lista los documentos adecuados
+  onChangeSelect(event){
+    event.preventDefault()
+    ConfigurationAction.ListDocumentsWithFund(0, $("#element option:selected").val() )
+  }
+
+
+
   render() {
+
     // Maneja la logica del componente
     if(this.state.documents){
       let documents = this.state.documents.data.map((document) => {
         return(
           <Document data={document} />
         )
+
       })
 
       // Retorna el componente
@@ -48,6 +62,9 @@ export default class ListDocuments extends React.Component {
               <h3>LISTA DE DOCUMENTOS</h3>
             </div>
             <div class="x_content">
+              <label for="sel1">SELECCIONE CONVOCATORIA</label>
+              <SelectTag endPoint="list_convocatories" onChange={ this.onChangeSelect.bind(this) } />
+              <br/>
               <table class="table table-striped">
                 <thead>
                   <tr>
