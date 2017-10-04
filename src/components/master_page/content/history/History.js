@@ -39,15 +39,15 @@ export default class History extends React.Component {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>TIPO DE DOCUMENTO</th>              
-                    <th>DOCUMENTO</th>
-                    <th>FONDO</th>
-                    <th>CONVOCATORIA</th>
-                    <th>FINALIZADO</th>
-                    <th>PRESELECCIONADO</th>
-                    <th>VISUALIZAR INSCRIPCIÓN</th>
-                    <th>PDF</th>
-                    <th>ELIMINAR INSCRIPCIÓN</th>
+                    <th><b>TIPO DE DOCUMENTO</b></th>
+                    <th><b>DOCUMENTO</b></th>
+                    <th><b>FONDO</b></th>
+                    <th><b>CONVOCATORIA</b></th>
+                    <th><b>FINALIZADO</b></th>
+                    <th><b>PRESELECCIONADO</b></th>
+                    <th><b>VISUALIZAR INSCRIPCIÓN</b></th>
+                    <th><b>PDF</b></th>
+                    <th><b>ELIMINAR INSCRIPCIÓN</b></th>
                   </tr>
                 </thead>
                 <tbody>

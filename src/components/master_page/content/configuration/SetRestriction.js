@@ -76,7 +76,7 @@ export default class SetRestrictions extends React.Component {
               <label> CONCEPTOS </label>
               <ConceptFields ref="child"/>
               <br />
-              <button type="submit">Guardar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
           </div>
         </div>

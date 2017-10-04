@@ -52,7 +52,7 @@ export default class ConceptFields extends React.Component {
             <input class="concept-field" type="text" onChange={this.handleChange.bind(this,i)} placeholder="NOMBRE DEL CONCEPTO" />
             <input class="concept-field" type="number" min="0" onChange={this.handleChange.bind(this,i+1)} placeholder="NÚMERO DE SALARIOS" />
             <input class="concept-field" type="text" onChange={this.handleChange.bind(this,i+2)} placeholder="CATEGORÍA DEL FONDO" />
-            <input type='button' value='Eliminar' onClick={this.removeClick.bind(this,i)}/>
+            <input type='button' value='Eliminar' class="btn" onClick={this.removeClick.bind(this,i)}/>
           </div>
         )
       }
@@ -64,7 +64,7 @@ export default class ConceptFields extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         {this.createUI()}
-        <input type='button' value='Agregar otro concepto' onClick={this.addClick.bind(this)}/>
+        <input type='button' class="btn" value='Agregar otro concepto' onClick={this.addClick.bind(this)}/>
       </form>
     );
   }

@@ -68,18 +68,16 @@ export default class ListDocuments extends React.Component {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>NOMBRE</th>
-                    <th>DESCRIPCIÓN</th>
-                    <th>REQUERIDO</th>
-                    <th>TIPO</th>
-                    <th>FECHA DE CREACIÓN</th>
+                    <th><b>NOMBRE</b></th>
+                    <th><b>DESCRIPCIÓN</b></th>
+                    <th><b>REQUERIDO</b></th>
+                    <th><b>FECHA DE CREACIÓN</b></th>
                   </tr>
                 </thead>
                 <tbody>
                   {documents}
                 </tbody>
               </table>
-              <Link to='/create_document' class="btn btn-primary btn-sm pull-right">CREAR DOCUMENTO</Link>
             </div>
           </div>
         </div>
