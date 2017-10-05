@@ -268,6 +268,31 @@ let FileUpload = Reflux.createStore({
         browserHistory.push('/error_page/500')
       }
     });
+  },
+
+  ListDocumentsByFund: function(convocatory_id){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      data: {convocatory_id: convocatory_id},
+      url: SecretConstant.HOST_API+'/documents_by_user_convocatory',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        $(".loader").hide();
+        if(response.status == 200){
+          this.trigger(response.payload)
+        }else {
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        $(".loader").hide();
+        browserHistory.push('/error_page/500')
+      }
+    });
   }
 
 })
