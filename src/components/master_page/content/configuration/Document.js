@@ -17,14 +17,13 @@ export default class User extends React.Component {
 
   // Renderiza el componente
   render() {
-    console.log("8=======================================================D")
-    console.log(this.props.data)
+    console.log(this.props)
+
     return(
       <tr scope="row" id={this.props.data.name} >
         <th>{this.props.data.name}</th>
         <th>{this.props.data.description}</th>
-        <th>{this.props.data.obligatory}</th>
-        <th>{this.props.data.type}</th>
+        <th>{this.props.data.obligatory == 1 ? <i class="fa fa-check" aria-hidden="true"></i> : <i class="fa fa-times" aria-hidden="true"></i> }</th>
         <th>{this.props.data.created_at}</th>
       </tr>
     )

@@ -33,7 +33,7 @@ export default class ValidateComponent extends React.Component {
     obj['second_observation'] = $('#'+idForm+' input[name=second_observation]').val()
     return obj
   }
-  
+
   setValuesToInputs(){
     $('#'+this.props.data.id+' input[name=pre_validation]').attr('checked', this.props.data.pre_validation)
     $('#'+this.props.data.id+' input[name=final_validation]').attr('checked', this.props.data.final_validation)
@@ -45,86 +45,114 @@ export default class ValidateComponent extends React.Component {
     let component;
     if(localStorage.user_id == this.props.data.pre_validator_id){
       component =
-        <div>
-          <div class="row">
-            <div class="col col-md-2">
-              <label>VALIDACIÓN UNO:</label>
-            </div>
-            <div class="col col-md-4">
-              <input type="checkbox" name="pre_validation" name="pre_validation" />
-            </div>
-            <div class="col col-md-2">
-              <label>VALIDACIÓN DOS:</label>
-            </div>
-            <div class="col col-md-4">
-              <input type="checkbox" name="final_validation" disabled/>
-            </div>            
-          </div>
-          <div class="row">
-            <div class="col col-md-6">
-              <label class="control-label">OBSERVACIONES: </label>
-              <input type="text" name="observation" />
-            </div>
-            <div class="col col-md-6">
-              <label class="control-label">OBSERVACIONES: </label>
-              <input type="text" name="second_observation" disabled/>
-            </div>
-          </div>
-        </div>      
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-docs">
+
+            <tr>
+              <td>
+                <i class="fa fa-check margin-r" aria-hidden="true"></i><label class="margin-r">VALIDACIÓN UNO: </label>
+                <input type="checkbox" name="pre_validation" name="pre_validation" />
+              </td>
+
+              <td>
+                <i class="fa fa-check margin-r" aria-hidden="true"></i><label class="margin-r">VALIDACIÓN DOS: </label>
+                <input type="checkbox" name="final_validation" disabled />
+              </td>
+            </tr>
+            <br/>
+            <br/>
+
+            <tr>
+              <td>
+                <i class="fa fa-eye margin-r" aria-hidden="true"></i><label class="control-label margin-r">OBSERVACIÓN: </label>
+                <input type="text" name="observation" />
+              </td>
+
+              <td>
+                <i class="fa fa-eye margin-r" aria-hidden="true"></i><label class="control-label margin-r">OBSERVACIÓN: </label>
+                <input type="text" name="second_observation" disabled/>
+              </td>
+            </tr>
+
+          </table>
+          <br/>
+          <br/>
+        </div>
+      </div>
+
     }else if(localStorage.user_id == this.props.data.final_validator_id){
       component =
-        <div>
-          <div class="row">
-            <div class="col col-md-2">
-              <label>VALIDACIÓN UNO:</label>
-            </div>
-            <div class="col col-md-4">
-              <input type="checkbox" name="pre_validation" name="pre_validation" disabled/>
-            </div>
-            <div class="col col-md-2">
-              <label>VALIDACIÓN DOS:</label>
-            </div>
-            <div class="col col-md-4">
-              <input type="checkbox" name="final_validation" />
-            </div>            
-          </div>
-          <div class="row">
-            <div class="col col-md-6">
-              <label class="control-label">OBSERVACIONES: </label>
-              <input type="text" name="observation" disabled/>
-            </div>
-            <div class="col col-md-6">
-              <label class="control-label">OBSERVACIONES: </label>
-              <input type="text" name="second_observation" />
-            </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-docs">
+
+              <tr>
+                <td>
+                  <i class="fa fa-check margin-r" aria-hidden="true"></i><label class="margin-r">VALIDACIÓN UNO: </label>
+                  <input type="checkbox" name="pre_validation" name="pre_validation" disabled/>
+                </td>
+
+                <td>
+                  <i class="fa fa-check margin-r" aria-hidden="true"></i><label class="margin-r">VALIDACIÓN DOS: </label>
+                  <input type="checkbox" name="final_validation" />
+                </td>
+              </tr>
+              <br/>
+              <br/>
+
+              <tr>
+                <td>
+                  <i class="fa fa-eye margin-r" aria-hidden="true"></i><label class="control-label margin-r">OBSERVACIÓN: </label>
+                  <input type="text" name="observation" disabled/>
+                </td>
+
+                <td>
+                  <i class="fa fa-eye margin-r" aria-hidden="true"></i><label class="control-label margin-r">OBSERVACIÓN: </label>
+                  <input type="text" name="second_observation" />
+                </td>
+              </tr>
+
+            </table>
+            <br/>
+            <br/>
           </div>
         </div>
       }else{
         component =
-        <div>
-          <div class="row">
-            <div class="col col-md-2">
-              <label>VALIDACIÓN UNO:</label>
-            </div>
-            <div class="col col-md-4">
-              <input type="checkbox" name="pre_validation" name="pre_validation" disabled/>
-            </div>
-            <div class="col col-md-2">
-              <label>VALIDACIÓN DOS:</label>
-            </div>
-            <div class="col col-md-4">
-              <input type="checkbox" name="final_validation" disabled/>
-            </div>            
-          </div>
-          <div class="row">
-            <div class="col col-md-6">
-              <label class="control-label">OBSERVACIONES: </label>
-              <input type="text" name="observation" disabled/>
-            </div>
-            <div class="col col-md-6">
-              <label class="control-label">OBSERVACIONES: </label>
-              <input type="text" name="second_observation" disabled/>
-            </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-docs">
+
+              <tr>
+                <td>
+                  <i class="fa fa-check margin-r" aria-hidden="true"></i><label class="margin-r">VALIDACIÓN UNO: </label>
+                  <input type="checkbox" name="pre_validation" name="pre_validation" disabled/>
+                </td>
+
+                <td>
+                  <i class="fa fa-check margin-r" aria-hidden="true"></i><label class="margin-r">VALIDACIÓN DOS: </label>
+                  <input type="checkbox" name="final_validation" disabled/>
+                </td>
+              </tr>
+              <br/>
+              <br/>
+
+              <tr>
+                <td>
+                  <i class="fa fa-eye margin-r" aria-hidden="true"></i><label class="control-label margin-r">OBSERVACIÓN: </label>
+                  <input type="text" name="observation" disabled/>
+                </td>
+
+                <td>
+                  <i class="fa fa-eye margin-r" aria-hidden="true"></i><label class="control-label margin-r">OBSERVACIÓN: </label>
+                  <input type="text" name="second_observation" disabled />
+                </td>
+              </tr>
+
+            </table>
+            <br/>
+            <br/>
           </div>
         </div>
       }
@@ -138,14 +166,17 @@ export default class ValidateComponent extends React.Component {
               <h4><strong>{this.props.data.document_name}</strong></h4>
               <h6><strong>{this.props.data.document_description}</strong></h6>
             </div>
-          </div> 
+          </div>
+          <hr/>
+          <br/>
+          <br/>
           <div class="row">
-            <div class="col col-md-2">
-              <label>DOCUMENTO:</label>
-            </div>
-            <div class="col col-md-6">
-              <a href={'ftp://181.143.72.66:5010/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a>
-            </div>
+              <div class="col-sm-12">
+                <p><b><i class="fa fa-file-text-o" aria-hidden="true"></i> DOCUMENTO:</b> <a href={'ftp://181.143.72.66:5010/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a></p>
+              </div>
+              <br/>
+              <br/>
+              <br/>
           </div>
           {component}
           <div class="row">

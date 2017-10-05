@@ -7,18 +7,40 @@ export default class UploadInput extends React.Component {
   	super()
   }
 
+  OnChangeField(){
+    var inputFiles = $("#"+"file-" + this.props.data.id).get(0).files
+    var label = $("#"+"file-" + this.props.data.id).parent().find('span');
+
+    if(typeof(inputFiles) !='undefined'){ // fucking IE
+      if(inputFiles.length == 0){
+        label.removeClass('withFile').html('<i class="fa fa-upload" aria-hidden="true"></i> Seleccione un documento');
+      }
+      else{
+        var file = inputFiles[0];
+        var name = file.name;
+        var size = (file.size / 1048576).toFixed(3); //size in mb
+        label.addClass('withFile').text(name.slice(0,35)+'...' + ' (' + size + 'mb)');
+      }
+    }
+    else{
+      var name = $(".file").val().split("\\");
+      label.addClass('withFile').text(name[name.length-1]);
+    }
+    return false;
+  }
+
   render() {
     if(this.props.data.pre_validation && this.props.data.final_validation) {
       return(
-        <div class="col col-md-6">
-          <a href={'ftp://181.143.72.66:5010/'+this.props.data.file_url} target="_blank">{this.props.data.file_file_name}</a>
-        </div>
+        <a href={'ftp://181.143.72.66:5010/'+this.props.data.file_url} target="_blank">{this.props.data.file_file_name}</a>
       )
     }else{
       return(
-        <div class="col col-md-6">
-          <input type="file" name={"s" + this.props.data.id} class="file" accept="application/pdf"/>
-        </div>
+        <label class='__lk-fileInput'>
+          <span class="file-span" data-default='Seleccione un documento'><i class="fa fa-upload" aria-hidden="true"></i> Seleccione un documento</span>
+          <input type="file" id={"file-" + this.props.data.id.toString()} name={"s" + this.props.data.id} class="file" accept="application/pdf" onChange={this.OnChangeField.bind(this)}/>
+        </label>
+
       )
     }
   }

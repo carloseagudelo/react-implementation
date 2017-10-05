@@ -34,14 +34,11 @@ export default class ListDocuments extends React.Component {
     ConfigurationAction.ListDocumentsWithFund(0,2)
   }
 
-
   // Metodo que lista los documentos adecuados
   onChangeSelect(event){
     event.preventDefault()
     ConfigurationAction.ListDocumentsWithFund(0, $("#element option:selected").val() )
   }
-
-
 
   render() {
 
@@ -51,7 +48,6 @@ export default class ListDocuments extends React.Component {
         return(
           <Document data={document} />
         )
-
       })
 
       // Retorna el componente
@@ -68,18 +64,16 @@ export default class ListDocuments extends React.Component {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>NOMBRE</th>
-                    <th>DESCRIPCIÓN</th>
-                    <th>REQUERIDO</th>
-                    <th>TIPO</th>
-                    <th>FECHA DE CREACIÓN</th>
+                    <th><b>NOMBRE</b></th>
+                    <th><b>DESCRIPCIÓN</b></th>
+                    <th><b>REQUERIDO</b></th>
+                    <th><b>FECHA DE CREACIÓN</b></th>
                   </tr>
                 </thead>
                 <tbody>
                   {documents}
                 </tbody>
               </table>
-              <Link to='/create_document' class="btn btn-primary btn-sm pull-right">CREAR DOCUMENTO</Link>
             </div>
           </div>
         </div>

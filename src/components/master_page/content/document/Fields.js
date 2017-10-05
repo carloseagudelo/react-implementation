@@ -18,12 +18,12 @@ export default class Fields extends React.Component {
   	super()
   }
 
-  componentWillMount(){     
+  componentWillMount(){
     if(this.props.data){
       DocumentAction.FetchDocuments(this.props.data)
     }else{
       DocumentAction.FetchDocuments(0)
-    }        
+    }
   }
 
   sendFinishedHandler(){
@@ -31,8 +31,10 @@ export default class Fields extends React.Component {
       DocumentAction.FinishValidate(this.props.data)
     }else{
       DocumentAction.FinishLoad()
-    } 
+    }
   }
+
+
 
   render() {
     if(this.state.fields){
@@ -51,8 +53,8 @@ export default class Fields extends React.Component {
         })
       }
       return (
-        <div >       
-          {fields}   
+        <div >
+          {fields}
           <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR</button>
         </div>
       )

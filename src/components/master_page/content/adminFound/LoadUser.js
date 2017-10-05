@@ -45,12 +45,12 @@ export default class LoadUser extends React.Component {
             <div class="alert alert-info">
               <strong><h1>ATENCIÓN</h1></strong>
               <h3>
-                A CONTINUACIÓN INICIARÁ EL PROCESO DE CARGA DE USUARIOS PARA EL FONDO QUE ADMINISTRA, 
-                TENGA EN CUENTA QUE ANTES DE HACER ESTE CARGUE DEBE REALIZAR LA SELECCION EN LA 
+                A CONTINUACIÓN INICIARÁ EL PROCESO DE CARGA DE USUARIOS PARA EL FONDO QUE ADMINISTRA,
+                TENGA EN CUENTA QUE ANTES DE HACER ESTE CARGUE DEBE REALIZAR LA SELECCION EN LA
                 APLICACION DEL FONDE QUE ADMINISTRA.
               </h3>
             </div>
-            <button onClick={this.loadPreSelected.bind(this)} >CARGAR PRESELECCIONADOS</button>
+            <button onClick={this.loadPreSelected.bind(this)} class="btn btn-primary">CARGAR PRESELECCIONADOS</button>
           </div>
         </div>
       </div>
