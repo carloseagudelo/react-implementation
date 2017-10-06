@@ -1,5 +1,5 @@
 /*  Descripcion: Componente que renderiza una lista con las paginas que componen toda la información
-                 a mostar, este siempre mostrará una lista con 10 paginas en case de se mas de 10 mostrara las 
+                 a mostar, este siempre mostrará una lista con 10 paginas en case de se mas de 10 mostrara las
                  las siguientes 10 a la actual y la ultima pagina
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
@@ -10,7 +10,7 @@
 import React from 'react';
 
 // Inicializa y exporta la clase que contiene el componente
-export default class Paginator extends React.Component {  
+export default class Paginator extends React.Component {
 
   constructor(){
   	super()
@@ -22,34 +22,36 @@ export default class Paginator extends React.Component {
   	if(this.props.pages.length <= 9){
   	  items = this.props.pages.map((page) => {
   	   	return(
-   	  	  <li class="page-item"><a class="page-link" href="" onClick={this.props.onClick} id={page}>{page}</a></li>                  
+   	  	  <li class="page-item"><a class="page-link" href="" onClick={this.props.onClick} id={page}>{page}</a></li>
         )
   	  })
   	}else{
       items = getArray(parseInt(this.props.current), parseInt(this.props.pages.length)).map((page, index) => {
         return(
-          <li class="page-item"><a class="page-link" href="" onClick={this.props.onClick} id={page}>{page}</a></li>                  
-        )	 
+          <li class="page-item"><a class="page-link" href="" onClick={this.props.onClick} id={page}>{page}</a></li>
+        )
   	  })
   	}
 
     // Retorna el compnente
     return(
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="" onClick={this.props.onClick} aria-label="Previous" id="prev">
-              &laquo;
-            </a>
-          </li>
-          {items}
-          <li class="page-item">
-            <a class="page-link" href="" onClick={this.props.onClick} aria-label="Next" id="nxt">
-             &raquo;
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <center>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="" onClick={this.props.onClick} aria-label="Previous" id="prev">
+                &laquo;
+              </a>
+            </li>
+            {items}
+            <li class="page-item">
+              <a class="page-link" href="" onClick={this.props.onClick} aria-label="Next" id="nxt">
+              &raquo;
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </center>
     )
   }
 }
@@ -66,6 +68,6 @@ function getArray(current, end_position){
     for(var i = 0; i < (end_position - current) + 1; i++){
       array.push(current + i)
     }
-  }  
+  }
   return array
 }
