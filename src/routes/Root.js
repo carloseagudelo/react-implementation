@@ -32,6 +32,7 @@ import Report from '../components/master_page/content/report/Report'
 import History from '../components/master_page/content/history/History'
 import CreateFund from '../components/master_page/content/configuration/CreateFunds'
 import CreateConvocatory from '../components/master_page/content/configuration/CreateConvocatory'
+import HistoryDocument from '../components/master_page/content/document/HistoryDocuments'
 
 export default class Root extends React.Component {
 
@@ -71,6 +72,7 @@ export default class Root extends React.Component {
           <Route path='/create_fund' component={CreateFund} />
           <Route path='/list_funds_aviables' component={ListAviableFunds} />
           <Route path='/personal_history' component={History} />
+          <Route path='/document_history' component={HistoryDocument} />
         </Route>
         <Route path='registration' component={Registration} />
         <Route path='habeas_data' component={HabeasData}  />

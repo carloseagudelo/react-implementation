@@ -34,14 +34,11 @@ export default class ListDocuments extends React.Component {
     ConfigurationAction.ListDocumentsWithFund(0,2)
   }
 
-
   // Metodo que lista los documentos adecuados
   onChangeSelect(event){
     event.preventDefault()
     ConfigurationAction.ListDocumentsWithFund(0, $("#element option:selected").val() )
   }
-
-
 
   render() {
 
@@ -51,7 +48,6 @@ export default class ListDocuments extends React.Component {
         return(
           <Document data={document} />
         )
-
       })
 
       // Retorna el componente
