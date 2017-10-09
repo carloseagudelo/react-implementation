@@ -54,7 +54,7 @@ export default class ListAviableFunds extends React.Component {
           </div>
           <div class="x_content">
             <div class="alert alert-info">
-              <strong>NO HAY FONDOS DISPONIBLES EN ESTE MOMENTO</strong>
+              <center><strong>NO HAY FONDOS DISPONIBLES EN ESTE MOMENTO</strong></center>
             </div>
           </div>
         </div>
