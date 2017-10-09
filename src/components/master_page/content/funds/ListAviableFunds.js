@@ -50,12 +50,7 @@ export default class ListAviableFunds extends React.Component {
       <div class="">
         <div class="page-title">
           <div class="x_title">
-            <h3>BECAS TECNOLOGIA</h3>
-          </div>
-          <div class="x_content">
-            <button class= "banner-button" onClick={this.onSubmitFund.bind(this)} value="Syncronous request">
-	            <img class="banner" src='../../static/img/banner.png' />
-            </button>
+            <h3>EN EL MOMENTO NO HAY INSCRIPCIONES A FONDOS DISPONIBLES</h3>
           </div>
         </div>
       </div>
