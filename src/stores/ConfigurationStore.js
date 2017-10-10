@@ -59,7 +59,6 @@ let ConfigurationStore = Reflux.createStore({
       method: 'GET',
       success: function(response, textStatus, xhr){
         $(".loader").hide();
-
         if(response.status == 200){
           this.trigger(response.payload)
         }else{
@@ -72,7 +71,6 @@ let ConfigurationStore = Reflux.createStore({
       }
     });
   },
-
 
   // Realiza la petición para guardar o actualizar los documentos solicitados por fondos
   SaveDocumentsFund: function(data){

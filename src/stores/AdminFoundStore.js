@@ -9,8 +9,10 @@
 import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
+
 // Importa los componentes propios necesarios
 import AdminFoundAction from '../actions/AdminFoundAction'
+
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
@@ -44,6 +46,101 @@ let AdminFoundStore = Reflux.createStore({
           ype: Constant.TYPE_FLASH_MESSAGE_ERROR
         }
         this.trigger(this.state)
+      }
+    });
+  },
+
+  // Realiza la peticion para obtener la información de personas registradas en determinado fondo y convocatoria
+  GetFundInformation: function(fund_name, convocatory){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/get_values_convocatory',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'POST',
+      data: {"fund_name": fund_name, "role":localStorage.getItem("role"), "convocatory": convocatory},
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY')
+          console.log(response.payload.data[0])
+          console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY')
+          this.trigger(response.payload.data[0])
+        }else{
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
+      }
+    });
+  },
+
+  DonwnloadExcel2018_1: function(ev){
+    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
+    $.ajax({
+      cache: false,
+      context: this,
+      async: false,
+      data: {jwt: localStorage.jwtToken.split(',')[1]},
+      url: SecretConstant.TECHNOLOGY_API+'/authentificate_admin_plataform',
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+        }else {
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
+      }
+    });
+  },
+
+  DonwnloadExcel2017_2: function(ev){
+    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
+    $.ajax({
+      cache: false,
+      context: this,
+      async: false,
+      data: {jwt: localStorage.jwtToken.split(',')[1]},
+      url: SecretConstant.TECHNOLOGY_API+'/authentificate_admin_plataform_2017_2',
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+        }else {
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
+      }
+    });
+  },
+
+  DonwnloadExcel: function(convocatory){
+    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
+    $.ajax({
+      cache: false,
+      context: this,
+      async: false,
+      data: {jwt: localStorage.jwtToken.split(',')[1]},
+      url: SecretConstant.TECHNOLOGY_API+'/validate_download_excel',
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          $.post(SecretConstant.TECHNOLOGY_API+response.payload.message, {"convocatory": String(convocatory), 'role': localStorage.role}, function(d){
+            var new_window = window.open();
+            $(new_window.document.body).append(d);
+          });
+        }else {
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
       }
     });
   }
