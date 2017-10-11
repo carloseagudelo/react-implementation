@@ -12,8 +12,6 @@ import Reflux from 'reflux'
 let AdminFoundAction = Reflux.createActions([
   'LoadData',
   'GetFundInformation',
-  'DonwnloadExcel2018_1',
-  'DonwnloadExcel2017_2',
   'DonwnloadExcel'
 ])
 

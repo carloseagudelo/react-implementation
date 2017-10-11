@@ -62,9 +62,6 @@ let AdminFoundStore = Reflux.createStore({
       data: {"fund_name": fund_name, "role":localStorage.getItem("role"), "convocatory": convocatory},
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY')
-          console.log(response.payload.data[0])
-          console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY')
           this.trigger(response.payload.data[0])
         }else{
           browserHistory.push('/error_page/500')
@@ -76,67 +73,22 @@ let AdminFoundStore = Reflux.createStore({
     });
   },
 
-  DonwnloadExcel2018_1: function(ev){
-    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-    $.ajax({
-      cache: false,
-      context: this,
-      async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1]},
-      url: SecretConstant.TECHNOLOGY_API+'/authentificate_admin_plataform',
-      method: 'GET',
-      success: function(response, textStatus, xhr){
-        if(response.status == 200){
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
-        }else {
-          browserHistory.push('/error_page/500')
-        }
-      },
-      error: function(xhr, textStatus){
-        browserHistory.push('/error_page/500')
-      }
-    });
-  },
-
-  DonwnloadExcel2017_2: function(ev){
-    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-    $.ajax({
-      cache: false,
-      context: this,
-      async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1]},
-      url: SecretConstant.TECHNOLOGY_API+'/authentificate_admin_plataform_2017_2',
-      method: 'GET',
-      success: function(response, textStatus, xhr){
-        if(response.status == 200){
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
-        }else {
-          browserHistory.push('/error_page/500')
-        }
-      },
-      error: function(xhr, textStatus){
-        browserHistory.push('/error_page/500')
-      }
-    });
-  },
-
+  // Realiza la peticion para obtener el archivo en excel de la convocatoria que ingresa como parametro
   DonwnloadExcel: function(convocatory){
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
     $.ajax({
       cache: false,
       context: this,
       async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1]},
+      data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory},
       url: SecretConstant.TECHNOLOGY_API+'/validate_download_excel',
       method: 'GET',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          $.post(SecretConstant.TECHNOLOGY_API+response.payload.message, {"convocatory": String(convocatory), 'role': localStorage.role}, function(d){
-            var new_window = window.open();
-            $(new_window.document.body).append(d);
-          });
+          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+          document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
         }else {
-          browserHistory.push('/error_page/500')
+          swal("ERROR", response.payload.message, "error")
         }
       },
       error: function(xhr, textStatus){
