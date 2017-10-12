@@ -8,35 +8,22 @@
 import $ from 'jquery'
 import React from 'react';
 
+import UserAction from '../../../../actions/UserAction'
+import UserStore from '../../../../stores/UserStore'
+
 import SecretConstant from '../../../../utils/SecretsConstant'
 import {browserHistory } from 'react-router';
 
-export default class VisitConvocatory
- extends React.Component {
+export default class VisitConvocatory extends React.Component { 
 
   constructor(){
   	super()
   }
 
+  // Evento de clic en el componente
   onSubmit(ev){
-  	$.ajax({
-      cache: false,
-      context: this,
-      async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: this.props.convocatory},
-      url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform',
-      method: 'POST',
-      success: function(response, textStatus, xhr){
-        if(response.status == 200){
-          document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-          document.cookie = "convocatory="+this.props.convocatory;
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
-        }
-      },
-      error: function(xhr, textStatus){
-        browserHistory.push('/error_page/500')
-      }
-    });
+    ev.preventDefault()
+  	UserAction.ShowConvocatory(this.props.convocatory)
   }
 
   // Retorna el componente

@@ -5,124 +5,41 @@
 
 // importa las librerias externas necesarias
 import React from 'react';
-
+import Reflux from 'reflux'
+import ReactMixin from 'react-mixin'
 
 // importa las clases propias
+import AdminFoundActionAction from '../../../../actions/AdminFoundAction'
+import AdminFoundActionStore from '../../../../stores/AdminFoundStore'
 import SecretConstant from '../../../../utils/SecretsConstant'
-import {browserHistory } from 'react-router';
 import SelectTag from '../../../SelectTag';
-import $ from 'jquery'
 
+@ReactMixin.decorate(Reflux.connect(AdminFoundActionStore, 'records'))
 export default class Report extends React.Component {
+
   constructor(){
   	super()
   }
 
-    // Metodo propia de react que carga la información al componente antes de que este sea montado
-    componentWillMount(){
-      this.getData()
-    }
-
-    changeData(){
-      var url = SecretConstant.HOST_API+'/get_values_convocatory';
-      $.ajax({
-        crossDomain: true,
-        async: false,
-        cache: false,
-        context: this,
-        url: url ,
-        headers: {authorization: localStorage.jwtToken.split(',')[1]},
-        method: 'POST',
-        data: {"convocatory_name":localStorage.getItem("role"), "convocatory":$("#element option:selected").text()},
-        success: function(response, textStatus, xhr){
-          if(response.status == 200){
-            this.setState(response.payload.data)
-          }else{
-            browserHistory.push('/error_page/500')
-          }
-        },
-        error: function(xhr, textStatus){
-          browserHistory.push('/error_page/500')
-        }
-      });
-    }
-
-    // Metodo que obtiene la informacion de los fondos
-    getData(){
-      var url = SecretConstant.HOST_API+'/get_values_convocatory';
-
-      $.ajax({
-        crossDomain: true,
-        async: false,
-        cache: false,
-        context: this,
-        url: url ,
-        headers: {authorization: localStorage.jwtToken.split(',')[1]},
-        method: 'POST',
-        data: {"convocatory_name":localStorage.getItem("role"), "convocatory":"2018-1"},
-        success: function(response, textStatus, xhr){
-          if(response.status == 200){
-            this.setState(response.payload.data)
-          }else{
-            browserHistory.push('/error_page/500')
-          }
-        },
-        error: function(xhr, textStatus){
-          browserHistory.push('/error_page/500')
-        }
-      });
-    }
-
-  donwnload2018_1(ev){
-    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-  	$.ajax({
-      cache: false,
-      context: this,
-      async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1]},
-      url: SecretConstant.TECHNOLOGY_API+'/authentificate_admin_plataform',
-      method: 'GET',
-      success: function(response, textStatus, xhr){
-        if(response.status == 200){
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
-        }else {
-
-        }
-      },
-      error: function(xhr, textStatus){
-        browserHistory.push('/error_page/500')
-      }
-    });
+  // Metodo propia de react que carga la información al componente antes de que este sea montado
+  componentWillMount(){
+    AdminFoundAction.GetFundInformation('BECAS TECNOLOGIA', '2017-2')
   }
 
+  changeData(ev){
+    ev.preventDefault()
+    AdminFoundAction.GetFundInformation($("#element option:selected").text(), $("#second-element option:selected").text())
+  }
 
-  donwnload2017_2(ev){
-    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-  	$.ajax({
-      cache: false,
-      context: this,
-      async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1]},
-      url: SecretConstant.TECHNOLOGY_API+'/authentificate_admin_plataform_2017_2',
-      method: 'GET',
-      success: function(response, textStatus, xhr){
-        if(response.status == 200){
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
-        }else {
-
-        }
-      },
-      error: function(xhr, textStatus){
-        browserHistory.push('/error_page/500')
-      }
-    });
+  donwnloadExcel(ev){
+    ev.preventDefault()
+    AdminFoundAction.DonwnloadExcel($("#second-element option:selected").text())
   }
 
   // Retorna el componente
   render() {
 
-    let statistics = this.state[0]
-    if(localStorage.role == "adminTechnology" ){ // Valida si la vista es para un usuario con rol administrador de  technology fondo
+    if(this.state.records){
       return (
         <div class="">
         <div class="page-title">
@@ -131,7 +48,6 @@ export default class Report extends React.Component {
           </div>
 
           <center>
-            <br/>
             <label for="sel1">SELECCIONE CONVOCATORIA</label>
             <SelectTag endPoint="list_convocatories" onChange={this.changeData.bind(this)}/>
           </center>
@@ -151,16 +67,10 @@ export default class Report extends React.Component {
               </tr>
             </table>
           </div>
-          { $("#element option:selected").text() == "2017-2" ?
-            <button class="btn btn-primary pull-right" onClick={this.donwnload2017_2.bind(this)}>
-              DESCARGAR REGISTROS 2017-2
-            </button>
-             :
-            <button class="btn btn-primary pull-right" onClick={this.donwnload2018_1.bind(this)} >
-              DESCARGAR REGISTROS 2018-1
-            </button>
-          }
-
+          
+          <button class="btn btn-primary pull-right" onClick={this.donwnload2017_2.bind(this)}>
+            DESCARGAR REGISTROS
+          </button>
 
         </div>
       </div>

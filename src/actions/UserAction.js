@@ -10,7 +10,10 @@ import Reflux from 'reflux'
 
 // Define la clase
 let UserAction = Reflux.createActions([
-  'list_registers'
+  'list_registers', 
+  'GetPDF',
+  'DropRegister',
+  'ShowConvocatory'
 ])
 
 // Exporta la clase

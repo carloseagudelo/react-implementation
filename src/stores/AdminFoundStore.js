@@ -9,8 +9,10 @@
 import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
+
 // Importa los componentes propios necesarios
 import AdminFoundAction from '../actions/AdminFoundAction'
+
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
@@ -44,6 +46,53 @@ let AdminFoundStore = Reflux.createStore({
           ype: Constant.TYPE_FLASH_MESSAGE_ERROR
         }
         this.trigger(this.state)
+      }
+    });
+  },
+
+  // Realiza la peticion para obtener la información de personas registradas en determinado fondo y convocatoria
+  GetFundInformation: function(fund_name, convocatory){
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/get_values_convocatory',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'POST',
+      data: {"fund_name": fund_name, "role":localStorage.getItem("role"), "convocatory": convocatory},
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          this.trigger(response.payload.data[0])
+        }else{
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
+      }
+    });
+  },
+
+  // Realiza la peticion para obtener el archivo en excel de la convocatoria que ingresa como parametro
+  DonwnloadExcel: function(convocatory){
+    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
+    $.ajax({
+      cache: false,
+      context: this,
+      async: false,
+      data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory},
+      url: SecretConstant.TECHNOLOGY_API+'/validate_download_excel',
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+          document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+        }else {
+          swal("ERROR", response.payload.message, "error")
+        }
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
       }
     });
   }
