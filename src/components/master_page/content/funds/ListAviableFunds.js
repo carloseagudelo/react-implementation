@@ -25,14 +25,14 @@ export default class ListAviableFunds extends React.Component {
       context: this,
       async: false,
       data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: '2018-1'},
-      url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform',
+      url: SecretConstant.PP_API+'/authentificate_plataform',
       method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
           document.cookie = "convocatory=2018-1"
           document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
           console.log(response.payload.message)
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+          window.open(SecretConstant.PP_API+response.payload.message)
         }else {
           console.log(response)
         }
@@ -54,9 +54,9 @@ export default class ListAviableFunds extends React.Component {
           </div>
         </div>
         <div class="x_content">
-          <div class="alert alert-info">
-            <strong>NO HAY FONDOS DISPONIBLES EN ESTE MOMENTO</strong>
-          </div>
+          <button class= "banner-button" onClick={this.onSubmitFund.bind(this)} value="Syncronous request">
+            <img class="banner" src='../../static/img/banner.png' />
+          </button>
         </div>
       </div>
 
