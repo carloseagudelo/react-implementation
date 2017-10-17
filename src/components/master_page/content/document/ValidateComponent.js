@@ -1,11 +1,10 @@
 import $ from 'jquery'
 import React from 'react'
 
-import UploadInput from './UploadInput'
-
 import DocumentAction from '../../../../actions/DocumentAction'
 
 import Constant from '../../../../utils/Constants'
+import UploadInput from './UploadInput'
 
 export default class ValidateComponent extends React.Component {
 
@@ -28,17 +27,13 @@ export default class ValidateComponent extends React.Component {
     var obj ={};
     obj['id_form'] = idForm;
     obj['pre_validation'] = $('#'+idForm+' input[name=pre_validation]').prop('checked')
-    obj['final_validation'] = $('#'+idForm+' input[name=final_validation]').prop('checked')
-    obj['observation'] = $('#'+idForm+' input[name=observation]').val()
-    obj['second_observation'] = $('#'+idForm+' input[name=second_observation]').val()
+    obj['observation'] = $('#'+idForm+' textarea[name=observation]').val()
     return obj
   }
 
   setValuesToInputs(){
     $('#'+this.props.data.id+' input[name=pre_validation]').attr('checked', this.props.data.pre_validation)
-    $('#'+this.props.data.id+' input[name=final_validation]').attr('checked', this.props.data.final_validation)
-    $('#'+this.props.data.id+' input[name=observation]').val(this.props.data.observation)
-    $('#'+this.props.data.id+' input[name=second_observation]').val(this.props.data.second_observation)
+    $('#'+this.props.data.id+' textarea[name=observation]').val(this.props.data.observation)
   }
 
   render() {
