@@ -32,15 +32,16 @@ export default class UploadInput extends React.Component {
   render() {
     if(this.props.data.pre_validation && this.props.data.final_validation) {
       return(
-        <a href={'ftp://181.143.72.66:5010/'+this.props.data.file_url} target="_blank">{this.props.data.file_file_name}</a>
+        <label class='__lk-fileInput'>
+          <span class="file-span" data-default='Seleccione un documento'><i class="fa fa-check" aria-hidden="true"></i> DOCUMENTO VALIDADO</span>
+        </label>
       )
     }else{
       return(
         <label class='__lk-fileInput'>
-          <span class="file-span" data-default='Seleccione un documento'><i class="fa fa-upload" aria-hidden="true"></i> Seleccione un documento</span>
+          <span class="file-span" data-default='Seleccione un documento'><i class="fa fa-upload" aria-hidden="true"></i> SELECIONE UN DOCUMENTO</span>
           <input type="file" id={"file-" + this.props.data.id.toString()} name={"s" + this.props.data.id} class="file" accept="application/pdf" onChange={this.OnChangeField.bind(this)}/>
         </label>
-
       )
     }
   }

@@ -24,9 +24,20 @@ export default class UploadComponent extends React.Component {
   }
 
   render() {
-    let link;
+    let link
+    let observation
+    let button
+
     if(this.props.data.file_file_name != ''){
-      link = <p><b><i class="fa fa-file-text-o" aria-hidden="true"></i> DOCUMENTO:</b> <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a></p>
+      link = <p><b><i class="fa fa-file-text-o" aria-hidden="true"></i> DOCUMENTO CARGADO: </b> <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a></p>
+    }
+    if(this.props.data.observation){
+      observation = <div class="alert alert-warning">
+                      <center><strong><i class="fa fa-eye" aria-hidden="true"></i> OBSERVACIÓN: {this.props.data.observation}</strong></center>
+                    </div>
+    }
+    if(!this.props.data.pre_validation){
+      button = <input type="submit" value="ENVIAR DOCUMENTO" class="btn btn-primary pull-right" />
     }
 
     return(
@@ -39,66 +50,51 @@ export default class UploadComponent extends React.Component {
               <table class="table table-docs">
                 <tr>
                   <td>
-                    <h4><strong>{this.props.data.document_name}</strong></h4>
-                    <h6><strong>{this.props.data.document_description}</strong></h6>
-                  </td>
-                  <td>
-                    <h4><strong>PESO MAXIMO:</strong> {this.props.data.document_weight} MB</h4>
+                    <div class="col-md-12">
+                      <h3><strong>{this.props.data.document_name}</strong></h3>
+                      <h6><strong>{this.props.data.document_description}</strong></h6>
+                    </div>
                   </td>
                 </tr>
               </table>
             </div>
           </div>
+
           <hr/>
-          <br/>
-          <br/>
 
           <div class="row">
             <div class="col-sm-12">
               <table class="table table-docs">
-                <tr>
-                  <td><UploadInput data={this.props.data} /></td>
-                  <td>{link}</td>
-                </tr>
-                <br/>
-                <br/>
 
                 <tr>
                   <td>
-                    <i class="fa fa-check margin-r" aria-hidden="true"></i><label class="margin-r">VALIDACIÓN UNO: </label>
-                    <input type="checkbox" name="pre_validation" checked={this.props.data.pre_validation} />
-                  </td>
-
-                  <td>
-                    <i class="fa fa-check margin-r" aria-hidden="true"></i><label class="margin-r">VALIDACIÓN DOS: </label>
-                    <input type="checkbox" name="final_validation" checked={this.props.data.final_validation} />
+                    <div class="col-md-6">
+                      <UploadInput data={this.props.data} />
+                    </div>
+                    <div class="col-md-6">
+                      {link}
+                    </div>
                   </td>
                 </tr>
-                <br/>
-                <br/>
+
+                <br />
 
                 <tr>
-                  <td>
-                    <i class="fa fa-eye margin-r" aria-hidden="true"></i><label class="control-label margin-r">OBSERVACIÓN: </label>
-                    <input type="text" name="observation" value={this.props.data.observation} title={this.props.data.observation} disabled />
+                  <td colspan="2">
+                    <div class="col-md-12">
+                      {observation}
+                    </div>
                   </td>
-
-                  <td>
-                    <i class="fa fa-eye margin-r" aria-hidden="true"></i><label class="control-label margin-r">OBSERVACIÓN: </label>
-                    <input type="text" name="second_observation" value={this.props.data.second_observation} title={this.props.data.second_observation} disabled/>
-                  </td>
-                </tr>
+                </tr>                                             
 
               </table>
-              <br/>
               <br/>
             </div>
           </div>
 
-
           <div>
             <div class="col col-md-12">
-              <input type="submit" value="ENVIAR" class="btn btn-primary pull-right" />
+              {button}
             </div>
           </div>
         </form>

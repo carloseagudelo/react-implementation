@@ -8,7 +8,7 @@ import DocumentStore from '../../../../stores/DocumentStore'
 import UploadComponent from './UploadComponent'
 import ValidateComponent from './ValidateComponent'
 import Loading from '../../../Loading'
-
+import MessageFlash from '../../../MessageFlash'
 import Constant from '../../../../utils/Constants'
 
 @ReactMixin.decorate(Reflux.connect(DocumentStore, 'fields'))
@@ -34,28 +34,32 @@ export default class Fields extends React.Component {
     }
   }
 
-
-
-  render() {
+  render() {    
     if(this.state.fields){
-      let fields;
-      if(localStorage.role == Constant.ROLE_BENEFICIARY){
-        fields = this.state.fields.data.map((field) => {
-          return(
-            <UploadComponent data={field} />
-          )
-        })
+      let fields
+      let buttons      
+      if(this.state.fields.data.length == 0){
+        fields = <center><div class="alert alert-info"><strong>NO TIENE DOCUMENTOS PARA CARGAR</strong></div></center>
       }else{
-        fields = this.state.fields.data.map((field) => {
-          return(
-            <ValidateComponent data={field} />
-          )
-        })
-      }
+        if(localStorage.role == Constant.ROLE_BENEFICIARY){
+          fields = this.state.fields.data.map((field) => {
+            return(
+            <UploadComponent data={field} />
+            )
+          })          
+        }else{
+          fields = this.state.fields.data.map((field) => {
+            return(
+              <ValidateComponent data={field} />
+            )
+          })          
+        }  
+        buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR</button>
+      }      
       return (
         <div >
           {fields}
-          <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR</button>
+          {buttons}
         </div>
       )
     }else{
