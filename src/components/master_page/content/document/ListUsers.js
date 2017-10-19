@@ -67,6 +67,7 @@ export default class ListUser extends React.Component {
           <table class="table table-striped">
             <thead>
               <tr>
+                <th><b>DOCUMENTO</b></th>
                 <th><b>NOMBRE</b></th>
                 <th><b>ESTADO</b></th>
                 <th><b>FECHA  DE CARGA DE DOCUMENTOS</b></th>

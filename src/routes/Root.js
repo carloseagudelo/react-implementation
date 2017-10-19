@@ -63,7 +63,7 @@ export default class Root extends React.Component {
         <Route path='/' component={MasterPage} onEnter={this.requireAuth} >
           <Route path='/documents' component={Document} />
           <Route path='/reports' component={Report} />
-          <Route path='/documents/:id' component={Document} />
+          <Route path='/documents/:id/name/:name/document_num/:doc' component={Document} />
           <Route path='/load_user' component={LoadUser} />
           <Route path='/list_documents' component={ListDocumets} />
           <Route path='/create_document' component={CreateDocument} />
