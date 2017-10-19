@@ -39,7 +39,7 @@ export default class UploadComponent extends React.Component {
                       </div>
                     </div>
     }
-    if(!this.props.data.pre_validation){
+    if(this.props.data.pre_validation){
       button = <input type="submit" value="GUARDAR DOCUMENTO" class="btn btn-primary pull-right" />
     }
 
