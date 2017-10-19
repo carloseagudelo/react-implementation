@@ -76,11 +76,16 @@ let FileUpload = Reflux.createStore({
 
   // Realiza la petición para cargar los archivos en el servidor externo
   SendFile: function(formData){
+
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    console.log(formData)
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
-      async: false,
+      //async: false,
       context: this,
       enctype: 'multipart/form-data',
       url: SecretConstant.HOST_API+'/load_file',
