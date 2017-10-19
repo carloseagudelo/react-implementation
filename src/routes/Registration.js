@@ -36,10 +36,11 @@ export default class Registration extends React.Component {
   	ev.preventDefault()
   	let form_data = $(ev.target).serializeArray()
   	let data = {
-  	  'name': form_data[0].value,
-  	  'document_type': form_data[1].value,
-  	  'document_number': form_data[2].value,
-  	  'email': form_data[3].value
+			'name': form_data[0].value,
+			'surname': form_data[1].value,
+  	  'document_type': form_data[2].value,
+  	  'document_number': form_data[3].value,
+  	  'email': form_data[4].value
   	}
   	LoginAction.Register(data)
   }
@@ -56,7 +57,9 @@ export default class Registration extends React.Component {
 		  <div class="custom-container">
 		  	<h1 class="form-title">REGISTRO</h1>
 		    <form class="custom-form" onSubmit={this.onSubmitRegistration.bind(this)}>
-		      <input type="text" name="name" class="form-control" placeholder="NOMBRE Y APELLIDO" required="" />
+		      <input type="text" name="name" class="form-control" placeholder="PRIMER NOMBRE" required="" />
+					<input type="text" name="surname" class="form-control" placeholder="PRIMER APELLIDO" required="" />
+
 		      <select name="document_type" class="form-control" required="">
 		      	<option value="">TIPO DE DOCUMENTO</option>
 		        <option value="TI">TARJETA DE IDENTIDAD</option>
