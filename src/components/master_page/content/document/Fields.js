@@ -34,32 +34,65 @@ export default class Fields extends React.Component {
     }
   }
 
-  render() {    
+  render() {
+
     if(this.state.fields){
+
       let fields
-      let buttons      
+      let buttons 
+      let messageAlert 
+
       if(this.state.fields.data.length == 0){
         fields = <center><div class="alert alert-info"><strong>NO TIENE DOCUMENTOS PARA CARGAR</strong></div></center>
       }else{
         if(localStorage.role == Constant.ROLE_BENEFICIARY){
           fields = this.state.fields.data.map((field) => {
             return(
-            <UploadComponent data={field} />
+              <UploadComponent data={field} />
             )
-          })          
+          }) 
         }else{
           fields = this.state.fields.data.map((field) => {
             return(
               <ValidateComponent data={field} />
             )
-          })          
+          }) 
+          if(!this.state.fields.data[0].get_validated_all){
+            buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR VALIDACIÓN</button>         
+          }
         }  
-        buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR</button>
-      }      
+      } 
+
+      if(localStorage.role == Constant.ROLE_BENEFICIARY){
+        if(this.state.fields.data[0].get_validated_all){
+          messageAlert =
+                        <div class="alert alert-success alert-document">
+                          <center><strong>SUS DOCUMENTOS FUERON VALIDADOS SATISFACTORIAMENTE</strong></center>
+                        </div>  
+        }else{
+          if(this.state.fields.data[0].get_upload_obligatory_all){
+            messageAlert =
+                          <div class="alert alert-success alert-document">
+                            <center><strong>YA HAS CARGADO LOS DOCUMENTOS OBLIGATORIOS PARA QUE SEAN VALIDADOS HAZ CLIC EN EL BOTON ENVIAR</strong></center>
+                          </div>  
+            buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR CARGA DOCUMENTOS</button>
+
+          }else{
+            messageAlert =                      
+                          <div class="alert alert-danger alert-document">
+                            <center><strong>NO HA CARGADO LOS DOCUMENTOS OBLIGATORIOS</strong></center>
+                          </div>    
+          }
+        }
+      }
+      
+
       return (
         <div >
+          {messageAlert}
           {fields}
           {buttons}
+          {messageAlert}
         </div>
       )
     }else{

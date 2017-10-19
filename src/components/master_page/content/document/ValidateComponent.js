@@ -38,7 +38,7 @@ export default class ValidateComponent extends React.Component {
 
   render() {
     let component;
-    if(localStorage.user_id == this.props.data.final_validator_id){
+    if(localStorage.user_id == this.props.data.pre_validator_id){
       component =
                   <div class="row">
                     <div class="col-sm-12">
@@ -72,7 +72,7 @@ export default class ValidateComponent extends React.Component {
 
                     <div class="row">
                       <div class="col col-md-12">
-                        <input type="submit" value="ENVIAR" class="btn btn-primary btn-sm pull-right" />
+                        <input type="submit" value="GUARDAR VALIDACIÓN" class="btn btn-primary btn-sm pull-right" />
                       </div>
                     </div>                    
                   </div>
@@ -131,7 +131,7 @@ export default class ValidateComponent extends React.Component {
 
           <hr/>
 
-         {component}
+          {component}
 
         </form>
       </div>

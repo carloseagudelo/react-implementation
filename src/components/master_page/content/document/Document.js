@@ -42,7 +42,7 @@ export default class Document extends React.Component {
           <div class="">
             <div class="page-title">
               <div class="x_title">
-                <h3>DOCUMENTOS DEL USUARIO</h3>
+                <h3>DOCUMENTOS DEL USUARIO {this.props.params.name} CON CEDULA {this.props.params.doc}</h3>
               </div>
               <div class="x_content">
                 <Fields data={this.props.params.id} />
@@ -70,7 +70,7 @@ export default class Document extends React.Component {
           <div class="">
             <div class="page-title">
               <div class="x_title">
-                <h3>DOCUMENTOS DEL USUARIO</h3>
+                <h3>DOCUMENTOS DEL USUARIO {this.props.params.name} CON CEDULA {this.props.params.doc}</h3>
               </div>
               <div class="x_content">
                 <Fields data={this.props.params.id} />
