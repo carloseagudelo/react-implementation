@@ -14,6 +14,7 @@ export default class UploadComponent extends React.Component {
   }
 
   onSubmitSend(ev){    
+    ev.preventDefault()
     let data = $(ev.target).serializeArray()
     var formData = new FormData();
     var input = $('input[name=s' + data[0].value + ']')
@@ -25,7 +26,6 @@ export default class UploadComponent extends React.Component {
   render() {
     let link
     let observation
-    let button
     let obligatory
 
     if(this.props.data.file_file_name != ''){
@@ -38,9 +38,6 @@ export default class UploadComponent extends React.Component {
                         <center><strong><i class="fa fa-eye" aria-hidden="true"></i> OBSERVACIÓN: {this.props.data.observation}</strong></center>
                       </div>
                     </div>
-    }
-    if(this.props.data.pre_validation){
-      button = <input type="submit" value="GUARDAR DOCUMENTO" class="btn btn-primary pull-right" />
     }
 
     if(this.props.data.obligatory){
@@ -83,7 +80,7 @@ export default class UploadComponent extends React.Component {
                       {link}
                     </div>
                     <div class="col.md-4">
-                      {button}
+                      <input type="submit" value="GUARDAR DOCUMENTO" class="btn btn-primary pull-right" />
                     </div>
                   </td>
                 </tr>

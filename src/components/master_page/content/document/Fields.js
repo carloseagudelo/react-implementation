@@ -74,18 +74,17 @@ export default class Fields extends React.Component {
             messageAlert =
                           <div class="alert alert-success alert-document">
                             <center><strong>YA HAS CARGADO LOS DOCUMENTOS OBLIGATORIOS PARA QUE SEAN VALIDADOS HAZ CLIC EN EL BOTON ENVIAR</strong></center>
-                          </div>  
+                          </div> 
+            buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR CARGA DOCUMENTOS</button> 
 
           }else{
             messageAlert =                      
                           <div class="alert alert-danger alert-document">
                             <center><strong>NO HA CARGADO LOS DOCUMENTOS OBLIGATORIOS</strong></center>
                           </div>    
-            buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR CARGA DOCUMENTOS</button>
           }
         }
       }
-      
 
       return (
         <div >
