@@ -76,11 +76,12 @@ let FileUpload = Reflux.createStore({
 
   // Realiza la petición para cargar los archivos en el servidor externo
   SendFile: function(formData){
+    
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
-      async: false,
+      //async: false,
       context: this,
       enctype: 'multipart/form-data',
       url: SecretConstant.HOST_API+'/load_file',
@@ -93,6 +94,7 @@ let FileUpload = Reflux.createStore({
         $(".loader").hide();
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
+          setTimeout(function(){ location.reload() }, 2000)                    
         }else if(response.status == 400){
           swal("ERROR", response.payload.message, "error")
         }else{
@@ -121,6 +123,7 @@ let FileUpload = Reflux.createStore({
         $(".loader").hide();
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
+          browserHistory.push('/documents')
         }else if(response.status == 400){
           swal("ERROR", response.payload.message, "error")
         }else{
