@@ -30,7 +30,7 @@ export default class UploadInput extends React.Component {
   }
 
   render() {
-    if(this.props.data.pre_validation && this.props.data.final_validation) {
+    if(this.props.data.pre_validation) {
       return(
         <label class='__lk-fileInput'>
           <span class="file-span" data-default='Seleccione un documento'><i class="fa fa-check" aria-hidden="true"></i> DOCUMENTO VALIDADO</span>

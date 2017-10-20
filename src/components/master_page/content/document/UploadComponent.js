@@ -27,6 +27,7 @@ export default class UploadComponent extends React.Component {
     let link
     let observation
     let obligatory
+    let button
 
     if(this.props.data.file_file_name != ''){
       link = <p><b><i class="fa fa-file-text-o" aria-hidden="true"></i> DOCUMENTO CARGADO: </b> <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a></p>
@@ -38,6 +39,10 @@ export default class UploadComponent extends React.Component {
                         <center><strong><i class="fa fa-eye" aria-hidden="true"></i> OBSERVACIÓN: {this.props.data.observation}</strong></center>
                       </div>
                     </div>
+    }
+
+    if(!this.props.data.pre_validation){
+      button = <input type="submit" value="GUARDAR DOCUMENTO" class="btn btn-primary pull-right" />
     }
 
     if(this.props.data.obligatory){
@@ -80,7 +85,7 @@ export default class UploadComponent extends React.Component {
                       {link}
                     </div>
                     <div class="col.md-4">
-                      <input type="submit" value="GUARDAR DOCUMENTO" class="btn btn-primary pull-right" />
+                      {button}
                     </div>
                   </td>
                 </tr>
