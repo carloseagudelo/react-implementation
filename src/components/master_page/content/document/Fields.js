@@ -81,7 +81,7 @@ export default class Fields extends React.Component {
             if(this.state.fields.data[0].get_upload_obligatory_all){
               messageAlert =
                             <div class="alert alert-success alert-document">
-                              <center><strong>YA HAS CARGADO LOS DOCUMENTOS OBLIGATORIOS PARA QUE SEAN VALIDADOS HAZ CLIC EN EL BOTON ENVIAR</strong></center>
+                              <center><strong>YA HAS CARGADO LOS DOCUMENTOS OBLIGATORIOS PARA QUE SEAN VALIDADOS HAZ CLIC EN EL BOTON FINALIZAR CARGA DOCUMENTOS</strong></center>
                             </div> 
               buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR CARGA DOCUMENTOS</button> 
 
