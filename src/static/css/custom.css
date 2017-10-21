@@ -4657,6 +4657,9 @@ select { width: 400px; text-align-last:center; }
     z-index: 0 !important;
     position: inherit !important;
     margin-top: 0px;
+    margin-left: 25% !important;
+    width: 50%;
+    padding: 10px;
 }
 
 .important{

@@ -57,9 +57,10 @@ export default class Fields extends React.Component {
               <ValidateComponent data={field} />
             )
           }) 
-          if(!this.state.fields.data[0].get_validated_all){
+          if(!localStorage.role.includes("admin")){
             buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR VALIDACIÓN</button>         
           }
+          
         }  
       } 
 

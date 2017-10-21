@@ -30,7 +30,7 @@ export default class UploadComponent extends React.Component {
     let button
 
     if(this.props.data.file_file_name != ''){
-      link = <p><b><i class="fa fa-file-text-o" aria-hidden="true"></i> DOCUMENTO CARGADO: </b> <a href={'ftp://192.168.1.2/'+this.props.data.file_url} target="_blank" >{this.props.data.file_file_name}</a></p>
+      link = <p><b><i class="fa fa-file-text-o" aria-hidden="true"></i> DOCUMENTO CARGADO: </b> <a href={'ftp://181.143.72.66:5010/'+this.props.data.file_url} download={this.props.data.file_file_name} >{this.props.data.file_file_name}</a></p>
     }
     if(this.props.data.observation){
       observation = <div>
