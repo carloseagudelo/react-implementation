@@ -11,7 +11,8 @@ import ReactMixin from 'react-mixin'
 // importa las clases propias
 import AdminFoundAction from '../../../../actions/AdminFoundAction'
 import AdminFoundActionStore from '../../../../stores/AdminFoundStore'
-import SecretConstant from '../../../../utils/SecretsConstant'
+import SelectFund from '../../../../utils/selectFund'
+
 import SelectTag from '../../../SelectTag';
 
 @ReactMixin.decorate(Reflux.connect(AdminFoundActionStore, 'records'))
@@ -23,13 +24,7 @@ export default class Report extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    var fund_name
-    if (localStorage.getItem("role") == "adminPp"){
-      fund_name = "PRESUPUESTO PARTICIPATIVO"
-    }else{
-      fund_name = "BECAS TECNOLOGIA"
-    }
-    AdminFoundAction.GetFundInformation(fund_name , '2017-2')
+    AdminFoundAction.GetFundInformation(SelectFund , '2017-2')
   }
 
   changeData(ev){
@@ -37,7 +32,7 @@ export default class Report extends React.Component {
     AdminFoundAction.GetFundInformation($("#element option:selected").text(), $("#second-element option:selected").text())
   }
 
-  donwnloadExcel(ev){
+  downLoadExcel(ev){
     ev.preventDefault()
     AdminFoundAction.DonwnloadExcel($("#second-element option:selected").text())
   }
@@ -45,20 +40,12 @@ export default class Report extends React.Component {
   // Retorna el componente
   render() {
 
-    var fund_name
-    if (localStorage.getItem("role") == "adminPp"){
-      fund_name = "PRESUPUESTO PARTICIPATIVO"
-    }else{
-      fund_name = "BECAS TECNOLOGIA"
-    }
-
-
     if(this.state.records){
       return (
         <div class="">
         <div class="page-title">
           <div class="x_title">
-            <h3>INFORMACIÓN {fund_name}</h3>
+            <h3>INFORMACIÓN {SelectFund}</h3>
           </div>
 
           <center>
@@ -82,7 +69,7 @@ export default class Report extends React.Component {
             </table>
           </div>
 
-          <button class="btn btn-primary pull-right" onClick={this.donwnload2017_2.bind(this)}>
+          <button class="btn btn-primary pull-right" onClick={this.downLoadExcel.bind(this)}>
             DESCARGAR REGISTROS
           </button>
 
@@ -90,6 +77,10 @@ export default class Report extends React.Component {
       </div>
 
       )
+    }else{
+      return(
+        <h1>CARGANDO...</h1>
+      )
     }
-  } //hacer else ifs para los otro roles :)
+  }
 }

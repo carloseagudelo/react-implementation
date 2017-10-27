@@ -15,6 +15,8 @@ import AdminFoundAction from '../actions/AdminFoundAction'
 
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
+import SelectFund from '../utils/selectFund'
+
 import Constant from '../utils/Constants'
 
 // Define la clase
@@ -76,17 +78,24 @@ let AdminFoundStore = Reflux.createStore({
   // Realiza la peticion para obtener el archivo en excel de la convocatoria que ingresa como parametro
   DonwnloadExcel: function(convocatory){
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
+    let url
+    if (SelectFund == "BECAS TECNOLOGIA"){
+      url = SecretConstant.TECHNOLOGY_API
+    }else {
+      url = SecretConstant.PP_API
+    }
+
     $.ajax({
       cache: false,
       context: this,
       async: false,
       data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory},
-      url: SecretConstant.TECHNOLOGY_API+'/validate_download_excel',
+      url: url+'/validate_download_excel',
       method: 'GET',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
-          document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+          window.open(url+response.payload.message)
+          //document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
         }else {
           swal("ERROR", response.payload.message, "error")
         }
