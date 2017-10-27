@@ -9,7 +9,7 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 
 // importa las clases propias
-import AdminFoundActionAction from '../../../../actions/AdminFoundAction'
+import AdminFoundAction from '../../../../actions/AdminFoundAction'
 import AdminFoundActionStore from '../../../../stores/AdminFoundStore'
 import SecretConstant from '../../../../utils/SecretsConstant'
 import SelectTag from '../../../SelectTag';
@@ -23,7 +23,13 @@ export default class Report extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    AdminFoundAction.GetFundInformation('BECAS TECNOLOGIA', '2017-2')
+    var fund_name
+    if (localStorage.getItem("role") == "adminPp"){
+      fund_name = "PRESUPUESTO PARTICIPATIVO"
+    }else{
+      fund_name = "BECAS TECNOLOGIA"
+    }
+    AdminFoundAction.GetFundInformation(fund_name , '2017-2')
   }
 
   changeData(ev){
@@ -39,12 +45,20 @@ export default class Report extends React.Component {
   // Retorna el componente
   render() {
 
+    var fund_name
+    if (localStorage.getItem("role") == "adminPp"){
+      fund_name = "PRESUPUESTO PARTICIPATIVO"
+    }else{
+      fund_name = "BECAS TECNOLOGIA"
+    }
+
+
     if(this.state.records){
       return (
         <div class="">
         <div class="page-title">
           <div class="x_title">
-            <h3>INFORMACIÓN BECAS-TECNOLOGÍA</h3>
+            <h3>INFORMACIÓN {fund_name}</h3>
           </div>
 
           <center>
@@ -61,13 +75,13 @@ export default class Report extends React.Component {
               </tr>
 
               <tr>
-                <th><h4 class="centered-table">{statistics.total}</h4></th>
-                <th><h4 class="centered-table">{statistics.finished}</h4></th>
-                <th><h4 class="centered-table">{statistics.pending}</h4></th>
+                <th><h4 class="centered-table">{this.state.records.total}</h4></th>
+                <th><h4 class="centered-table">{this.state.records.finished}</h4></th>
+                <th><h4 class="centered-table">{this.state.records.pending}</h4></th>
               </tr>
             </table>
           </div>
-          
+
           <button class="btn btn-primary pull-right" onClick={this.donwnload2017_2.bind(this)}>
             DESCARGAR REGISTROS
           </button>
