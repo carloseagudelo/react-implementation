@@ -51,7 +51,7 @@ export default class HabeasData extends React.Component {
 			  <br />
 			  <p class="justificar">
 			    Así mismo, acepto las condiciones del programa según se estipula en la
-			    <strong><a href="http://www.sapiencia.gov.co/wp-content/uploads/2017/05/Resolución-de-apertura.pdf" target="_blank"> Resolución 6665 del 2017 </a></strong>
+			    <strong><a href="http://www.sapiencia.gov.co/wp-content/uploads/2016/04/Resolucion63de2016ReglamentoFondosPPversionfinaldefinitiva.pdf" target="_blank"> Resolución 63 de 2016 </a></strong>
 			    para iniciar el diligenciamiento del formulario, y autorizo a La Agencia de Educación Superior de Medellín – SAPIENCIA,
 			    para que la información y notificación demandados de éste proceso, sean realizados al correo electrónico indicado en éste
 			    formulario.
