@@ -24,17 +24,17 @@ export default class Report extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    AdminFoundAction.GetFundInformation(SelectFund , '2017-2')
+    AdminFoundAction.GetFundInformation(SelectFund , '2018-1')
   }
 
   changeData(ev){
     ev.preventDefault()
-    AdminFoundAction.GetFundInformation($("#element option:selected").text(), $("#second-element option:selected").text())
+    AdminFoundAction.GetFundInformation(SelectFund, $("#element option:selected").text())
   }
 
   downLoadExcel(ev){
     ev.preventDefault()
-    AdminFoundAction.DonwnloadExcel($("#second-element option:selected").text())
+    AdminFoundAction.DonwnloadExcel($("#element option:selected").text())
   }
 
   // Retorna el componente
