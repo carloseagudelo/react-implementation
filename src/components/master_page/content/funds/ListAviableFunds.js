@@ -55,7 +55,7 @@ export default class ListAviableFunds extends React.Component {
         </div>
         <div class="x_content">
           <div class="card">
-            <img class="banner" src='../../static/img/bannerPP_2018_1.png' />
+            <img class="banner" src='../../static/img/bannerPP_square.png' />
             <center>
               <button class= "btn btn-primary btn-card" onClick={this.onSubmitFund.bind(this)} value="Syncronous request">
                 <b>INICIAR INSCRIPCIÓN</b>
