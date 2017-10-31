@@ -9,9 +9,10 @@ import Reflux from 'reflux'
 import ReactMixin from 'react-mixin'
 
 // importa las clases propias
-import AdminFoundActionAction from '../../../../actions/AdminFoundAction'
+import AdminFoundAction from '../../../../actions/AdminFoundAction'
 import AdminFoundActionStore from '../../../../stores/AdminFoundStore'
-import SecretConstant from '../../../../utils/SecretsConstant'
+import SelectFund from '../../../../utils/selectFund'
+
 import SelectTag from '../../../SelectTag';
 
 @ReactMixin.decorate(Reflux.connect(AdminFoundActionStore, 'records'))
@@ -23,17 +24,17 @@ export default class Report extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    AdminFoundAction.GetFundInformation('BECAS TECNOLOGIA', '2017-2')
+    AdminFoundAction.GetFundInformation(SelectFund , '2018-1')
   }
 
   changeData(ev){
     ev.preventDefault()
-    AdminFoundAction.GetFundInformation($("#element option:selected").text(), $("#second-element option:selected").text())
+    AdminFoundAction.GetFundInformation(SelectFund, $("#element option:selected").text())
   }
 
-  donwnloadExcel(ev){
+  downLoadExcel(ev){
     ev.preventDefault()
-    AdminFoundAction.DonwnloadExcel($("#second-element option:selected").text())
+    AdminFoundAction.DonwnloadExcel($("#element option:selected").text())
   }
 
   // Retorna el componente
@@ -44,7 +45,7 @@ export default class Report extends React.Component {
         <div class="">
         <div class="page-title">
           <div class="x_title">
-            <h3>INFORMACIÓN BECAS-TECNOLOGÍA</h3>
+            <h3>INFORMACIÓN {SelectFund}</h3>
           </div>
 
           <center>
@@ -61,14 +62,14 @@ export default class Report extends React.Component {
               </tr>
 
               <tr>
-                <th><h4 class="centered-table">{statistics.total}</h4></th>
-                <th><h4 class="centered-table">{statistics.finished}</h4></th>
-                <th><h4 class="centered-table">{statistics.pending}</h4></th>
+                <th><h4 class="centered-table">{this.state.records.total}</h4></th>
+                <th><h4 class="centered-table">{this.state.records.finished}</h4></th>
+                <th><h4 class="centered-table">{this.state.records.pending}</h4></th>
               </tr>
             </table>
           </div>
-          
-          <button class="btn btn-primary pull-right" onClick={this.donwnload2017_2.bind(this)}>
+
+          <button class="btn btn-primary pull-right" onClick={this.downLoadExcel.bind(this)}>
             DESCARGAR REGISTROS
           </button>
 
@@ -76,6 +77,10 @@ export default class Report extends React.Component {
       </div>
 
       )
+    }else{
+      return(
+        <h1>CARGANDO...</h1>
+      )
     }
-  } //hacer else ifs para los otro roles :)
+  }
 }

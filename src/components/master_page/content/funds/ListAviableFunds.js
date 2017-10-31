@@ -52,10 +52,22 @@ export default class ListAviableFunds extends React.Component {
           <div class="x_title">
             <h3>FONDOS DISPONIBLES</h3>
           </div>
+<<<<<<< HEAD
           <div class="x_content">
             <div class="alert alert-info">
               <center><strong>NO HAY FONDOS DISPONIBLES EN ESTE MOMENTO</strong></center>
             </div>
+=======
+        </div>
+        <div class="x_content">
+          <div class="card">
+            <img class="banner" src='../../static/img/bannerPP_2018_1.png' />
+            <center>
+              <button class= "btn btn-primary btn-card" onClick={this.onSubmitFund.bind(this)} value="Syncronous request">
+                <b>INICIAR INSCRIPCIÓN</b>
+              </button>
+            </center>
+>>>>>>> d606915abfb5fed114910a415b4261b58def34fa
           </div>
         </div>
       </div>
