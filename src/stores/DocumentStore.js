@@ -299,12 +299,11 @@ let FileUpload = Reflux.createStore({
     });
   },
 
-  GetFile: function(id){
+  GetFile: function(id, doc_name){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    window.open('http://181.143.72.70:11000/get_pdf/'+id+'.json')
+    window.open('http://181.143.72.70:11000/get_pdf/' + doc_name.replace(".pdf", "") + '/'+id+'.json')
     $(".loader").hide();
   }
-  
 })
 
 // Exporta la clase

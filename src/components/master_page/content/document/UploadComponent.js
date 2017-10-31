@@ -25,7 +25,7 @@ export default class UploadComponent extends React.Component {
 
   getFile(ev){
     ev.preventDefault()
-    DocumentAction.GetFile(this.props.data.id)
+    DocumentAction.GetFile(this.props.data.id, this.props.data.file_file_name)
   }
 
   render() {
