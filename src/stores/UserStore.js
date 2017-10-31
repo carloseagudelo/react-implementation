@@ -43,7 +43,7 @@ let UserStore = Reflux.createStore({
     });
   },
 
-  GetPDF: function(convocatory){
+  GetPDF: function(convocatory, app){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
     document.cookie = "user_id="+localStorage.user_id;
@@ -56,7 +56,13 @@ let UserStore = Reflux.createStore({
       success: function(response, textStatus, xhr){
         if(response.status == 200){
           $(".loader").hide();
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+          switch(app){
+            case 'technology_form':
+              window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+              break;
+            default:
+              window.open(SecretConstant.PP_API+response.payload.message)
+          } 
         }else{
           $(".loader").hide();
           swal("", response.payload.message, "error")
@@ -70,11 +76,19 @@ let UserStore = Reflux.createStore({
 
   DropRegister: function(convocatory){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+    let url
+    switch(app){
+      case 'technology_form':
+        url = SecretConstant.TECHNOLOGY_API
+        break;
+      default:
+        url = SecretConstant.PP_API
+    } 
     $.ajax({
       cache: false,
       context: this,
       data: {"user_id": localStorage.getItem("user_id"), 'convocatory': convocatory},
-      url: SecretConstant.TECHNOLOGY_API+'/delete_register',
+      url: url+'/delete_register',
       method: 'POST',
       success: function(response, textStatus, xhr){
         $(".loader").hide();
@@ -90,7 +104,7 @@ let UserStore = Reflux.createStore({
     });
   },
 
-  ShowConvocatory: function(convocatory){
+  ShowConvocatory: function(convocatory, app){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
     document.cookie = "convocatory="+convocatory;
@@ -104,7 +118,13 @@ let UserStore = Reflux.createStore({
       success: function(response, textStatus, xhr){
         $(".loader").hide();
         if(response.status == 200){
-          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+          switch(app){
+            case 'technology_form':
+              window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+              break;
+            default:
+              window.open(SecretConstant.PP_API+response.payload.message)
+          }          
         }
       },
       error: function(xhr, textStatus){

@@ -24,7 +24,7 @@ export default class Delete extends React.Component {
   onSubmit(ev){
     ev.preventDefault()
     if(this.props.aviable){
-      UserAction.DropRegister(this.props.convocatory)
+      UserAction.DropRegister(this.props.convocatory, this.prop.app)
     }else{
       swal("", 'NO PUEDE ELIMINAR EL REGISTRO LA CONVOCATORIA YA FUE CERRADA', "error")
     }

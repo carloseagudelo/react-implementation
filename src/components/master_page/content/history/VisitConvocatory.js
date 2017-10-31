@@ -23,7 +23,7 @@ export default class VisitConvocatory extends React.Component {
   // Evento de clic en el componente
   onSubmit(ev){
     ev.preventDefault()
-  	UserAction.ShowConvocatory(this.props.convocatory)
+  	UserAction.ShowConvocatory(this.props.convocatory, this.props.app)
   }
 
   // Retorna el componente
