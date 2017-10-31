@@ -94,8 +94,12 @@ let AdminFoundStore = Reflux.createStore({
       method: 'GET',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
+<<<<<<< HEAD
+          window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+=======
           window.open(url+response.payload.message)
           //document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+>>>>>>> d606915abfb5fed114910a415b4261b58def34fa
         }else {
           swal("ERROR", response.payload.message, "error")
         }

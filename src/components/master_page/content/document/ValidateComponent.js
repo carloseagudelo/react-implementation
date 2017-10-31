@@ -38,6 +38,12 @@ export default class ValidateComponent extends React.Component {
 
   render() {
     let component;
+    let obligatory
+
+    if(this.props.data.obligatory){
+      obligatory = <h4 class="important"><strong>OBLIGATORIO</strong></h4>
+    }
+    
     if(localStorage.user_id == this.props.data.pre_validator_id){
       component =
                   <div class="row">
@@ -119,10 +125,11 @@ export default class ValidateComponent extends React.Component {
               <table class="table table-docs">
                 <tr>
                   <td>
-                    <div class="col-md-12">
-                      <h3><strong>{this.props.data.document_name}</strong></h3>
-                      <h6><strong>{this.props.data.document_description}</strong></h6>
-                    </div>
+                    <h3><strong>{this.props.data.document_name}</strong></h3>
+                    <h6><strong>{this.props.data.document_description}</strong></h6>
+                  </td>
+                  <td>
+                    {obligatory}
                   </td>
                 </tr>
               </table>

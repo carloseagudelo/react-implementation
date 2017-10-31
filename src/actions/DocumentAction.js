@@ -19,7 +19,8 @@ let DocumentAction = Reflux.createActions([
   'SaveDocument',
   'FinishValidate',
   'FinishLoad',
-  'ListDocumentsByFund'
+  'ListDocumentsByFund',
+  'GetFile'
 ])
 
 // Exporta la clase

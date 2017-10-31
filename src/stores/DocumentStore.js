@@ -123,7 +123,6 @@ let FileUpload = Reflux.createStore({
         $(".loader").hide();
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
-          browserHistory.push('/documents')
         }else if(response.status == 400){
           swal("ERROR", response.payload.message, "error")
         }else{
@@ -221,7 +220,7 @@ let FileUpload = Reflux.createStore({
 
   // Realiza la petición para marcar al usuario que todos sus usuarios fueron validados
   FinishValidate: function(personal_id){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+    $("body").append( "<img class='loader' src='/static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
@@ -233,6 +232,7 @@ let FileUpload = Reflux.createStore({
         $(".loader").hide();
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
+          browserHistory.push('/documents')
         }else if(response.status == 400){
           swal("ERROR", response.payload.message, "error")
         }else{
@@ -260,6 +260,7 @@ let FileUpload = Reflux.createStore({
         $(".loader").hide();
         if(response.status == 200){
           swal("HECHO", response.payload.message, "success")
+          setTimeout(function(){ location.reload() }, 2000)
         }else if(response.status == 200){
           swal("ERROR", response.payload.message, "error")
         }else {
@@ -296,8 +297,14 @@ let FileUpload = Reflux.createStore({
         browserHistory.push('/error_page/500')
       }
     });
-  }
+  },
 
+  GetFile: function(id){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+    window.open('http://181.143.72.70:11000/get_pdf/'+id+'.json')
+    $(".loader").hide();
+  }
+  
 })
 
 // Exporta la clase
