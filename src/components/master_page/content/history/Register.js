@@ -13,7 +13,7 @@ export default class Register extends React.Component {
 
   render() {
 
-    let etape 
+    let etape
     let preselected
     if(this.props.data.etape){
       etape =  <i class="fa fa-check" aria-hidden="true"></i>
@@ -36,7 +36,6 @@ export default class Register extends React.Component {
         <th>{preselected}</th>
         <VisitConvocatory convocatory={this.props.data.convocatory} app={this.props.data.app} />
         <GetPDF convocatory={this.props.data.convocatory} etape={this.props.data.etape} app={this.props.data.app} />
-        <Delete convocatory={this.props.data.convocatory} aviable={this.props.data.aviable} app={this.props.data.app} />
       </tr>
     )
   }
