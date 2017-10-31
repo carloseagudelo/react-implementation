@@ -46,7 +46,6 @@ export default class History extends React.Component {
                     <th><b>PRESELECCIONADO</b></th>
                     <th><b>VISUALIZAR INSCRIPCIÓN</b></th>
                     <th><b>PDF</b></th>
-                    <th><b>ELIMINAR INSCRIPCIÓN</b></th>
                   </tr>
                 </thead>
                 <tbody>

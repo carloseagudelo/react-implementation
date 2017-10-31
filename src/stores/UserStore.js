@@ -1,4 +1,4 @@
-/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax al servidor backend del aplicativo para 
+/*  Descripcion: Clase de tipo Store que contiene los llamados Ajax al servidor backend del aplicativo para
                  la manipulacion del master page del aplicativo (Menus, submenus, información principal)
     Autor: Carlos Agudelo
     Contacto: agudelo.carlos@hotmail.es
@@ -29,14 +29,14 @@ let UserStore = Reflux.createStore({
       context: this,
       url: SecretConstant.HOST_API+'/get_historial',
       method: 'GET',
-      success: function(response, textStatus, xhr){ 
+      success: function(response, textStatus, xhr){
         $(".loader").hide();
         if(response.status == 200){
           this.trigger(response.payload)
         }else {
           browserHistory.push('/error_page/500')
         }
-      },  
+      },
       error: function(textStatus, xhr){
         browserHistory.push('/error_page/500')
       }
@@ -62,7 +62,7 @@ let UserStore = Reflux.createStore({
               break;
             default:
               window.open(SecretConstant.PP_API+response.payload.message)
-          } 
+          }
         }else{
           $(".loader").hide();
           swal("", response.payload.message, "error")
@@ -83,7 +83,7 @@ let UserStore = Reflux.createStore({
         break;
       default:
         url = SecretConstant.PP_API
-    } 
+    }
     $.ajax({
       cache: false,
       context: this,
@@ -105,6 +105,16 @@ let UserStore = Reflux.createStore({
   },
 
   ShowConvocatory: function(convocatory, app){
+
+    var url
+    switch(app){
+      case 'technology_form':
+        url = SecretConstant.TECHNOLOGY_API
+        break;
+      default:
+        url = SecretConstant.PP_API
+    }
+
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
     document.cookie = "convocatory="+convocatory;
@@ -113,7 +123,7 @@ let UserStore = Reflux.createStore({
       context: this,
       async: false,
       data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory},
-      url: SecretConstant.TECHNOLOGY_API+'/authentificate_plataform',
+      url: url+'/authentificate_plataform',
       method: 'POST',
       success: function(response, textStatus, xhr){
         $(".loader").hide();
@@ -124,7 +134,7 @@ let UserStore = Reflux.createStore({
               break;
             default:
               window.open(SecretConstant.PP_API+response.payload.message)
-          }          
+          }
         }
       },
       error: function(xhr, textStatus){
