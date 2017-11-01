@@ -44,13 +44,7 @@ let LoginStore = Reflux.createStore({
         $(".loader").hide();
         if(response.status == 'authorized'){
           if(Authentication(response.payload.message.auth_token)){ // Valida el token y guarda la información en el localStores
-            if (localStorage.role == "candidate"){
-              browserHistory.push('/list_funds_aviables');
-            }else{
-              browserHistory.push('/');
-            }
-
-
+            browserHistory.push('/tutorials');
           }else {
             this.state = {
               message: Constant.USER_NO_VALID,
