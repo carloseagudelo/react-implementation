@@ -52,12 +52,6 @@ export default class ListAviableFunds extends React.Component {
           <div class="x_title">
             <h3>FONDOS DISPONIBLES</h3>
           </div>
-<<<<<<< HEAD
-          <div class="x_content">
-            <div class="alert alert-info">
-              <center><strong>NO HAY FONDOS DISPONIBLES EN ESTE MOMENTO</strong></center>
-            </div>
-=======
         </div>
         <div class="x_content">
           <div class="card">
@@ -67,7 +61,6 @@ export default class ListAviableFunds extends React.Component {
                 <b>INICIAR INSCRIPCIÓN</b>
               </button>
             </center>
->>>>>>> d606915abfb5fed114910a415b4261b58def34fa
           </div>
         </div>
       </div>

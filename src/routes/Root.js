@@ -34,7 +34,7 @@ import CreateFund from '../components/master_page/content/configuration/CreateFu
 import CreateConvocatory from '../components/master_page/content/configuration/CreateConvocatory'
 import HistoryDocument from '../components/master_page/content/document/HistoryDocuments'
 import GeneralAdminReport from '../components/master_page/content/report/GeneralAdminReport'
-
+import Tutorial from '../components/master_page/Tutorial'
 
 export default class Root extends React.Component {
 
@@ -75,8 +75,8 @@ export default class Root extends React.Component {
           <Route path='/list_funds_aviables' component={ListAviableFunds} />
           <Route path='/personal_history' component={History} />
           <Route path='/document_history' component={HistoryDocument} />
-          <Route path='/admin_report' component={GeneralAdminReport} />
-
+          <Route path='/admin_report' component={GeneralAdminReport} /> 
+          <Route path='/tutorials' component={Tutorial} />
         </Route>
         <Route path='registration' component={Registration} />
         <Route path='habeas_data' component={HabeasData}  />
