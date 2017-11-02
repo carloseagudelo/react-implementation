@@ -299,9 +299,10 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // 181.143.72.70:11000
   GetFile: function(id, document_name){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    window.open('http://181.143.72.70:11000/get_pdf/'+ document_name.replace(".pdf", "") +'/'+id+'.json')
+    window.open('http://localhost:3000/get_pdf/'+ document_name.replace(".pdf", "") +'/'+id+'.json')
     $(".loader").hide();
   }
 })
