@@ -9,6 +9,7 @@ import $ from 'jquery'
 import React from 'react'
 import ReactMixin from 'react-mixin'
 import Reflux from 'reflux'
+import { Link } from 'react-router'
 
 // importa las librerias externas necesarias
 import LoginAction from '../actions/LoginAction.js'
@@ -48,10 +49,15 @@ export default class GetSecureCode extends React.Component {
 		    <Logo />
 		  </center>
 		  <div class="custom-container">
-		  	<h1 class="form-title">REGISTRO</h1>
+		  	<h1 class="form-title">RECUPERAR CONTRASEÑA</h1>
 		    <form class="custom-form" onSubmit={this.onSubmitGetSecureCode.bind(this)}>
 		      <input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
-			  <button type="submit" id="login-button">ENVIAR</button>
+			  <button type="submit" id="login-button">ENVIAR CÓDIGO</button>
+        <br/>
+          <p>
+            <Link class="mg-right" to='habeas_data'>Registro en plataforma </Link>
+            <Link to='login'>Iniciar Sesión </Link>
+          </p>
 			</form>
 		  </div>
 		  <Bubbles />
