@@ -103,6 +103,26 @@ let AdminFoundStore = Reflux.createStore({
         browserHistory.push('/error_page/500')
       }
     });
+  },
+
+  // Realiza la busqueda de datos de usuario por tab del panel de administracion
+  listUserRecords: function(list_type, convocatory){
+    $.ajax({
+      cache: false,
+      context: this,
+      async: true,
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      data: {convocatory: convocatory, query_type: list_type},
+      url: SecretConstant.HOST_API+'/list_candidate_records',
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+
+        this.trigger(response)
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
+      }
+    });
   }
 
 })

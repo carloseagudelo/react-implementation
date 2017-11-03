@@ -12,7 +12,8 @@ import Reflux from 'reflux'
 let AdminFoundAction = Reflux.createActions([
   'LoadData',
   'GetFundInformation',
-  'DonwnloadExcel'
+  'DonwnloadExcel',
+  'listUserRecords'
 ])
 
 // Exporta la clase
