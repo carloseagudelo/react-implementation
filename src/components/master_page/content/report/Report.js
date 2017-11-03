@@ -41,7 +41,13 @@ export default class Report extends React.Component {
   }
 
   listUsers(list_type, convocatory){
-    AdminFoundAction.listUserRecords(list_type, convocatory)
+    console.log(list_type)
+    AdminFoundAction.listUserRecords(list_type, convocatory, '')
+  }
+
+  listUsersForSearch(ev){
+    ev.preventDefault()
+    AdminFoundAction.listUserRecords('all', $("#element option:selected").text(), $("#search").val())
   }
 
 
@@ -84,19 +90,19 @@ export default class Report extends React.Component {
 
           <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
-              <TabContent registers = {registers} />
+              <TabContent registers = {registers} onChange={this.listUsersForSearch.bind(this)} />
             </div>
 
             <div id="menu1" class="tab-pane fade">
-              <TabContent registers = {registers} />
+              <TabContent registers = {registers} onChange={this.listUsersForSearch.bind(this)} />
             </div>
 
             <div id="menu2" class="tab-pane fade">
-              <TabContent registers = {registers} />
+              <TabContent registers = {registers} onChange={this.listUsersForSearch.bind(this)} />
             </div>
 
             <div id="menu3" class="tab-pane fade">
-              <TabContent registers = {registers} />
+              <TabContent registers = {registers} onChange={this.listUsersForSearch.bind(this)} />
             </div>
 
             <button class="btn btn-primary pull-right" onClick={this.downLoadExcel.bind(this)}>

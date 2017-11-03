@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import Search from '../../../Search'
 export default class TabContent extends React.Component {
 
   constructor(){
@@ -11,12 +11,7 @@ export default class TabContent extends React.Component {
 
     return(
       <div id = "1" class="x_content info-table">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Buscar por nombre o documento"></input>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">BUSCAR</button>
-          </span>
-        </div>
+        <Search placeholder="buscador" onChange={this.props.onChange} />
         <br />
         <table class="table">
           <tr>
