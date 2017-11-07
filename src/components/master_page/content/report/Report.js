@@ -27,7 +27,7 @@ export default class Report extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    AdminFoundAction.listUserRecords("all" , '2018-1')
+    AdminFoundAction.listUserRecords("all" , '')
   }
 
   changeData(ev){

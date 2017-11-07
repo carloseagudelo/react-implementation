@@ -11,9 +11,9 @@ export default class TabContent extends React.Component {
 
     return(
       <div id = "1" class="x_content info-table">
-        <Search placeholder="buscador" onChange={this.props.onChange} />
+        <Search placeholder="BUSCAR POR COMUNA, NOMBRE O DOCUMENTO DE IDENTIDAD" onChange={this.props.onChange} />
         <br />
-        <table class="table">
+        <table class="table table-striped">
           <tr>
             <th><b>TIPO DE DOCUMENTO</b></th>
             <th><b>NÚMERO DE DOCUMENTO</b></th>

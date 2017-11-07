@@ -11,8 +11,8 @@ export default class ReportRecord extends React.Component {
   }
 
   render() {
-
     return(
+      
       <tr scope="row">
         <th>{this.props.data.document_type}</th>
         <th>{this.props.data.document_number}</th>
