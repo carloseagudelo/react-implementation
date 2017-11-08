@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Search from '../../../Search'
 import Paginator from '../../../Paginator'
 import AdminFoundAction from '../../../../actions/AdminFoundAction'
 
@@ -16,7 +15,6 @@ export default class TabContent extends React.Component {
 
     return(
       <div id = "1" class="x_content info-table">
-        <Search placeholder="BUSCAR POR COMUNA, NOMBRE O DOCUMENTO DE IDENTIDAD" onChange={this.props.onChange} />
         <br />
         <table class="table table-striped">
           <thead>

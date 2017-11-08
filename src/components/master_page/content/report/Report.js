@@ -16,6 +16,7 @@ import SelectFund from '../../../../utils/selectFund'
 import SelectTag from '../../../SelectTag';
 import ReportRecord from './ReportRecord';
 import TabContent from './TabContent';
+import Search from '../../../Search'
 
 
 
@@ -33,7 +34,7 @@ export default class Report extends React.Component {
 
   changeData(ev){
     ev.preventDefault()
-    AdminFoundAction.listUserRecords("all", $("#element option:selected").text(),'','')
+    AdminFoundAction.listUserRecords("all", $("#element option:selected").text(), $("#search").val(), '')
   }
 
   downLoadExcel(ev){
@@ -42,7 +43,7 @@ export default class Report extends React.Component {
   }
 
   listUsers(list_type, convocatory){
-    AdminFoundAction.listUserRecords(list_type, convocatory, '', '')
+    AdminFoundAction.listUserRecords(list_type, convocatory,  $("#search").val(), '')
   }
 
   listUsersForSearch(ev){
@@ -97,18 +98,26 @@ export default class Report extends React.Component {
         )
       })
       return (
-        <div class="">
         <div class="page-title">
           <div class="x_title">
             <h3>INFORMACIÓN {SelectFund}</h3>
           </div>
           <br/>
           <br/>
-          <center>
-            <label for="sel1" class="short-bar-label">SELECCIONE CONVOCATORIA: </label>
-            <SelectTag endPoint="list_convocatories" onChange={this.changeData.bind(this)} />
-          </center>
-          <div class="container">
+
+          <div class= "row">
+            <div class="col-sm-6">
+              <label>SELECCIONE CONVOCATORIA: </label>
+              <SelectTag endPoint="list_convocatories" onChange={this.changeData.bind(this)} />
+            </div>
+
+            <div class="col-sm-6">
+              <label>BÚSQUEDA: </label>
+              <Search placeholder="BUSCAR POR COMUNA, NOMBRE O DOCUMENTO DE IDENTIDAD" onChange={this.listUsersForSearch.bind(this)} />
+            </div>
+          </div>
+
+
 
           <br/>
           <br/>
@@ -142,8 +151,6 @@ export default class Report extends React.Component {
             </button>
           </div>
         </div>
-      </div>
-    </div>
 
       )
     }else{
