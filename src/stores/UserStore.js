@@ -48,25 +48,52 @@ let UserStore = Reflux.createStore({
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
     document.cookie = "user_id="+localStorage.user_id;
 
-    var app
-    switch(app){
-      case 'technology_form':
-        app = SecretConstant.TECHNOLOGY_API
-        break;
-      default:
-        app = SecretConstant.PP_API
-    }
-
     $.ajax({
       cache: false,
       context: this,
       data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory, user_id: user_id},
-      url: app+'/validate_download_pdf',
+      url: this.SelectApp(app) +'/validate_download_pdf',
       method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
           $(".loader").hide();
-          window.open(app+response.payload.message)
+          window.open(this.SelectApp(app)+response.payload.message)
+        }else{
+          $(".loader").hide();
+          swal("", response.payload.message, "error")
+        }
+      },
+      error: function(xhr, textStatus){
+        browserHistory.push('/error_page/500')
+      }
+    });
+  },
+
+  SelectApp: function(app){
+    var api
+    switch(app){
+      case 'technology_form':
+        api = SecretConstant.TECHNOLOGY_API
+        break;
+      default:
+        api = SecretConstant.PP_API
+    }
+    return api
+  },
+
+  GetAdminToken: function(app){
+    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+
+    $.ajax({
+      cache: false,
+      context: this,
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      url: this.SelectApp(app) +'/get_jwt',
+      method: 'POST',
+      success: function(response, textStatus, xhr){
+        if(response.status == 200){
+          $(".loader").hide();
+          return response.payload.message
         }else{
           $(".loader").hide();
           swal("", response.payload.message, "error")
@@ -110,41 +137,62 @@ let UserStore = Reflux.createStore({
 
   ShowConvocatory: function(convocatory, app){
 
-    var url
-    switch(app){
-      case 'technology_form':
-        url = SecretConstant.TECHNOLOGY_API
-        break;
-      default:
-        url = SecretConstant.PP_API
-    }
 
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-    document.cookie = "convocatory="+convocatory;
-    $.ajax({
-      cache: false,
-      context: this,
-      async: false,
-      data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory},
-      url: url+'/authentificate_plataform',
-      method: 'POST',
-      success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        if(response.status == 200){
-          switch(app){
-            case 'technology_form':
-              window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
-              break;
-            default:
-              window.open(SecretConstant.PP_API+response.payload.message)
+    if(localStorage.getItem("role").indexOf('admin') >= 0){
+      $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+      document.cookie = "jwt="+ this.GetAdminToken.auth_token;
+      document.cookie = "convocatory="+convocatory;
+      $.ajax({
+        cache: false,
+        context: this,
+        async: false,
+        data: {jwt:  this.GetAdminToken.auth_token, convocatory: convocatory},
+        url: this.SelectApp(app) +'/authentificate_plataform',
+        method: 'POST',
+        success: function(response, textStatus, xhr){
+          $(".loader").hide();
+          if(response.status == 200){
+            switch(app){
+              case 'technology_form':
+                window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+                break;
+              default:
+                window.open(SecretConstant.PP_API+response.payload.message)
+            }
           }
+        },
+        error: function(xhr, textStatus){
+          browserHistory.push('/error_page/500')
         }
-      },
-      error: function(xhr, textStatus){
-        browserHistory.push('/error_page/500')
-      }
-    });
+      });
+    }else{
+      $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+      document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
+      document.cookie = "convocatory="+convocatory;
+      $.ajax({
+        cache: false,
+        context: this,
+        async: false,
+        data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory},
+        url: this.SelectApp(app) +'/authentificate_plataform',
+        method: 'POST',
+        success: function(response, textStatus, xhr){
+          $(".loader").hide();
+          if(response.status == 200){
+            switch(app){
+              case 'technology_form':
+                window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
+                break;
+              default:
+                window.open(SecretConstant.PP_API+response.payload.message)
+            }
+          }
+        },
+        error: function(xhr, textStatus){
+          browserHistory.push('/error_page/500')
+        }
+      });
+    }
   }
 
 })
