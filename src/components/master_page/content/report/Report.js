@@ -29,12 +29,12 @@ export default class Report extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    AdminFoundAction.listUserRecords("all" , '', '', '')
+    AdminFoundAction.listUserRecords("all" , '', '', '', '')
   }
 
   changeData(ev){
     ev.preventDefault()
-    AdminFoundAction.listUserRecords("all", $("#element option:selected").text(), $("#search").val(), '')
+    AdminFoundAction.listUserRecords("all", $("#element option:selected").text(), $("#search").val(), '', $('#second-element option:selected').text())
   }
 
   downLoadExcel(ev){
@@ -43,7 +43,7 @@ export default class Report extends React.Component {
   }
 
   listUsers(list_type, convocatory){
-    AdminFoundAction.listUserRecords(list_type, convocatory,  $("#search").val(), '')
+    AdminFoundAction.listUserRecords(list_type, convocatory,  $("#search").val(), '', $('#second-element option:selected').text())
   }
 
   listUsersForSearch(ev){
@@ -60,7 +60,7 @@ export default class Report extends React.Component {
     }else if($(".nav-tabs li.active a").text().indexOf("NO FINALIZADOS") !== -1){
       tab = "not_finished"
     }
-    AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val())
+    AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val(), '', $('#second-element option:selected').text())
   }
 
   // Metodo que permite al paginador pasar a la siguiente pagina, o a la pagina de selección
@@ -68,7 +68,6 @@ export default class Report extends React.Component {
   nextPage(ev){
     ev.preventDefault()
     var tab
-
     if ($(".nav-tabs li.active a").text().indexOf("INSCRITOS") !== -1){
       tab = "all"
     }else if($(".nav-tabs li.active a").text().indexOf("FINALIZADOS") !== -1){
@@ -80,20 +79,17 @@ export default class Report extends React.Component {
     }else if($(".nav-tabs li.active a").text().indexOf("NO FINALIZADOS") !== -1){
       tab = "not_finished"
     }
-
     if(ev.target.id == 'prev'){
-      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(),  $("#search").val(), parseInt(this.state.records.current_page) - 1)
-
+      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(),  $("#search").val(), parseInt(this.state.records.current_page) - 1, $('#second-element option:selected').text())
     }else if(ev.target.id == 'nxt'){
-      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val(), parseInt(this.state.records.current_page) + 1)
+      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val(), parseInt(this.state.records.current_page) + 1, $('#second-element option:selected').text())
     }else{
-      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val(), ev.target.id)
+      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val(), ev.target.id, $('#second-element option:selected').text())
     }
   }
 
   // Retorna el componente
   render() {
-
 
     if(this.state.records){
       let registers = this.state.records.payload.data.map((register) => {
@@ -101,6 +97,17 @@ export default class Report extends React.Component {
           <ReportRecord data={register}/>
         )
       })
+
+      let select_fund
+      if(localStorage.role == 'admin'){
+        select_fund = <div class="row">
+                        <div class="col-sm-12">
+                          <label>SELECCIONE UN FONDO: </label>
+                          <SelectTag element_number={"second-element"} onChange={ this.changeData.bind(this) } endPoint="list_funds"/>
+                        </div>
+                      </div>
+      }
+
       return (
         <div class="page-title">
           <div class="x_title">
@@ -108,6 +115,8 @@ export default class Report extends React.Component {
           </div>
           <br/>
           <br/>
+
+          {select_fund}
 
           <div class= "row">
             <div class="col-sm-6">
@@ -120,8 +129,6 @@ export default class Report extends React.Component {
               <Search placeholder="BUSCAR POR COMUNA, NOMBRE O DOCUMENTO DE IDENTIDAD" onChange={this.listUsersForSearch.bind(this)} />
             </div>
           </div>
-
-
 
           <br/>
           <br/>

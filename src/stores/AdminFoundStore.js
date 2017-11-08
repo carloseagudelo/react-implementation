@@ -15,8 +15,8 @@ import AdminFoundAction from '../actions/AdminFoundAction'
 
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
+import GetFundByRole from '../utils/GetFundByRole'
 import SelectFund from '../utils/selectFund'
-
 import Constant from '../utils/Constants'
 
 // Define la clase
@@ -106,17 +106,25 @@ let AdminFoundStore = Reflux.createStore({
   },
 
   // Realiza la busqueda de datos de usuario por tab del panel de administracion
-  listUserRecords: function(list_type, convocatory, search, page){
+  listUserRecords: function(list_type, convocatory, search, page, fund){
+
+    console.log('XXXXXXXXXXXXXx')
+    console.log(fund)
+    console.log('XXXXXXXXXXXXXx')
+
+    if(fund == ""){
+      fund = GetFundByRole
+    }
+
     $.ajax({
       cache: false,
       context: this,
       async: true,
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      data: {convocatory: convocatory, query_type: list_type, search: search, page: page},
+      data: {convocatory: convocatory, query_type: list_type, search: search, page: page, fund: fund},
       url: SecretConstant.HOST_API+'/list_candidate_records',
       method: 'POST',
       success: function(response, textStatus, xhr){
-
         this.trigger(response)
       },
       error: function(xhr, textStatus){
