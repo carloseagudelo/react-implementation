@@ -28,7 +28,7 @@ let FileUpload = Reflux.createStore({
   // Realiza la petición para obtener los documentos por usuario
   FetchDocuments: function(user_id){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-  	if(user_id == 0){
+    if(user_id == 0){
       $.ajax({
         crossDomain: true,
         cache: false,
@@ -246,6 +246,34 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // Realiza la petición para marcar al usuario que los documentos fueron rechazados
+  RefuseDocument: function(personal_id){
+    $("body").append( "<img class='loader' src='/static/img/loader.gif'>" );
+    $.ajax({
+      crossDomain: true,
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/refuse_document/'+personal_id+'.json',
+      headers: {authorization: localStorage.jwtToken.split(',')[1]},
+      method: 'GET',
+      success: function(response, textStatus, xhr){
+        $(".loader").hide();
+        if(response.status == 200){
+          swal("HECHO", response.payload.message, "success")
+          browserHistory.push('/documents')
+        }else if(response.status == 400){
+          swal("ERROR", response.payload.message, "error")
+        }else{
+          browserHistory.push('/error_page/500')
+        }
+      },
+      error: function(xhr, textStatus){
+        $(".loader").hide();
+        browserHistory.push('/error_page/500')
+      }
+    });
+  },
+
   // Realiza la petición para marcar al sistema que ya todos los documentos fueron cargados
   FinishLoad: function(){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
@@ -299,11 +327,13 @@ let FileUpload = Reflux.createStore({
     });
   },
 
+  // 181.143.72.70:11000
   GetFile: function(id, document_name){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    window.open(SecretConstant.HOST_API+'/get_pdf/'+ document_name.replace(".pdf", "") +'/'+id+'.json')
+    window.open('http://localhost:3000/get_pdf/'+ document_name.replace(".pdf", "") +'/'+id+'.json')
     $(".loader").hide();
   }
+  
 })
 
 // Exporta la clase

@@ -20,7 +20,7 @@ export default class ReportRecord extends React.Component {
         <th>{this.props.data.name}</th>
         <th>{this.props.data.commune}</th>
         <GetPDF convocatory={$("#element option:selected").text()} etape={this.props.data.etape} app={this.props.data.app} user_id={this.props.data.user_id}/>
-        <VisitConvocatory convocatory={$("#element option:selected").text()} app={this.props.data.app} />
+        <VisitConvocatory convocatory={$("#element option:selected").text()} app={this.props.data.app} user_id={this.props.data.user_id}/>
       </tr>
     )
   }
