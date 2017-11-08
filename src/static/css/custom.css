@@ -4682,3 +4682,16 @@ select { width: 400px; text-align-last:center; }
     border-radius: 0 !important;
     width: 100%;
 }
+
+.short-bar-label {
+    /* Other styling.. */
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+    line-height: 2.7;
+}
+
+.short-bar-input {
+    width: 80% !important;
+}

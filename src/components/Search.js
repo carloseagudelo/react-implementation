@@ -8,7 +8,7 @@
 import React from 'react'
 
 // Inicializa y exporta la clase que contiene el componente
-export default class Search extends React.Component {  
+export default class Search extends React.Component {
 
   constructor(){
   	super()

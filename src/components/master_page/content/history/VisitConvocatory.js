@@ -14,7 +14,7 @@ import UserStore from '../../../../stores/UserStore'
 import SecretConstant from '../../../../utils/SecretsConstant'
 import {browserHistory } from 'react-router';
 
-export default class VisitConvocatory extends React.Component { 
+export default class VisitConvocatory extends React.Component {
 
   constructor(){
   	super()
@@ -23,7 +23,7 @@ export default class VisitConvocatory extends React.Component {
   // Evento de clic en el componente
   onSubmit(ev){
     ev.preventDefault()
-  	UserAction.ShowConvocatory(this.props.convocatory, this.props.app)
+  	UserAction.ShowConvocatory(this.props.convocatory, this.props.app, this.props.user_id)
   }
 
   // Retorna el componente

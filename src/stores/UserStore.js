@@ -43,26 +43,30 @@ let UserStore = Reflux.createStore({
     });
   },
 
-  GetPDF: function(convocatory, app){
+  GetPDF: function(convocatory, app, user_id){
     $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
     document.cookie = "user_id="+localStorage.user_id;
+
+    var app
+    switch(app){
+      case 'technology_form':
+        app = SecretConstant.TECHNOLOGY_API
+        break;
+      default:
+        app = SecretConstant.PP_API
+    }
+
     $.ajax({
       cache: false,
       context: this,
-      data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory },
-      url: SecretConstant.TECHNOLOGY_API+'/validate_download_pdf',
+      data: {jwt: localStorage.jwtToken.split(',')[1], convocatory: convocatory, user_id: user_id},
+      url: app+'/validate_download_pdf',
       method: 'POST',
       success: function(response, textStatus, xhr){
         if(response.status == 200){
           $(".loader").hide();
-          switch(app){
-            case 'technology_form':
-              window.open(SecretConstant.TECHNOLOGY_API+response.payload.message)
-              break;
-            default:
-              window.open(SecretConstant.PP_API+response.payload.message)
-          }
+          window.open(app+response.payload.message)
         }else{
           $(".loader").hide();
           swal("", response.payload.message, "error")

@@ -35,7 +35,7 @@ export default class Register extends React.Component {
         <th>{etape}</th>
         <th>{preselected}</th>
         <VisitConvocatory convocatory={this.props.data.convocatory} app={this.props.data.app} />
-        <GetPDF convocatory={this.props.data.convocatory} etape={this.props.data.etape} app={this.props.data.app} />
+        <GetPDF convocatory={this.props.data.convocatory} etape={this.props.data.etape} app={this.props.data.app} user_id={this.props.data.user_id}/>
       </tr>
     )
   }
