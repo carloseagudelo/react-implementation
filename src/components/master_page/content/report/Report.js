@@ -57,6 +57,8 @@ export default class Report extends React.Component {
       tab = "able"
     }else if($(".nav-tabs li.active a").text().indexOf("NO HABILITANTES") !== -1){
       tab = "not_able"
+    }else if($(".nav-tabs li.active a").text().indexOf("NO FINALIZADOS") !== -1){
+      tab = "not_finished"
     }
     AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val())
   }
@@ -75,6 +77,8 @@ export default class Report extends React.Component {
       tab = "able"
     }else if($(".nav-tabs li.active a").text().indexOf("NO HABILITANTES") !== -1){
       tab = "not_able"
+    }else if($(".nav-tabs li.active a").text().indexOf("NO FINALIZADOS") !== -1){
+      tab = "not_finished"
     }
 
     if(ev.target.id == 'prev'){
@@ -125,6 +129,7 @@ export default class Report extends React.Component {
           <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home" onClick={this.listUsers.bind(this, "all", $("#element option:selected").text())} >INSCRITOS <span class="badge">{this.state.records.counts.all}</span></a></li>
             <li><a data-toggle="tab" href="#menu1" onClick={this.listUsers.bind(this, "finished", $("#element option:selected").text())}>FINALIZADOS <span class="badge">{this.state.records.counts.finished}</span> </a></li>
+            <li><a data-toggle="tab" href="#menu4" onClick={this.listUsers.bind(this, "not_finished", $("#element option:selected").text())}>NO FINALIZADOS <span class="badge">{this.state.records.counts.not_finished}</span></a></li>
             <li><a data-toggle="tab" href="#menu2" onClick={this.listUsers.bind(this, "able", $("#element option:selected").text())}>HABILITADOS <span class="badge">{this.state.records.counts.able}</span></a></li>
             <li><a data-toggle="tab" href="#menu3" onClick={this.listUsers.bind(this, "not_able", $("#element option:selected").text())}>NO HABILITANTES <span class="badge">{this.state.records.counts.not_able}</span></a></li>
           </ul>
@@ -143,6 +148,10 @@ export default class Report extends React.Component {
             </div>
 
             <div id="menu3" class="tab-pane fade">
+              <TabContent registers = {registers} current_page = {this.state.records.current_page} pages = {this.state.records.records_count} onChange = {this.listUsersForSearch.bind(this)} onChange_paginator = {this.nextPage.bind(this)}/>
+            </div>
+
+            <div id="menu4" class="tab-pane fade">
               <TabContent registers = {registers} current_page = {this.state.records.current_page} pages = {this.state.records.records_count} onChange = {this.listUsersForSearch.bind(this)} onChange_paginator = {this.nextPage.bind(this)}/>
             </div>
 
