@@ -106,13 +106,13 @@ let AdminFoundStore = Reflux.createStore({
   },
 
   // Realiza la busqueda de datos de usuario por tab del panel de administracion
-  listUserRecords: function(list_type, convocatory, search){
+  listUserRecords: function(list_type, convocatory, search, page){
     $.ajax({
       cache: false,
       context: this,
       async: true,
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
-      data: {convocatory: convocatory, query_type: list_type, search: search},
+      data: {convocatory: convocatory, query_type: list_type, search: search, page: page},
       url: SecretConstant.HOST_API+'/list_candidate_records',
       method: 'POST',
       success: function(response, textStatus, xhr){

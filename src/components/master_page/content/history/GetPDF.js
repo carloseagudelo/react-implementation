@@ -24,7 +24,7 @@ export default class GetPDF extends React.Component {
   onSubmit(ev){
     ev.preventDefault()
     if(this.props.etape){
-      UserAction.GetPDF(this.props.convocatory, this.props.app)
+      UserAction.GetPDF(this.props.convocatory, this.props.app, this.props.user_id)
     }else{
       swal("", 'NO SE PUEDE GENERAR EL PDF DEBIDO A QUE EL FORMULARIO NO HA SIDO COMPLETADO', "error")
     }

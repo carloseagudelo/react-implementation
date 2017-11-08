@@ -11,15 +11,16 @@ export default class ReportRecord extends React.Component {
   }
 
   render() {
+
     return(
-      
+
       <tr scope="row">
         <th>{this.props.data.document_type}</th>
         <th>{this.props.data.document_number}</th>
         <th>{this.props.data.name}</th>
         <th>{this.props.data.commune}</th>
-        <VisitConvocatory convocatory={this.props.data.convocatory} app={this.props.data.app} />
-        <GetPDF convocatory={this.props.data.convocatory} etape={this.props.data.etape} app={this.props.data.app} />
+        <GetPDF convocatory={$("#element option:selected").text()} etape={this.props.data.etape} app={this.props.data.app} user_id={this.props.data.user_id}/>
+        <VisitConvocatory convocatory={$("#element option:selected").text()} app={this.props.data.app} />
       </tr>
     )
   }

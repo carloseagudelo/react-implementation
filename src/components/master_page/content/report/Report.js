@@ -18,6 +18,7 @@ import ReportRecord from './ReportRecord';
 import TabContent from './TabContent';
 
 
+
 @ReactMixin.decorate(Reflux.connect(AdminFoundActionStore, 'records'))
 export default class Report extends React.Component {
 
@@ -27,12 +28,12 @@ export default class Report extends React.Component {
 
   // Metodo propia de react que carga la información al componente antes de que este sea montado
   componentWillMount(){
-    AdminFoundAction.listUserRecords("all" , '')
+    AdminFoundAction.listUserRecords("all" , '', '', '')
   }
 
   changeData(ev){
     ev.preventDefault()
-    AdminFoundAction.listUserRecords("all", $("#element option:selected").text())
+    AdminFoundAction.listUserRecords("all", $("#element option:selected").text(),'','')
   }
 
   downLoadExcel(ev){
@@ -41,22 +42,55 @@ export default class Report extends React.Component {
   }
 
   listUsers(list_type, convocatory){
-    console.log(list_type)
-    AdminFoundAction.listUserRecords(list_type, convocatory, '')
+    AdminFoundAction.listUserRecords(list_type, convocatory, '', '')
   }
 
   listUsersForSearch(ev){
     ev.preventDefault()
-    AdminFoundAction.listUserRecords('all', $("#element option:selected").text(), $("#search").val())
+    var tab
+    if ($(".nav-tabs li.active a").text().indexOf("INSCRITOS") !== -1){
+      tab = "all"
+    }else if($(".nav-tabs li.active a").text().indexOf("FINALIZADOS") !== -1){
+      tab = "finished"
+    }else if ($(".nav-tabs li.active a").text().indexOf("HABILITADOS") !== -1){
+      tab = "able"
+    }else if($(".nav-tabs li.active a").text().indexOf("NO HABILITANTES") !== -1){
+      tab = "not_able"
+    }
+    AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val())
   }
 
+  // Metodo que permite al paginador pasar a la siguiente pagina, o a la pagina de selección
+  // Parametro: ev, evento del tag
+  nextPage(ev){
+    ev.preventDefault()
+    var tab
+
+    if ($(".nav-tabs li.active a").text().indexOf("INSCRITOS") !== -1){
+      tab = "all"
+    }else if($(".nav-tabs li.active a").text().indexOf("FINALIZADOS") !== -1){
+      tab = "finished"
+    }else if ($(".nav-tabs li.active a").text().indexOf("HABILITADOS") !== -1){
+      tab = "able"
+    }else if($(".nav-tabs li.active a").text().indexOf("NO HABILITANTES") !== -1){
+      tab = "not_able"
+    }
+
+    if(ev.target.id == 'prev'){
+      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(),  $("#search").val(), parseInt(this.state.records.current_page) - 1)
+
+    }else if(ev.target.id == 'nxt'){
+      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val(), parseInt(this.state.records.current_page) + 1)
+    }else{
+      AdminFoundAction.listUserRecords(tab, $("#element option:selected").text(), $("#search").val(), ev.target.id)
+    }
+  }
 
   // Retorna el componente
   render() {
 
 
     if(this.state.records){
-      console.log (this.state)
       let registers = this.state.records.payload.data.map((register) => {
         return(
           <ReportRecord data={register}/>
@@ -70,12 +104,10 @@ export default class Report extends React.Component {
           </div>
           <br/>
           <br/>
-
           <center>
-            <label for="sel1">SELECCIONE CONVOCATORIA</label>
-            <SelectTag endPoint="list_convocatories" onChange={this.changeData.bind(this)}/>
+            <label for="sel1" class="short-bar-label">SELECCIONE CONVOCATORIA: </label>
+            <SelectTag endPoint="list_convocatories" onChange={this.changeData.bind(this)} />
           </center>
-
           <div class="container">
 
           <br/>
@@ -90,19 +122,19 @@ export default class Report extends React.Component {
 
           <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
-              <TabContent registers = {registers} onChange={this.listUsersForSearch.bind(this)} />
+              <TabContent registers = {registers} current_page = {this.state.records.current_page} pages = {this.state.records.records_count} onChange = {this.listUsersForSearch.bind(this)} onChange_paginator = {this.nextPage.bind(this)}  />
             </div>
 
             <div id="menu1" class="tab-pane fade">
-              <TabContent registers = {registers} onChange={this.listUsersForSearch.bind(this)} />
+              <TabContent registers = {registers} current_page = {this.state.records.current_page} pages = {this.state.records.records_count}  onChange = {this.listUsersForSearch.bind(this)} onChange_paginator = {this.nextPage.bind(this)}/>
             </div>
 
             <div id="menu2" class="tab-pane fade">
-              <TabContent registers = {registers} onChange={this.listUsersForSearch.bind(this)} />
+              <TabContent registers = {registers} current_page = {this.state.records.current_page} pages = {this.state.records.records_count}  onChange = {this.listUsersForSearch.bind(this)} onChange_paginator = {this.nextPage.bind(this)}/>
             </div>
 
             <div id="menu3" class="tab-pane fade">
-              <TabContent registers = {registers} onChange={this.listUsersForSearch.bind(this)} />
+              <TabContent registers = {registers} current_page = {this.state.records.current_page} pages = {this.state.records.records_count} onChange = {this.listUsersForSearch.bind(this)} onChange_paginator = {this.nextPage.bind(this)}/>
             </div>
 
             <button class="btn btn-primary pull-right" onClick={this.downLoadExcel.bind(this)}>
