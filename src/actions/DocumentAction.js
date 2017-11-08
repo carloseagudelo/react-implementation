@@ -18,6 +18,7 @@ let DocumentAction = Reflux.createActions([
   'ListDocuments',
   'SaveDocument',
   'FinishValidate',
+  'RefuseDocument',
   'FinishLoad',
   'ListDocumentsByFund',
   'GetFile'

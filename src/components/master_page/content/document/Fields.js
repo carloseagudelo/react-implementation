@@ -34,6 +34,10 @@ export default class Fields extends React.Component {
     }
   }
 
+  refuseDocument(){
+    DocumentAction.RefuseDocument(this.props.data)
+  }
+
   render() {
 
     if(this.state.fields){
@@ -58,7 +62,10 @@ export default class Fields extends React.Component {
             )
           }) 
           if(!localStorage.role.includes("admin")){
-            buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR VALIDACIÓN</button>         
+            buttons = <div>
+                        <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR VALIDACIÓN</button>         
+                        <button class="btn btn-primary pull-left" onClick={this.refuseDocument.bind(this)} >RECHAZAR DOCUMENTOS</button>
+                      </div>
           }
           
         }  
@@ -71,27 +78,34 @@ export default class Fields extends React.Component {
                           <center><strong>SUS DOCUMENTOS FUERON VALIDADOS SATISFACTORIAMENTE</strong></center>
                         </div>  
         }else{
-          if(this.state.fields.data[0].get_pending_validated){
+          if(this.state.fields.data[0].get_refuse){
             messageAlert =
-                          <div class="alert alert-warning alert-document">
-                            <center><strong>SUS DOCUMENTOS NO HAN SIDO REVISADOS, O TIENE OBSERVACIONES PENDIENTES REVISE POR FAVOR</strong></center>
-                          </div>
-            buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >ACTUALIZAR DOCUMENTOS</button> 
+                        <div class="alert alert-warning alert-document">
+                          <center><strong>SUS DOCUMENTOS FUERON RECHAZADOS</strong></center>
+                        </div> 
           }else{
-            if(this.state.fields.data[0].get_upload_obligatory_all){
+            if(this.state.fields.data[0].get_pending_validated){
               messageAlert =
-                            <div class="alert alert-success alert-document">
-                              <center><strong>YA HAS CARGADO LOS DOCUMENTOS OBLIGATORIOS PARA QUE SEAN VALIDADOS HAZ CLIC EN EL BOTON FINALIZAR CARGA DOCUMENTOS</strong></center>
-                            </div> 
-              buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR CARGA DOCUMENTOS</button> 
-
+                            <div class="alert alert-warning alert-document">
+                              <center><strong>SUS DOCUMENTOS NO HAN SIDO REVISADOS, O TIENE OBSERVACIONES PENDIENTES REVISE POR FAVOR</strong></center>
+                            </div>
+              buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >ACTUALIZAR DOCUMENTOS</button> 
             }else{
-              messageAlert =                      
-                            <div class="alert alert-danger alert-document">
-                              <center><strong>NO HA CARGADO LOS DOCUMENTOS OBLIGATORIOS</strong></center>
-                            </div>    
+              if(this.state.fields.data[0].get_upload_obligatory_all){
+                messageAlert =
+                              <div class="alert alert-success alert-document">
+                                <center><strong>YA HAS CARGADO LOS DOCUMENTOS OBLIGATORIOS PARA QUE SEAN VALIDADOS HAZ CLIC EN EL BOTON FINALIZAR CARGA DOCUMENTOS</strong></center>
+                              </div> 
+                buttons = <button class="btn btn-primary pull-right" onClick={this.sendFinishedHandler.bind(this)} >FINALIZAR CARGA DOCUMENTOS</button> 
+
+              }else{
+                messageAlert =                      
+                              <div class="alert alert-danger alert-document">
+                                <center><strong>NO HA CARGADO LOS DOCUMENTOS OBLIGATORIOS</strong></center>
+                              </div>    
+              }
             }
-          }          
+          }
         }
       }
 

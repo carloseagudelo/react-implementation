@@ -40,6 +40,19 @@ export default class HabeasData extends React.Component {
 		  <div class="custom-container">
 		    <form class="custom-form ">
 
+		      <div class="alert alert-warning">
+			    <strong>
+			     <p align="justify">
+			        SI TE INSCRIBISTE A LA ÚLTIMA CONVOCATORIA DEL PROGRAMA BECAS TECNOLOGÍAS 
+			        ALCALDÍA DE MEDELLÍN YA TIENES UN USUARIO Y CONTRASEÑA ASIGNADO. PUEDES INSCRIBIRTE A
+			        LA CONVOCATORIA DEL FONDO SAPIENCIA PREGRADOS CON RECURSOS DE PRESUPUESTO PARTICIPATIVO 
+			        CON EL MISMO USUARIO Y CONTRASEÑA. SI LA OLVIDASTE PUEDES RECUPERARLA EN EN ESTE  
+			        <a href="http://181.143.72.70:12000/get_code"> LINK </a> O ESCRIBIENDO AL 
+			        CORREO INFO@SAPIENCIA.GOV.CO CON TUS DATOS PERSONALES.
+			      </p>
+			    </strong>
+			  </div>
+
 			  <p class="justificar">
 			    Certifico que he leído y autorizo expresamente a La Agencia de Educación Superior de Medellín – SAPIENCIA,
 			    el tratamiento de los datos personales, con miras a la planeación, diseño, desarrollo y evaluación de los

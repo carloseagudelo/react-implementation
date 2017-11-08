@@ -35,14 +35,19 @@ export default class Registration extends React.Component {
   onSubmitRegistration(ev){
   	ev.preventDefault()
   	let form_data = $(ev.target).serializeArray()
-  	let data = {
-			'name': form_data[0].value,
-			'surname': form_data[1].value,
-  	  'document_type': form_data[2].value,
-  	  'document_number': form_data[3].value,
-  	  'email': form_data[4].value
-  	}
-  	LoginAction.Register(data)
+  	if(form_data[4].value == form_data[5].value){
+  	  let data = {
+		'name': form_data[0].value,
+		'surname': form_data[1].value,
+	  	'document_type': form_data[2].value,
+	  	'document_number': form_data[3].value,
+	  	'email': form_data[4].value
+	  }
+	  LoginAction.Register(data)
+  	}else{
+	  swal("ERROR", 'LOS CORREOS ELECTRONICOS NO COINCIDEN', "error")
+	}
+  	
   }
 
   // Retorna el componente
@@ -69,6 +74,7 @@ export default class Registration extends React.Component {
 		      </select>
 		      <input type="text" name="document_number" class="form-control" placeholder="NÚMERO DE DOCUMENTO" required="" />
 		      <input type="text" name="email" class="form-control" placeholder="CORREO ELECTRONICO" required="" />
+		      <input type="text" name="conf_email" class="form-control" placeholder="CONFIRMAR CORREO ELECTRONICO" required="" />
 			  <button type="submit" id="login-button">REGISTRAR</button>
 				<br/>
 				<p>

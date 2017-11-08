@@ -56,14 +56,14 @@ export default class ResetPassword extends React.Component {
 		  	<h1 class="form-title">CAMBIAR CONTRASEÑA</h1>
 		    <form class="custom-form" onSubmit={this.onSubmitLogin.bind(this)}>
 			  <input type='text' name='email' class='form-control' placeholder='CORREO ELECTRONICO' required='' />
-		      <input type='password' name='current_password' class='form-control' placeholder='CONTRASEÑA ACTUAL' required='' />
+		      <input type='password' name='current_password' class='form-control' placeholder='CONTRASEÑA O CÓDIGO ' required='' />
 		      <input type='password' name='password' class='form-control' placeholder='CONTRASEÑA NUEVA' required='' />
 		      <input type='password' name='password_confirmation' class='form-control' placeholder='CONFIRMAR CONTRASEÑA NUEVA' required='' />
 			  <button type='submit' class='submit'>CAMBIAR CONTRASEÑA </button>
 			  <br/>
 				<p>
 					<Link class="mg-right" to='login'>Iniciar Sesión </Link>
-					<Link to='register'>Registro en Plataforma</Link>
+					<Link to='get_code'>No tengo contraseña </Link>
 				</p>
 			 </form>
 		   </div>
