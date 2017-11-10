@@ -47,14 +47,14 @@ export default class Registration extends React.Component {
   	}else{
 	  swal("ERROR", 'LOS CORREOS ELECTRONICOS NO COINCIDEN', "error")
 	}
-  	
+
   }
 
   // Retorna el componente
   render() {
 	return(
 	  <div class="custom-style">
-	    <div class="wrapper">
+	    <div class="wrapper habeas">
 	      <center>
 		    <MessageFlash data={this.state.login} />
 		    <Logo />
