@@ -16,6 +16,7 @@ import DocumentAction from '../actions/DocumentAction'
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
+import GetFundByRole from '../utils/GetFundByRole'
 
 // Define la clase
 let FileUpload = Reflux.createStore({
@@ -137,57 +138,56 @@ let FileUpload = Reflux.createStore({
   },
 
   // Realiza la petición para obtener los usuarios que ya finalizaron la carga de documentos
-  ListUsersFinished: function(page){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+  ListUsersFinished: function(page, fund, convocatory, search, query_type){
+
+    if(fund === ''){
+      fund = GetFundByRole
+    }
+
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
-      data: {page: page},
+      data: {page: page, fund: fund, convocatory: convocatory, search: search, query_type: query_type},
       url: SecretConstant.HOST_API+'/list_users_finished',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
-        $(".loader").hide();
         if(response.status == 200){
-          this.trigger(response.payload)
+          this.trigger(response)
         }else{
           browserHistory.push('/error_page/500')
         }
       },
       error: function(xhr, textStatus){
-        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
   },
 
   // Realiza la petición para obtener los usuarios que aún tienen pendiente la carga de documentos
-  ListUsersPending: function(page){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
+  ListUsersPending: function(page, convocatory, search){
+
     $.ajax({
       crossDomain: true,
       cache: false,
       context: this,
-      data: {page: page},
+      data: {page: page, convocatory: convocatory, search: search},
       url: SecretConstant.HOST_API+'/list_users_pending',
       headers: {authorization: localStorage.jwtToken.split(',')[1]},
       method: 'POST',
       success: function(response, textStatus, xhr){
-        $(".loader").hide();
         if(response.status == 200){
-          this.trigger(response.payload)
+          this.trigger(response)
         }else{
           browserHistory.push('/error_page/500')
         }
       },
       error: function(xhr, textStatus){
-        $(".loader").hide();
         browserHistory.push('/error_page/500')
       }
     });
   },
-
 
   // Realiza la petición para registrar un nuevo documento
   SaveDocument: function(data){

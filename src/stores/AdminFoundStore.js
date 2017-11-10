@@ -108,10 +108,6 @@ let AdminFoundStore = Reflux.createStore({
   // Realiza la busqueda de datos de usuario por tab del panel de administracion
   listUserRecords: function(list_type, convocatory, search, page, fund){
 
-    console.log('XXXXXXXXXXXXXx')
-    console.log(fund)
-    console.log('XXXXXXXXXXXXXx')
-
     if(fund == ""){
       fund = GetFundByRole
     }
