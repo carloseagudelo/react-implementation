@@ -5,10 +5,10 @@
 
 
 var SecretsConstant = {
-  HOST_API: 'http://localhost:3000',
-  TECHNOLOGY_API: 'http://localhost:3001',
+  HOST_API: 'http://181.143.72.70:11000',
+  TECHNOLOGY_API: 'http://181.143.72.70:9000',
   PASSWORD_AUT_TOKEN: '/s4P13Nc1A2014mEdCoL/',
-  PP_API: 'http://localhost:3002'
+  PP_API: 'http://181.143.72.70:5500'
 };
 
 module.exports = SecretsConstant;
