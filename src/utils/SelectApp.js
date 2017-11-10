@@ -10,6 +10,7 @@
   export default function SelectApp(app) {
 
     var api
+    if (app != 0){
       switch(app){
         case 'technology_form':
           api = SecretConstant.TECHNOLOGY_API
@@ -17,5 +18,15 @@
         default:
           api = SecretConstant.PP_API
       }
+    }else{
+      switch(localStorage.role){
+        case 'adminPp':
+          api = SecretConstant.PP_API
+          break;
+        case 'adminTechnology':
+          api = SecretConstant.TECHNOLOGY_API
+          break;
+      }
+    }
       return api
   }

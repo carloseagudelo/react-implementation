@@ -15,6 +15,7 @@ import AdminFoundAction from '../actions/AdminFoundAction'
 
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
+import SelectApp from '../utils/SelectApp'
 import GetFundByRole from '../utils/GetFundByRole'
 import SelectFund from '../utils/selectFund'
 import Constant from '../utils/Constants'
@@ -78,13 +79,7 @@ let AdminFoundStore = Reflux.createStore({
   // Realiza la peticion para obtener el archivo en excel de la convocatoria que ingresa como parametro
   DonwnloadExcel: function(convocatory){
     document.cookie = "jwt="+localStorage.jwtToken.split(',')[1];
-    let url
-    if (SelectFund == "BECAS TECNOLOGIA"){
-      url = SecretConstant.TECHNOLOGY_API
-    }else {
-      url = SecretConstant.PP_API
-    }
-
+    var url = SelectApp(0)
     $.ajax({
       cache: false,
       context: this,
