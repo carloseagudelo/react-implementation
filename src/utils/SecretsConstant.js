@@ -5,9 +5,6 @@
 
 
 var SecretsConstant = {
-  HOST_API: 'http://localhost:3000',
-  TECHNOLOGY_API: 'http://localhost:3002',
-  PASSWORD_AUT_TOKEN: '/s4P13Nc1A2014mEdCoL/',
   PP_API: 'http://localhost:3001'
 };
 
