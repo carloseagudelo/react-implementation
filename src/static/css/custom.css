@@ -4695,3 +4695,9 @@ select { width: 400px; text-align-last:center; }
 .short-bar-input {
     width: 80% !important;
 }
+
+.description_txt{
+    font-size: 18px;
+    text-align: justify;
+
+}

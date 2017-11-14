@@ -32,11 +32,24 @@ export default class Course extends React.Component {
     if(this.state.course){
       return(
         <div>
-          <img src={this.state.course[0].image} alt=""/>
-          <h1>NOMBRE DEL CURSO: {this.state.course[0].nombre}</h1>
-          <h3>DESCRIPCION DEL CURSO: {this.state.course[0].description}</h3>
-          <p>DURACION: {this.state.course[0].duration}</p>
-          <p>PROFESOR: {this.state.course[0].teacher}</p>
+          <br/>
+          <br/>
+          <center><img src={this.state.course[0].image} alt=""/></center>
+          <br/>
+          <br/>
+          <div class="jumbotron">
+            <ul class="description_txt">
+              <li><b>NOMBRE DEL CURSO:</b> {this.state.course[0].nombre}</li>
+              <br/>
+              <li><b>DURACION:</b> {this.state.course[0].duration}</li>
+              <br/>
+              <li><b>PROFESOR:</b> {this.state.course[0].teacher}</li>
+              <br/>
+              <li><b>DESCRIPCION DEL CURSO:</b> {this.state.course[0].description}</li>
+            </ul>
+          </div>
+          <br/>
+          <br/>
         </div>
       )
     }else{

@@ -20,15 +20,16 @@ export default class CourseMin extends React.Component {
   	return(
       <div class=" col-md-4">
           <div class="card card-inverse card-info">
+          <br />
               <center><img class="card-img-top" src={this.props.data.image} width="200" heigth="200"/></center>
               <div class="card-block">
                   <center><h4 class="card-title">{this.props.data.nombre}</h4></center>
                   <div class="card-text">
-                      {this.props.data.description}
+                      <center>{this.props.data.description}</center>
                   </div>
               </div>
               <div class="card-footer">
-                <Link class="btn btn-info btn-sm" to={'/course/' + this.props.data.id}>Conocer más</Link>
+                <center><Link class="btn btn-info btn-sm" to={'/course/' + this.props.data.id}>Conocer más</Link></center>
               </div>
           </div>
       </div>
