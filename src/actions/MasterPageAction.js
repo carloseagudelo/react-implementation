@@ -11,7 +11,7 @@ import Reflux from 'reflux'
 // DEfine la clase
 let MasterPageAction = Reflux.createActions([
   'FetchInformation',
-  'FetchMenu'
+  'GetCourse'
 ])
 
 // Exporta la clase

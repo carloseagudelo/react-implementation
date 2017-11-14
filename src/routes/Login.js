@@ -17,7 +17,6 @@ import LoginStore from '../stores/LoginStore.js'
 
 // importa los componentes necesarios
 import MessageFlash from '../components/MessageFlash'
-import Loading from '../components/Loading'
 import Bubbles from '../components/login/Bubbles'
 import Logo from '../components/login/Logo'
 
@@ -57,7 +56,7 @@ export default class Login extends React.Component {
 			  <button type="submit" id="login-button">INGRESAR</button>
 			  <br/>
 				<p>
-					<Link class="mg-right" to='habeas_data'>Registro en plataforma </Link>
+					<Link class="mg-right" to='registration'>Registro en plataforma </Link>
 					<Link to='reset'>Cambiar Contraseña </Link>
 				</p>
 			</form>

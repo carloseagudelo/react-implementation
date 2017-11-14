@@ -19,7 +19,7 @@ export default class Footer extends React.Component {
     return (
       <footer>
         <div class="pull-left">
-          <strong>SISAP</strong> SISTEMA DE INFORMACION SAPIENCIA
+          <strong>CYMETRIA</strong> Expertos en Innovación y Transformación Digital
         </div>
 
         <div class="clearfix"></div>

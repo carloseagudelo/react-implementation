@@ -62,8 +62,7 @@ export default class ResetPassword extends React.Component {
 			  <button type='submit' class='submit'>CAMBIAR CONTRASEÑA </button>
 			  <br/>
 				<p>
-					<Link class="mg-right" to='login'>Iniciar Sesión </Link>
-					<Link to='get_code'>No tengo contraseña </Link>
+				  <Link class="mg-right" to='login'>Iniciar Sesión </Link>
 				</p>
 			 </form>
 		   </div>

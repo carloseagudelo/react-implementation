@@ -11,14 +11,14 @@ import React from 'react';
 export default class Content extends React.Component {
 
   constructor(){
-  	super()
+    super()
   }
 
   // Retorna el compnente
   render() {
     return (
       <div class="right_col" role="main" >
-      	{this.props.data}
+        {this.props.data}
       </div>
     )
   }

@@ -9,11 +9,12 @@
 import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
+
 // Importa los componentes propios necesarios
 import LoginAction from '../actions/LoginAction'
+
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
-import Authentication from '../utils/Authentication'
 import Constant from '../utils/Constants'
 import Logout from '../utils/Logout'
 
@@ -32,231 +33,35 @@ let LoginStore = Reflux.createStore({
 
   // Realiza la peticion de autentificación
   Login: function(data){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
     $.ajax({
       crossDomain: true,
       cache: false,
       data: data,
       context: this,
-      url: SecretConstant.HOST_API+'/login',
-      method: 'POST',
+      url: SecretConstant.HOST_API+'/users?email=' + data.email + '&password=' + data.password,      
+      method: 'GET',
       success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        if(response.status == 'authorized'){
-          if(Authentication(response.payload.message.auth_token)){ // Valida el token y guarda la información en el localStores
-            browserHistory.push('/tutorials');
-          }else {
-            this.state = {
-              message: Constant.USER_NO_VALID,
-              type: Constant.TYPE_FLASH_MESSAGE_ERROR
-            }
-            browserHistory.push('/login');
-            this.trigger(this.state)
-          }
-        }else {
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          browserHistory.push('/login');
-          this.trigger(this.state)
+        if(response[0].id){
+          localStorage.setItem('id', response[0].id);
+          localStorage.setItem('session', 'authorized');
+          browserHistory.push('/home');
+        }else{
+          swal("ERROR", 'USUARIO O CONTRASEÑA INVALIDOS EN PLATAFORMA', "error")
         }
       },
       error: function(response, xhr, textStatus){
-        this.state = {
-          message: response.payload.message,
-          type: response.payload.type
-        }
-        browserHistory.push('/login');
-        this.trigger(this.state)
-      }
-    });
-  },
-
-  // Realiza la petición de cambiar la contraseña
-  ResetPassword: function(data){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    $.ajax({
-      crossDomain: true,
-      cache: false,
-      data: data,
-      context: this,
-      url: SecretConstant.HOST_API+'/reset_passwors',
-      method: 'POST',
-      success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        if(response.status == 200){
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          browserHistory.push('/login');
-          this.trigger(this.state)
-        }else {
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          browserHistory.push('/reset');
-          this.trigger(this.state)
-        }
-      },
-      error: function(response, xhr, textStatus){
-        this.state = {
-          message: response.payload.message,
-          type: response.payload.type
-        }
-        browserHistory.push('/reset');
-        this.trigger(this.state)
-      }
-    });
-  },
-
-  // Realiza la petición de cambiar la contraseña la primera vez
-  InitialPassword: function(data){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    $.ajax({
-      crossDomain: true,
-      cache: false,
-      data: data,
-      context: this,
-      url: SecretConstant.HOST_API+'/initial_password',
-      method: 'POST',
-      success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        if(response.status == 200){
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          browserHistory.push('/login');
-          this.trigger(this.state)
-        }else {
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          browserHistory.push('/initial_password');
-          this.trigger(this.state)
-        }
-      },
-      error: function(response, xhr, textStatus){
-        this.state = {
-          message: response.payload.message,
-          type: response.payload.type
-        }
-        browserHistory.push('/initial_password');
-        this.trigger(this.state)
+        alert('aca')
+        swal("ERROR", 'USUARIO O CONTRASEÑA INVALIDOS EN PLATAFORMA', "error")
       }
     });
   },
 
   // Realiza la petición de cierre de sesion
   Logout: function(data){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    $.ajax({
-      crossDomain: true,
-      cache: false,
-      data: {email: localStorage.current_user},
-      context: this,
-      url: SecretConstant.HOST_API+'/logout',
-      method: 'POST',
-      success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        if(response.status == 200){
-          if(Logout()){
-            this.state = {
-              message: response.payload.message,
-              type: response.payload.type
-            }
-            browserHistory.push('/login');
-            this.trigger(this.state)
-          }else{
-            browserHistory.push('/');
-          }
-        }else {
-          browserHistory.push('/');
-        }
-      },
-      error: function(xhr, textStatus){
-        browserHistory.push('/')
-      }
-    });
-  },
-
-  Register: function(data){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    $.ajax({
-      crossDomain: true,
-      cache: false,
-      data: data,
-      context: this,
-      url: SecretConstant.HOST_API+'/canditate_registration',
-      method: 'POST',
-      success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        if(response.status == 200){
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          browserHistory.push('/login');
-          this.trigger(this.state)
-        }else {
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          this.trigger(this.state)
-        }
-      },
-      error: function(response, xhr, textStatus){
-        this.state = {
-          message: response.payload.message,
-          type: response.payload.type
-        }
-        browserHistory.push('/login');
-        this.trigger(this.state)
-      }
-    });
-  },
-
-  GetSecureCode: function(data){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
-    $.ajax({
-      crossDomain: true,
-      cache: false,
-      data: data,
-      context: this,
-      url: SecretConstant.HOST_API+'/get_security_code',
-      method: 'POST',
-      success: function(response, textStatus, xhr){
-        $(".loader").hide();
-        if(response.status == 200){
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          browserHistory.push('/login');
-          this.trigger(this.state)
-        }else {
-          this.state = {
-            message: response.payload.message,
-            type: response.payload.type
-          }
-          this.trigger(this.state)
-        }
-      },
-      error: function(response, xhr, textStatus){
-        this.state = {
-          message: response.payload.message,
-          type: response.payload.type
-        }
-        browserHistory.push('/login');
-        this.trigger(this.state)
-      }
-    });
+    localStorage.clear();
+    browserHistory.push('/login');
   }
+
 
 })
 

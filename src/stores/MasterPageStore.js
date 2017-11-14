@@ -9,8 +9,10 @@
 import $ from 'jquery'
 import Reflux from 'reflux'
 import { browserHistory } from 'react-router'
+
 // Importa los componentes propios necesarios
 import MasterPageAction from '../actions/MasterPageAction'
+
 // Importa las clases necesarias donde se almacenas las contantes del aplicativo
 import SecretConstant from '../utils/SecretsConstant'
 import Constant from '../utils/Constants'
@@ -21,22 +23,36 @@ let MasterPageStore = Reflux.createStore({
 
   // Realiza la peticion de login al api del aplicativo
   FetchInformation: function(){
-    $("body").append( "<img class='loader' src='../static/img/loader.gif'>" );
   	$.ajax({
-      crossDomain: true,
       cache: false,
-      data: {email: localStorage.current_user},
-      headers: {authorization: localStorage.jwtToken.split(',')[1]},
       context: this,
-      url: SecretConstant.HOST_API+'/personal_information',
+      url: SecretConstant.HOST_API+'/users?id=' + localStorage.id,
       method: 'GET',
       success: function(response, textStatus, xhr){ 
-        if(response.status == 200){
+        if(response){
           this.trigger(response)
-          $(".loader").hide();
         }else {
           browserHistory.push('/error_page/500')
-          $(".loader").hide();
+        }
+      },  
+      error: function(textStatus, xhr){
+        browserHistory.push('/error_page/500')
+        $(".loader").hide();
+      }
+    });
+  },
+
+  GetCourse: function(id){
+    $.ajax({
+      cache: false,
+      context: this,
+      url: SecretConstant.HOST_API+'/courses?id=' + id,
+      method: 'GET',
+      success: function(response, textStatus, xhr){ 
+        if(response){
+          this.trigger(response)
+        }else {
+          browserHistory.push('/error_page/500')
         }
       },  
       error: function(textStatus, xhr){

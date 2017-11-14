@@ -16,7 +16,6 @@ import LoginStore from '../stores/LoginStore.js'
 
 // importa los componentes necesarios
 import MessageFlash from '../components/MessageFlash'
-import Loading from '../components/Loading'
 import Bubbles from '../components/login/Bubbles'
 import Logo from '../components/login/Logo'
 

@@ -9,32 +9,15 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 
-import SelectRole from '../utils/SelectRole'
-
 // importa los componentes necesarios
-import MasterPage from './MasterPage';
 import Registration from './Registration';
 import Login from './Login';
-import HabeasData from './HabeasData';
-import ResetPassword from './ResetPassword';
-import GetSecureCode from './GetSecureCode';
-import RestorePassword from './RestorePassword';
 import ErrorPage from './ErrorPage'
-import Document from '../components/master_page/content/document/Document'
-import LoadUser from '../components/master_page/content/adminFound/LoadUser'
-import ListDocumets from '../components/master_page/content/configuration/ListDocuments'
-import CreateDocument from '../components/master_page/content/configuration/CreateDocument'
-import SetDocumentFund from '../components/master_page/content/configuration/SetDocumentFund'
-import ChangeValidator from '../components/master_page/content/adminFound/changeValidator/ChangeValidator'
-import SetRestriction from '../components/master_page/content/configuration/SetRestriction'
-import ListAviableFunds from '../components/master_page/content/funds/ListAviableFunds'
-import Report from '../components/master_page/content/report/Report'
-import History from '../components/master_page/content/history/History'
-import CreateFund from '../components/master_page/content/configuration/CreateFunds'
-import CreateConvocatory from '../components/master_page/content/configuration/CreateConvocatory'
-import HistoryDocument from '../components/master_page/content/document/HistoryDocuments'
-import GeneralAdminReport from '../components/master_page/content/report/GeneralAdminReport'
-import Tutorial from '../components/master_page/Tutorial'
+import ResetPassword from './ResetPassword';
+import RestorePassword from './RestorePassword';
+import MasterPage from './MasterPage';
+import Course from '../components/master_page/Course'
+import ListCourses from '../components/master_page/ListCourses'
 
 export default class Root extends React.Component {
 
@@ -44,14 +27,7 @@ export default class Root extends React.Component {
 
   // Valida si la ruta a la que accede el usuario esta autentificado
   requireAuth() {
-    if(typeof(localStorage.jwtToken) !== 'undefined'){
-      var data = localStorage.jwtToken.split(',');
-      if (data[0] != 'Autorized') {
-        browserHistory.push('/error_page/403')
-      }if(localStorage.role == ''){
-        SelectRole();
-      }
-    }else{
+    if(localStorage.session !== 'authorized'){
       browserHistory.push('/error_page/403')
     }
   }
@@ -61,28 +37,12 @@ export default class Root extends React.Component {
     return (
       <Router history={browserHistory}>
         <Route path='/' component={MasterPage} onEnter={this.requireAuth} >
-          <Route path='/documents' component={Document} />
-          <Route path='/reports' component={Report} />
-          <Route path='/documents/:id/name/:name/document_num/:doc' component={Document} />
-          <Route path='/load_user' component={LoadUser} />
-          <Route path='/list_documents' component={ListDocumets} />
-          <Route path='/create_document' component={CreateDocument} />
-          <Route path='/set_documents' component={SetDocumentFund} />
-          <Route path='/change_validator' component={ChangeValidator} />
-          <Route path='/set_restriction' component={SetRestriction} />
-          <Route path='/create_convocatory' component={CreateConvocatory} />
-          <Route path='/create_fund' component={CreateFund} />
-          <Route path='/list_funds_aviables' component={ListAviableFunds} />
-          <Route path='/personal_history' component={History} />
-          <Route path='/document_history' component={HistoryDocument} />
-          <Route path='/admin_report' component={GeneralAdminReport} /> 
-          <Route path='/tutorials' component={Tutorial} />
+          <Route path='/home' component={ListCourses} />
+          <Route path='/course/:id' component={Course} />
         </Route>
         <Route path='registration' component={Registration} />
-        <Route path='habeas_data' component={HabeasData}  />
         <Route path='login' component={Login} />
         <Route path='reset' component={ResetPassword} />
-        <Route path='get_code' component={GetSecureCode} />
         <Route path='restore_password' component={RestorePassword} />
         <Route path='/error_page/:er' component={ErrorPage} />
 	    </Router>

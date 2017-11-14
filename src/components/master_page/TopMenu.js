@@ -37,7 +37,7 @@ export default class TopMenu extends React.Component {
 	          <ul class="nav navbar-nav navbar-right">
 	            <li class="">
 	              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	                <img src={this.props.data.payload.data[0].photo} alt=""/>{this.props.data.payload.data[0].personal_name} <span class=" fa fa-angle-down"></span>
+	                <img src={this.props.data.image_url} alt=""/>{this.props.data.first_name} {this.props.data.last_name} <span class=" fa fa-angle-down"></span>
 	              </a>
 	              <ul class="dropdown-menu dropdown-usermenu pull-right">
 	              <li><Link>PERFIL</Link></li>

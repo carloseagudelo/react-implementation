@@ -4672,9 +4672,9 @@ select { width: 400px; text-align-last:center; }
     background: #fff;
     border-radius: 2px;
     display: inline-block;
-    height: 400px;
+    height: 350px;
     margin-top: 60px;
-    width: 400px;
+    width: 350px;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
 
