@@ -5,7 +5,7 @@
 
 
 var SecretsConstant = {
-  PP_API: 'http://localhost:3001'
+  HOST_API: 'http://localhost:3000'
 };
 
 module.exports = SecretsConstant;

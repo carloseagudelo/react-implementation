@@ -35,6 +35,9 @@ export default class MasterPage extends React.Component {
   // Retorna el componente
   render() {
 
+    console.log('XXXXXXXXXXXXXXXX')
+  console.log(this.state.information)
+
     if(this.state.information){
       return (
         <div class='nav-md'>

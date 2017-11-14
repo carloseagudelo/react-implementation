@@ -22,7 +22,7 @@ export default class CourseMin extends React.Component {
           <div class="card card-inverse card-info">
               <center><img class="card-img-top" src={this.props.data.image} width="200" heigth="200"/></center>
               <div class="card-block">
-                  <h4 class="card-title">{this.props.data.nombre}</h4>
+                  <center><h4 class="card-title">{this.props.data.nombre}</h4></center>
                   <div class="card-text">
                       {this.props.data.description}
                   </div>

@@ -32,9 +32,6 @@ export default class ListCourses extends React.Component {
   // Retorna el compnente
   render() {
 
-    console.log('XXXXXXXXXXXXXXXX')
-    console.log(this.state.information)
-
     if(this.state.information){
 
       let courses = this.state.information[0].curses.map((course) => {
